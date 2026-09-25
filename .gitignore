@@ -6,3 +6,11 @@ coverage/
 .env
 .env.*
 !.env.example
+.Codex/*
+!.Codex/progress.md
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+test-results/
+playwright-report/

@@ -1,0 +1,108 @@
+{
+  "ncd_id": "20.32",
+  "title": "Transcatheter Aortic Valve Replacement (TAVR)",
+  "document_id": 355,
+  "document_version": 2,
+  "publication_number": "100-3",
+  "effective_date": "2019-06-21",
+  "implementation_date": "2020-06-12",
+  "last_updated": "2023-08-16",
+  "benefit_category": "Inpatient Hospital Services, Physicians' Services",
+  "coverage_model": "Coverage with Evidence Development (CED)",
+  "source": {
+    "api_url": "https://api.coverage.cms.gov/v1/data/ncd?ncdid=355&ncdver=2",
+    "mcd_url": "https://www.cms.gov/medicare-coverage-database/view/ncd.aspx?ncdid=355&ncdver=2",
+    "transmittal_url": "https://www.cms.gov/files/document/r217ncd.pdf",
+    "retrieved": "2026-07-05",
+    "retrieval_method": "CMS Coverage API (api.coverage.cms.gov) public endpoint"
+  },
+  "covered_indication_summary": "TAVR is covered under CED for treatment of symptomatic aortic valve stenosis when furnished per an FDA-approved indication and ALL Section B.A conditions are met (device, heart team, hospital infrastructure, volume qualifications, registry participation).",
+  "criteria": [
+    {
+      "id": "TAVR-1",
+      "category": "diagnosis",
+      "required": true,
+      "text": "Patient has symptomatic aortic valve stenosis.",
+      "check_hints": [
+        "ICD-10 I35.0 (nonrheumatic aortic valve stenosis) or I06.0/I06.2 rheumatic variants",
+        "documented symptoms: dyspnea, angina, syncope, NYHA class",
+        "echocardiogram findings: valve area, mean gradient, peak velocity"
+      ]
+    },
+    {
+      "id": "TAVR-2",
+      "category": "device",
+      "required": true,
+      "text": "The procedure is furnished with a complete aortic valve and implantation system that has received FDA premarket approval (PMA) for that system's FDA-approved indication.",
+      "check_hints": [
+        "named FDA-approved TAVR system (e.g., Edwards SAPIEN 3, Medtronic Evolut) in op plan or request"
+      ]
+    },
+    {
+      "id": "TAVR-3",
+      "category": "care-team",
+      "required": true,
+      "text": "Patient is under the care (pre- and post-operatively) of a multidisciplinary heart team including a cardiac surgeon and an interventional cardiologist experienced in aortic stenosis.",
+      "check_hints": [
+        "heart team evaluation note listing cardiac surgeon and interventional cardiologist"
+      ]
+    },
+    {
+      "id": "TAVR-4",
+      "category": "care-team",
+      "required": true,
+      "text": "The cardiac surgeon and interventional cardiologist have independently examined the patient face-to-face, evaluated suitability for SAVR, TAVR, or medical/palliative therapy, and documented the rationale for their clinical judgment (available to the heart team).",
+      "check_hints": [
+        "two independent face-to-face evaluation notes",
+        "documented SAVR risk assessment (e.g., STS score)"
+      ]
+    },
+    {
+      "id": "TAVR-5",
+      "category": "procedure",
+      "required": true,
+      "text": "The heart team's interventional cardiologist(s) and cardiac surgeon(s) jointly participate in the intra-operative technical aspects of TAVR.",
+      "check_hints": [
+        "attestation of joint participation in the operative plan"
+      ]
+    },
+    {
+      "id": "TAVR-6",
+      "category": "facility",
+      "required": true,
+      "text": "TAVR is furnished in a hospital with appropriate infrastructure: on-site heart valve surgery and interventional cardiology programs, and a post-procedure intensive care facility with experienced personnel.",
+      "check_hints": [
+        "facility attestation of on-site cardiac surgery + ICU"
+      ]
+    },
+    {
+      "id": "TAVR-7",
+      "category": "facility-volume",
+      "required": true,
+      "text": "Hospital program meets applicable volume qualifications. Experienced programs: >=50 AVRs (TAVR or SAVR) per year including >=20 TAVR in the prior year, OR >=100 AVRs every 2 years including >=40 TAVR in prior 2 years; AND >=2 physicians with cardiac surgery privileges; AND >=1 physician with interventional cardiology privileges; AND >=300 PCIs per year. (New programs have separate start-up qualifications.)",
+      "check_hints": [
+        "facility volume attestation with counts"
+      ]
+    },
+    {
+      "id": "TAVR-8",
+      "category": "registry",
+      "required": true,
+      "text": "The heart team and hospital are participating in a prospective, national, audited registry (e.g., STS/ACC TVT Registry) that consecutively enrolls TAVR patients, accepts all devices, follows patients at least one year, and complies with human-subjects regulations; required outcomes (stroke, all-cause mortality, TIA, major vascular events, AKI, repeat AV procedures, new pacemaker, QoL) are tracked.",
+      "check_hints": [
+        "registry participation attestation (STS/ACC TVT Registry)"
+      ]
+    }
+  ],
+  "non_covered": [
+    "TAVR is not covered for patients in whom existing co-morbidities would preclude the expected benefit from correction of the aortic stenosis."
+  ],
+  "notes": [
+    "Section B.B covers non-FDA-approved uses only within qualifying clinical studies (CED research pathway) - out of scope for a standard PA approval demo.",
+    "NCD last reviewed June 2019."
+  ],
+  "full_text": {
+    "item_service_description": "A.    General\n\n \r\n \r\nTranscatheter aortic valve replacement (TAVR - also known as TAVI or transcatheter aortic valve implantation) is used in the treatment of aortic stenosis. A bioprosthetic valve is inserted percutaneously using a catheter and implanted in the orifice of the aortic valve.",
+    "indications_and_limitations": "B. Nationally Covered Indications\n\n\r\n\r\nThe Centers for Medicare & Medicaid Services (CMS) covers transcatheter aortic valve replacement (TAVR) under Coverage with Evidence Development (CED) with the following conditions:\n\n\r\n\r\nA. TAVR is covered for the treatment of symptomatic aortic valve stenosis when furnished according to a Food and Drug Administration (FDA)-approved indication and when all of the following conditions are met:\n\n\r\n\r\n\r\n- The procedure is furnished with a complete aortic valve and implantation system that has received FDA premarket approval (PMA) for that system's FDA approved indication.\n\n\r\n\r\n- The patient (preoperatively and postoperatively) is under the care of a heart team: a cohesive, multi-disciplinary, team of medical professionals. The heart team concept embodies collaboration and dedication across medical specialties to offer optimal patient-centered care. The heart team includes the following:\r\n\r\n\r\n- Cardiac surgeon and an interventional cardiologist experienced in the care and treatment of aortic stenosis who have:\r\n\r\n - independently examined the patient face-to-face, evaluated the patient’s suitability for surgical aortic valve replacement (SAVR), TAVR or medical or palliative therapy;\n\r\n - documented and made available to the other heart team members the rationale for their clinical judgment.\n\r\n\r\n\n\r\n- Providers from other physician groups as well as advanced patient practitioners, nurses, research personnel and administrators.\n\n\r\n\r\n- The heart team's interventional cardiologist(s) and cardiac surgeon(s) must jointly participate in the intra-operative technical aspects of TAVR.\n\n\r\n- TAVR must be furnished in a hospital with the appropriate infrastructure that includes but is not limited to:\r\n\r\n- On-site heart valve surgery and interventional cardiology programs,\n\r\n- Post-procedure intensive care facility with personnel experienced in managing patients who have undergone open-heart valve procedures,\n\r\n- Appropriate volume requirements per the applicable qualifications below:\n\r\n\r\n\n\r\n\r\nThere are two sets of qualifications; the first set outlined below is for hospital programs and heart teams without previous TAVR experience and the second set is for those with TAVR experience.\n\n\r\n\r\n\r\nQualifications to begin a TAVR program for hospitals without TAVR experience:\n\n\r\n\r\nThe hospital program must have the following:\n\n\r\n\r\n\r\n - ≥ 50 open heart surgeries in the previous year prior to TAVR program initiation, and;\n\r\n - ≥ 20 aortic valve related procedures in the 2 years prior to TAVR program initiation, and;\n\r\n - ≥ 2 physicians with cardiac surgery privileges, and;\n\r\n - ≥ 1 physician with interventional cardiology privileges, and;\n\r\n - ≥ 300 percutaneous coronary interventions (PCIs) per year.\n\r\n\r\n\r\nQualifications to begin a TAVR program for heart teams without TAVR experience:\n\n\r\n\r\nThe heart team must include:\n\n\r\n\r\n- Cardiovascular surgeon with:\r\n\r\n - ≥ 100 career open heart surgeries of which ≥ 25 are aortic valve related; and,\n\r\n\r\n\n\r\n- Interventional cardiologist with:\r\n\r\n - Professional experience of ≥ 100 career structural heart disease procedures; or, ≥ 30 left-sided structural procedures per year; and,\n\r\n - Device-specific training as required by the manufacturer.\n\r\n\r\n\n\r\n\r\nQualifications for hospital programs with TAVR experience:\n\n\r\n\r\nThe hospital program must maintain the following:\n\n\r\n\r\n\r\n - ≥ 50 AVRs (TAVR or SAVR) per year including ≥ 20 TAVR procedures in the prior year ; or,\n\r\n - ≥ 100 AVRs (TAVR or SAVR) every 2 years, including ≥ 40 TAVR procedures in the prior 2 years; and,\n\r\n - ≥ 2 physicians with cardiac surgery privileges; and,\n\r\n - ≥ 1 physician with interventional cardiology privileges, and\n\r\n - ≥ 300 percutaneous coronary interventions (PCIs) per year; and,\n\r\n\r\n\r\n\r\n- The heart team and hospital are participating in a prospective, national, audited registry that: 1) consecutively enrolls TAVR patients; 2) accepts all manufactured devices; 3) follows the patient for at least one year; and, 4) complies with relevant regulations relating to protecting human research subjects, including 45 CFR Part 46 and 21 CFR Parts 50 & 56.\n\n\r\n\r\nThe following outcomes must be tracked by the registry; and the registry must be designed to permit identification and analysis of patient, practitioner and facility level variables that predict each of these outcomes:\n\n\r\n\r\n\r\n - Stroke;\n\r\n - All-cause mortality;\n\r\n - Transient Ischemic Attacks (TIAs);\n\r\n - Major vascular events;\n\r\n - Acute kidney injury;\n\r\n - Repeat aortic valve procedures;\n\r\n - New permanent pacemaker implantation;\n\r\n - Quality of Life (QoL).\n\r\n\r\n\r\n\r\n\r\n- The registry shall collect all data necessary and have a written executable analysis plan in place to address the following questions (to appropriately address some questions, Medicare claims or other outside data may be necessary). Specifically, for the CED question iv, this must be addressed through a composite metric. For the below CED questions (i-iv), the results must be reported publicly as described in CED criterion k.\r\n\r\n - When performed outside a controlled clinical study, how do outcomes and adverse events compare to the pivotal clinical studies?\n\r\n - What is the long term durability of the device?\n\r\n - What are the long term outcomes and adverse events?\n\r\n - What morbidity and procedure-related factors contribute to TAVR patients outcomes?\n\r\n\n\r\n\r\nConsistent with section 1142 of the Act, the Agency for Healthcare Research and Quality (AHRQ) supports clinical research studies that CMS determines meet the above-listed standards and address the above-listed research questions.\n\n\r\n\r\nB. TAVR is covered for uses that are not expressly listed as an FDA-approved indication when performed within a clinical study that fulfills all of the following:\n\n\r\n\r\n\r\n- The heart team's interventional cardiologist(s) and cardiac surgeon(s) must jointly participate in the intra-operative technical aspects of TAVR.\n\n\r\n\r\n- As a fully-described, written part of its protocol, the clinical research study must critically evaluate not only each patient's quality of life pre- and post-TAVR (minimum of 1 year), but must also address at least one of the following questions:\r\n\r\n\r\n - What is the incidence of stroke?\n\r\n - What is the rate of all-cause mortality?\n\r\n - What is the incidence of new permanent pacemaker implantation?\n\r\n - What is the incidence of transient ischemic attacks (TIAs)?\n\r\n - What is the incidence of major vascular events?\n\r\n - What is the incidence of acute kidney injury?\n\r\n - What is the incidence of repeat aortic valve procedures?\n\r\n\n\r\n\r\n- The clinical study must adhere to the following standards of scientific integrity and relevance to the Medicare population:\r\n\r\n - The principal purpose of the study is to test whether the item or service meaningfully improves health outcomes of affected beneficiaries who are represented by the enrolled subjects.\n\r\n - The rationale for the study is well supported by available scientific and medical evidence.\n\r\n - The study results are not anticipated to unjustifiably duplicate existing knowledge.\n\r\n - The study design is methodologically appropriate and the anticipated number of enrolled subjects is sufficient to answer the research question(s) being asked in the National Coverage Determination.\n\r\n - The study is sponsored by an organization or individual capable of completing it successfully.\n\r\n - The research study is in compliance with all applicable Federal regulations concerning the protection of human subjects found in the Code of Federal Regulations (CFR) at 45 CFR Part 46. If a study is regulated by the Food and Drug Administration (FDA), it is also in compliance with 21 CFR Parts 50 and 56. In addition, to further enhance the protection of human subjects in studies conducted under CED, the study must provide and obtain meaningful informed consent from patients regarding the risks associated with the study items and /or services, and the use and eventual disposition of the collected data.\n\r\n - All aspects of the research study are conducted according to appropriate standards of scientific integrity.\n\r\n - The study has a written protocol that clearly demonstrates adherence to the standards listed here as Medicare requirements.\n\r\n - The study is not designed to exclusively test toxicity or disease pathophysiology in healthy individuals. Such studies may meet this requirement only if the disease or condition being studied is life threatening as defined in 21 CFR §312.81(a) and the patient has no other viable treatment options.\n\r\n - The clinical research studies and registries are registered on the www.ClinicalTrials.gov website by the principal sponsor/investigator prior to the enrollment of the first study subject. Registries are also registered in the Agency for Healthcare Quality (AHRQ) Registry of Patient Registries (RoPR).\n\r\n - The research study protocol specifies the method and timing of public release of all prespecified outcomes to be measured including release of outcomes if outcomes are negative or study is terminated early. The results must be made public within 12 months of the study’s primary completion date, which is the date the final subject had final data collection for the primary endpoint, even if the trial does not achieve its primary aim. The results must include number started/completed, summary results for primary and secondary outcome measures, statistical analyses, and adverse events. Final results must be reported in a publicly accessibly manner; either in a peer-reviewed scientific journal (in print or on-line), in an on-line publicly accessible registry dedicated to the dissemination of clinical trial information such as ClinicalTrials.gov, or in journals willing to publish in abbreviated format (e.g., for studies with negative or incomplete results).\n\r\n - The study protocol must explicitly discuss beneficiary subpopulations affected by the item or service under investigation, particularly traditionally underrepresented groups in clinical studies, how the inclusion and exclusion criteria effect enrollment of these populations, and a plan for the retention and reporting of said populations on the trial. If the inclusion and exclusion criteria are expected to have a negative effect on the recruitment or retention of underrepresented populations, the protocol must discuss why these criteria are necessary.\n\r\n - The study protocol explicitly discusses how the results are or are not expected to be generalizable to affected beneficiary subpopulations. Separate discussions in the protocol may be necessary for populations eligible for Medicare due to age, disability or Medicaid eligibility.\n\r\n\n\r\n\r\nConsistent with section 1142 of the Act, the Agency for Healthcare Research and Quality (AHRQ) supports clinical research studies that meet the above-listed standards and address the above-listed research questions.\n\n\r\n\r\nThe principal investigator must submit the complete study protocol, identify the relevant CMS research question(s) that will be addressed, and cite the location of the detailed analysis plan for those questions in the protocol, plus provide a statement addressing how the study satisfies each of the standards of scientific integrity (a. through m. listed above), as well as the investigator's contact information, to the address below. The information will be reviewed, and approved studies will be identified on the CMS Website.\n\n\r\n\r\nDirector, Coverage and Analysis Group\n\r\nRe: TAVR CED\n\r\nCenters for Medicare & Medicaid Services (CMS)\n\r\n7500 Security Blvd., Mail Stop S3-02-01\n\r\nBaltimore, MD 21244-1850\n\n\r\n\r\nEmail address for protocol submissions: clinicalstudynotification@cms.hhs.gov\n\r\nEmail subject line: “CED [NCD topic (i.e. TAVR)] [name of sponsor/primary investigator]”\n\n\r\n\r\nC. Nationally Non-Covered Indications\n\n\r\n\r\nTAVR is not covered for patients in whom existing co-morbidities would preclude the expected benefit from correction of the aortic stenosis.\n\n\r\n\r\nD. Other\n\n\r\n\r\nNA\n\n\r\n\r\n(This NCD last reviewed June 2019.)"
+  }
+}

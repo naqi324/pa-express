@@ -1,0 +1,92 @@
+{
+  "ncd_id": "150.3",
+  "title": "Bone (Mineral) Density Studies",
+  "document_id": 256,
+  "document_version": 2,
+  "publication_number": "100-3",
+  "effective_date": "2007-01-01",
+  "implementation_date": "2007-07-02",
+  "last_updated": "2024-02-27",
+  "benefit_category": "Bone Mass Measurement",
+  "coverage_model": "Standard coverage; substantive conditions codified at 42 CFR 410.31 and Medicare Benefit Policy Manual (Pub. 100-02) Ch.15 Sec.80.5",
+  "source": {
+    "api_url": "https://api.coverage.cms.gov/v1/data/ncd?ncdid=256&ncdver=2",
+    "mcd_url": "https://www.cms.gov/medicare-coverage-database/view/ncd.aspx?ncdid=256&ncdver=2",
+    "criteria_source": "42 CFR 410.31 via eCFR API (https://www.ecfr.gov/api/versioner/v1/full/2026-07-01/title-42.xml?...&section=410.31)",
+    "transmittal_url": "https://www.cms.gov/Regulations-and-Guidance/Guidance/Transmittals/Downloads/R69NCD.pdf",
+    "retrieved": "2026-07-05",
+    "retrieval_method": "CMS Coverage API + eCFR API (NCD text delegates criteria to Benefit Policy Manual / 42 CFR 410.31)"
+  },
+  "covered_indication_summary": "Medicare covers a medically necessary bone mass measurement (BMM) when ordered by the treating physician/qualified NPP following an evaluation of need, performed with FDA-cleared densitometer/sonometer under physician supervision with interpretation, for a beneficiary in one of five qualifying categories, subject to a 23-month frequency standard (with medical-necessity exceptions).",
+  "criteria": [
+    {
+      "id": "BMD-1",
+      "category": "order",
+      "required": true,
+      "text": "The BMM is ordered by the physician or qualified nonphysician practitioner treating the beneficiary, following an evaluation of the need for the measurement and determination of the medically appropriate procedure. (42 CFR 410.31(b)(1)(i))",
+      "check_hints": [
+        "order from treating provider",
+        "documented indication in the order/notes"
+      ]
+    },
+    {
+      "id": "BMD-2",
+      "category": "technical",
+      "required": true,
+      "text": "The measurement is performed with a bone densitometer or bone sonometer system FDA-cleared/approved for this use (other than single-photon or dual-photon absorptiometry) and includes a physician's interpretation of the results. (42 CFR 410.31(a))",
+      "check_hints": [
+        "CPT 77080 (DXA axial) or 77081/76977 etc.",
+        "interpreting physician identified"
+      ]
+    },
+    {
+      "id": "BMD-3",
+      "category": "supervision",
+      "required": true,
+      "text": "It is performed under the appropriate level of physician supervision per 42 CFR 410.32(b). (42 CFR 410.31(b)(1)(ii))",
+      "check_hints": [
+        "facility/provider setting supports supervision requirement"
+      ]
+    },
+    {
+      "id": "BMD-4",
+      "category": "indication",
+      "required": true,
+      "logic": "ANY_ONE_OF",
+      "text": "Beneficiary falls into at least one qualifying category (42 CFR 410.31(d)):",
+      "options": [
+        "A woman determined by her treating physician/qualified NPP to be estrogen-deficient and at clinical risk for osteoporosis, based on medical history and other findings.",
+        "An individual with vertebral abnormalities demonstrated by x-ray indicative of osteoporosis, osteopenia, or vertebral fracture.",
+        "An individual receiving (or expecting to receive) glucocorticoid (steroid) therapy equivalent to an average of >= 5.0 mg prednisone/day for more than 3 months.",
+        "An individual with primary hyperparathyroidism.",
+        "An individual being monitored to assess response to or efficacy of an FDA-approved osteoporosis drug therapy."
+      ],
+      "check_hints": [
+        "ICD-10 examples: Z78.0/E28.39 estrogen deficiency, M85.8*/M80.*/M81.* osteoporosis-fracture codes, Z79.52 long-term systemic steroids, E21.0 primary hyperparathyroidism, Z79.83 bisphosphonates"
+      ]
+    },
+    {
+      "id": "BMD-5",
+      "category": "frequency",
+      "required": true,
+      "text": "At least 23 months have passed since the month of the last covered BMM, OR a documented medical-necessity exception applies (e.g., monitoring long-term glucocorticoid therapy > 3 months; confirmatory baseline DXA when initial test used a different modality). (42 CFR 410.31(c))",
+      "check_hints": [
+        "date of prior DXA in claims/clinical history",
+        "steroid-monitoring exception documentation"
+      ]
+    }
+  ],
+  "non_covered": [
+    "A BMM not meeting the conditions of coverage, qualifying categories, or frequency standards is excluded as not reasonable and necessary under section 1862(a)(1)(A) of the Act (42 CFR 410.31(e))."
+  ],
+  "notes": [
+    "NCD 150.3 text itself delegates: 'Conditions for coverage of BMMs are now contained in chapter 15, section 80.5 of Pub. 100-02, Medicare Benefit Policy Manual.' The operative criteria above are codified at 42 CFR 410.31.",
+    "Monitoring under category 5 must be performed with central (axial) DXA per 410.31(b)(2).",
+    "Good demo-approval scenario: female Medicare beneficiary, estrogen-deficient, clinical risk for osteoporosis, first-ever DXA, CPT 77080."
+  ],
+  "full_text": {
+    "ncd_item_service_description": "Conditions for coverage of BMMs are now contained in chapter 15, section 80.5 of Pub. 100-02, Medicare Benefit Policy Manual.",
+    "ncd_indications_and_limitations": "Conditions for coverage of bone mass measurements are now contained in chapter 15, section 80.5 of Pub. 100-02, Medicare Benefit Policy Manual. Claims processing instructions can be found in chapter 13, section 140 of Pub. 100-04, Medicare Claims Processing Manual.",
+    "ecfr_42_410_31": "§ 410.31 Bone mass measurement: Conditions for coverage and frequency standards. (a) Definition. As used in this section unless specified otherwise, the following definition applies: Bone mass measurement means a radiologic, radioisotopic, or other procedure that meets the following conditions: (1) Is performed for the purpose of identifying bone mass, detecting bone loss, or determining bone quality. (2) Is performed with either a bone densitometer (other than single-photon or dual-photon absorptiometry) or with a bone sonometer system that has been cleared for marketing for this use by the FDA under 21 CFR part 807, or approved for marketing by the FDA for this use under 21 CFR part 814. (3) Includes a physician's interpretation of the results of the procedure. (b) Conditions for coverage. (1) Medicare covers a medically necessary bone mass measurement if the following conditions are met: (i) Following an evaluation of the beneficiary's need for the measurement, including a determination as to the medically appropriate procedure to be used for the beneficiary, it is ordered by the physician or a qualified nonphysician practitioner (as these terms are defined in § 410.32(a)) treating the beneficiary. (ii) It is performed under the appropriate level of supervision of a physician (as set forth in § 410.32(b)). (iii) It is reasonable and necessary for diagnosing and treating the Condition of a beneficiary who meets the conditions described in paragraph (d) of this section. (2) Medicare covers a medically necessary bone mass measurement for an individual defined under paragraph (d)(5) of this section if the conditions under paragraph (b)(1) of this section are met and the monitoring is performed by the use of a dual energy x-ray absorptiometry system (axial skeleton). (3) Medicare covers a medically necessary confirmatory baseline bone mass measurement for an individual defined under paragraph (d) of this section, if the conditions under paragraph (b)(1) of this section are met and the confirmatory baseline bone mass measurement is performed by a dual energy x-ray absorptiometry system (axial skeleton) and the initial measurement was not performed by a dual energy x-ray absorptiometry system (axial skeleton). (c) Standards on frequency of coverage —(1) General rule. Except as allowed under paragraph (c)(2) of this section, Medicare may cover a bone mass measurement for a beneficiary if at least 23 months have passed since the month the last bone mass measurement was performed. (2) Exception. If medically necessary, Medicare may cover a bone mass measurement for a beneficiary more frequently than allowed under paragraph (c)(1) of this section. Examples of situations where more frequent bone mass measurement procedures may be medically necessary include, but are not limited to the following medical circumstances: (i) Monitoring beneficiaries on long-term glucocorticoid (steroid) therapy of more than 3 months. (ii) Allowing for a confirmatory baseline measurement to permit monitoring of beneficiaries in the future if the requirements of paragraph (b)(3) of this section are met. (d) Beneficiaries who may be covered. The following categories of beneficiaries may receive Medicare coverage for a medically necessary bone mass measurement: (1) A woman who has been determined by the physician (or a qualified nonphysician practitioner) treating her to be estrogen-deficient and at clinical risk for osteoporosis, based on her medical history and other findings. (2) An individual with vertebral abnormalities as demonstrated by an x-ray to be indicative of osteoporosis, osteopenia, or vertebral fracture. (3) An individual receiving (or expecting to receive) glucocorticoid (steroid) therapy equivalent to an average of 5.0 mg of prednisone, or greater, per day for more than 3 months. (4) An individual with primary hyperparathyroidism. (5) An individual being monitored to assess the response to or efficacy of an FDA-approved osteoporosis drug therapy. (e) Denial as not reasonable and necessary. If CMS determines that a bone mass measurement does not meet the conditions for coverage in paragraphs (b) or (d) of this section, or the standards on frequency of coverage in paragraph (c) of this section, it is excluded from Medicare coverage as not “reasonable” and “necessary” under section 1862(a)(1)(A) of the Act and § 411.15(k) of this chapter. (f) Use of the National Coverage Determination Process. For the purposes of paragraphs (b)(2) and (b)(3) of this section, CMS may determine through the National Coverage Determination process that additional bone mass measurement systems are reasonable and necessary under section 1862(a)(1) of the Act for monitoring and confirming baseline bone mass measurements. [71 FR 69783, Dec. 1, 2006]"
+  }
+}
