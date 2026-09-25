@@ -1,0 +1,522 @@
+{
+ "retrieved": "2026-09-25",
+ "base_url": "https://api.coverage.cms.gov/v1",
+ "note": "Public CMS Coverage API responses, unmodified, keyed by request path. /data/lcd requests used the license-agreement Bearer token.",
+ "responses": {
+  "/data/lcd/?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "display_id",
+     "title",
+     "determination_number",
+     "cms_cov_policy",
+     "orig_det_eff_date",
+     "ent_det_end_date",
+     "rev_eff_date",
+     "rev_end_date",
+     "indication",
+     "diagnoses_support",
+     "icd9_dont_support_para",
+     "icd9_dont_support_ast",
+     "diagnoses_dont_support",
+     "coding_guidelines",
+     "doc_reqs",
+     "appendices",
+     "util_guide",
+     "source_info",
+     "adv_meeting",
+     "comment_start_dt",
+     "comment_end_dt",
+     "notice_start_dt",
+     "rev_hist_num",
+     "history_exp",
+     "last_reviewed_on",
+     "thirty_percent",
+     "status",
+     "last_updated",
+     "draft_contact",
+     "revenue_para",
+     "source_lcd_id",
+     "add_icd10_info",
+     "keywords",
+     "associated_info",
+     "notice_end_dt",
+     "date_retired",
+     "draft_released_date",
+     "icd10_doc",
+     "synopsis_changes",
+     "bibliography",
+     "summary_of_evidence",
+     "analysis_of_evidence",
+     "mcd_publish_date",
+     "issue",
+     "issue_change",
+     "mac_initiated"
+    ],
+    "children": [
+     "/data/lcd/related-documents?lcdid=33405&ver=25",
+     "/data/lcd/related-ncd-documents?lcdid=33405&ver=25",
+     "/data/lcd/future-retire?lcdid=33405",
+     "/data/lcd/related-source-icd9?lcdid=33405&ver=25",
+     "/data/lcd/advisory-committee?lcdid=33405&ver=25",
+     "/data/lcd/contractor?lcdid=33405&ver=25",
+     "/data/lcd/hcpc-code-group?lcdid=33405&ver=25",
+     "/data/lcd/hcpc-code?lcdid=33405&ver=25",
+     "/data/lcd/reason-change?lcdid=33405&ver=25",
+     "/data/lcd/requestor-letters?lcdid=33405&ver=25",
+     "/data/lcd/revision-history?lcdid=33405&ver=25",
+     "/data/lcd/sticky-note?lcdid=33405&ver=25",
+     "/data/lcd/synopsis-changes?lcdid=33405&ver=25",
+     "/data/lcd/urls?lcdid=33405&ver=25",
+     "/data/lcd/primary-jurisdiction?lcdid=33405&ver=25",
+     "/data/lcd/tracking-sheet?lcdid=33405&ver=25"
+    ],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "display_id": null,
+     "title": "Polysomnography and Sleep Testing",
+     "determination_number": "",
+     "cms_cov_policy": "&lt;p&gt;This LCD supplements but does not replace, modify or supersede existing Medicare applicable National Coverage Determinations (NCDs) or payment policy rules and regulations for Polysomnography and Sleep Testing. Federal statute and subsequent Medicare regulations regarding provision and payment for medical services are lengthy. They are not repeated in this LCD. Neither Medicare payment policy rules nor this LCD replace, modify or supersede applicable state statutes regarding medical practice or other health practice professions acts, definitions and&sol;or scopes of practice. All providers who report services for Medicare payment must fully understand and follow all existing laws, regulations and rules for Medicare payment for Polysomnography and Sleep Testing and must properly submit only valid claims for them. Please review and understand them and apply the medical necessity provisions in the policy within the context of the manual rules. Relevant CMS manual instructions and policies may be found in the following Internet-Only Manuals (IOMs) published on the CMS Web site.&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;INTERNET ONLY MANUAL (IOM) CITATIONS:&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;CMS IOM Publication 100-02, &lt;em&gt;Medicare Benefit Policy Manual&lt;&sol;em&gt;,\n&lt;ul&gt;\n&lt;li&gt;Chapter 6, Section 50 Sleep Disorder Clinics&lt;&sol;li&gt;\n&lt;li&gt;Chapter 15, Section 70 Sleep Disorder Clinics and Section 80 Requirements for Diagnostic X-Ray, Diagnostic Laboratory, and Other Diagnostic Tests&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;li&gt;CMS IOM Publication 100-03, &lt;em&gt;Medicare National Coverage Determinations (NCD) Manual&lt;&sol;em&gt;,\n&lt;ul&gt;\n&lt;li&gt;Chapter 1, Part 4, Section 240.4 Continuous Positive Airway Pressure (CPAP) Therapy For Obstructive Sleep Apnea (OSA) and Section 240.4.1 Sleep Testing for Obstructive Sleep Apnea (OSA)&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;li&gt;CMS IOM Publication 100-04, &lt;em&gt;Medicare Claims Processing Manual&lt;&sol;em&gt;,\n&lt;ul&gt;\n&lt;li&gt;Chapter 4 Part B Hospital (Including Inpatient Hospital Part B and OPPS)&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;li&gt;CMS IOM Publication 100-08, &lt;em&gt;Medicare Program Integrity Manual&lt;&sol;em&gt;,\n&lt;ul&gt;\n&lt;li&gt;Chapter 13, Section 13.5.4 Reasonable and necessary Provision in an LCD&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;Social Security Act (Title XVIII) Standard References: &lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Title XVIII of the Social Security Act, Section 1862(a)(1)(A) states that no Medicare payment shall be made for items or services which are not reasonable and necessary for the diagnosis or treatment of illness or injury.&lt;&sol;li&gt;\n&lt;li&gt;Title XVIII of the Social Security Act, Section 1862(a)(7). This section excludes routine physical examinations.&lt;&sol;li&gt;\n&lt;li&gt;Title XVIII of the Social Security Act, Section 1833(e) states that no payment shall be made to any provider for any claim that lacks the necessary information to process the claim.&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;Federal Register References:&lt;&sol;strong&gt;&amp;nbsp;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Code of Federal Regulations (CFR), Title 42, Volume 2, Chapter IV, Part 410.32 Diagnostic x-ray tests, diagnostic laboratory tests, and other diagnostic tests: Conditions and Part 410.33 Independent diagnostic testing facility.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;",
+     "orig_det_eff_date": "10/01/2015",
+     "ent_det_end_date": "",
+     "rev_eff_date": "07/01/2020",
+     "rev_end_date": "",
+     "indication": "&lt;p&gt;&lt;strong&gt;History&sol;Background and&sol;or General Information&lt;&sol;strong&gt;&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;About 40 million people in the United States suffer from sleep problems every year. Not getting enough sleep for a long time can cause health problems. Many sleep disorders can be managed by primary care physicians; however, when abnormal sleep patterns are not easily explainable and further evaluation is necessary, expert opinion and sleep studies may be needed.&lt;&sol;p&gt;\n&lt;p&gt;Sleep consists of two distinct states: rapid eye movement (REM), and non-rapid eye movement (NREM). REM sleep is when we dream. NREM sleep is further divided into three stages. Stages one and two are referred to as light sleep and stage three as deep sleep. The first sleep cycles each night contain relatively short REM periods and long periods of deep sleep. As the night progresses, REM sleep periods increase in length while deep sleep decreases. By morning, people spend nearly all their sleep time in stages one, two, and REM.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Polysomnography (PSG) refers to the continuous and simultaneous monitoring and recording of various physiological and pathophysiological parameters of sleep furnished in a sleep laboratory facility that includes physician review, interpretation and report. A technologist supervises the recording during sleep time and has the ability to intervene, if needed. The studies are performed to diagnose a variety of sleep disorders and to evaluate a patient&amp;rsquo;s response to therapies such as continuous positive airway pressure (CPAP). PSG is distinguished from sleep studies by the inclusion of sleep staging, which requires electroencepholograpm (EEG), electroculogram (EOG), and electromyography (EMG).&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Parameters 1-3 are required for a basic PSG. Additional parameters that may be monitored include, but are not limited to, the following:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ol&gt;\n&lt;li&gt;At minimum, a 3 lead electroencephalogram (EEG) to measure global neural encephalographic activity using electrodes placed on the scalp.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;2&quot;&gt;\n&lt;li&gt;Electrooculogram (EOG) to measure eye movements using electrodes placed near the outer canthus of each eye.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;3&quot;&gt;\n&lt;li&gt;A submental electromyogram (EMG) to measure submental electromyographic activity using electrodes placed over the mentalis, submentalis muscle, and&sol;or masseter regions.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;4&quot;&gt;\n&lt;li&gt;Rhythm electrocardiogram (ECG).&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;5&quot;&gt;\n&lt;li&gt;Nasal and oral airflow via both thermistor and nasal pressure sensor for PSG sleep staging with 4 or more additional parameters of sleep.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;6&quot;&gt;\n&lt;li&gt;Airflow in the mask if positive airway pressure for PSG sleep staging with 4 or more additional parameters of sleep, with initiation of continuous positive airway pressure therapy or bilevel ventilation.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;7&quot;&gt;\n&lt;li&gt;Respiratory effort by chest-wall and abdominal movement measured using respiratory inductive plethysmography, endoesophageal pressure or by intercostal EMG or validated Polyvinylidene Fluoride (PVDF) impedance belt.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;8&quot;&gt;\n&lt;li&gt;Oxygen saturation (SpO2) by oximetry or transcutaneous monitoring.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;9&quot;&gt;\n&lt;li&gt;Bilateral anterior tibialis muscle activity, motor activity-movement using EMG.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;10&quot;&gt;\n&lt;li&gt;Body positions by directly applied sensors or by direct observation.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;11&quot;&gt;\n&lt;li&gt;Sound recordings to measure snoring.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;12&quot;&gt;\n&lt;li&gt;Continuous video monitoring.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;Optional parameters that can be monitored in a sleep study include the following:&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Core body temperature&lt;&sol;li&gt;\n&lt;li&gt;Incident light intensity&lt;&sol;li&gt;\n&lt;li&gt;Penile tumescence&lt;&sol;li&gt;\n&lt;li&gt;Pressure and pH at various esophageal levels&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;PSG and other sleep test monitoring devices are generally classified based on the number of biologic sensors applied and physiologic parameters recorded.&amp;nbsp;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Type I&lt;&sol;strong&gt; PSG is covered when used to aid the diagnosis of obstructive sleep apnea (OSA) in beneficiaries who have clinical signs and symptoms indicative of OSA if performed attended in a sleep lab facility. Type I devices are capable of recordings of all of the physiologic parameters and signals defined for PSG. The recording is furnished in a sleep laboratory facility in which a technologist is physically present to supervise the recording during sleep time and has the ability to intervene if needed. Minimal requirements include recording of EEG, EOG, chin EMG, anterior tibialis EMG, ECG, airflow, respiratory effort and oxygen saturation. Body position must be documented or objectively measured. Trained personnel must be in constant attendance and able to intervene.&lt;&sol;li&gt;\n&lt;li&gt;&lt;strong&gt;A Type II&lt;&sol;strong&gt; sleep testing device is covered when used to aid the diagnosis of OSA in beneficiaries who have clinical signs and symptoms indicative of OSA if performed unattended in or out of a sleep lab facility or attended in a sleep lab facility. Type II devices are portable devices that may measure the same channels as type I testing, except that a heart-rate monitor can replace the ECG. This device has a minimum of 7 channels (e.g., EEG, EOG, EMG, ECG-heart rate, airflow, respiratory effort, and oxygen saturation &amp;ndash; this type of device monitors sleep staging). A sleep technician is not necessarily in constant attendance in Type II studies but is needed for preparation.&lt;&sol;li&gt;\n&lt;li&gt;&lt;strong&gt;A Type III&lt;&sol;strong&gt; sleep testing device is covered when used to aid the diagnosis of OSA in beneficiaries who have clinical signs and symptoms indicative of OSA if performed unattended in or out of a sleep lab facility or attended in a sleep lab facility. Type III devices monitor and record a minimum of 4 channels and must record ventilation or airflow, heart rate or ECG, and oxygen saturation. A sleep technician is not necessarily in constant attendance in Type III studies but is needed for preparation.&lt;&sol;li&gt;\n&lt;li&gt;&lt;strong&gt;A Type IV&lt;&sol;strong&gt; sleep testing device measuring three or more channels, one of which is airflow, is covered when used to aid the diagnosis of OSA in beneficiaries who have signs and symptoms indicative of OSA if performed unattended in or out of a sleep lab facility or attended in a sleep lab facility. Type IV devices must include airflow as one of the required 3 channels. Other measurements may include oximetry and heart rate. A sleep technician is not necessarily in constant attendance in Type IV studies but is needed for preparation.&lt;&sol;li&gt;\n&lt;li&gt;A sleep testing device measuring three or more channels that include actigraphy, oximetry, and peripheral arterial tone is covered when used to aid the diagnosis of OSA in beneficiaries who have signs and symptoms indicative of OSA if performed unattended in or out of a sleep lab facility or attended in a sleep lab facility. A sleep technician is not necessarily in constant attendance in such studies but is needed in preparation.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;Multiple sleep latency testing (MSLT) involves four or five 20-minute nap opportunities offered at 2-hour intervals. MSLT objectively assesses sleep tendency by measuring the number of minutes it takes the patient to fall asleep. Conversely, the maintenance of wakefulness test (MWT) requires the patient to try to stay awake. MSLT is the better test for demonstration of sleep-onset REM periods, a determination that is important in establishing the diagnosis of narcolepsy. To insure validity, proper interpretation of the MSLT can only be made following a polysomnography performed on the preceding night.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Normally, sleep studies and PSG for sleep disorders are performed in sleep centers or laboratories. However, the diagnosis of OSA for coverage of CPAP may also be established by home sleep testing (HST) as indicated under Sleep Apnea below.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;If HST is used, they may be tested in the home environment after application of the sensors and receiving education regarding a monitoring device from the technical, professional, or appropriately trained staff of the sleep center or laboratory. The overnight stay in the sleep center or laboratory is considered an integral part of PSG, MSLT, and MWT but not for HST.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Covered Indications&lt;&sol;strong&gt;&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to CMS IOM Publication 100-02, &lt;em&gt;Medicare Benefit Policy Manual&lt;&sol;em&gt;, Chapter 15, Section 70 for sleep disorder clinics definitions and criteria for coverage of diagnostic tests, and medical conditions for which testing is covered.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;1. Sleep Apnea:&lt;&sol;strong&gt;&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to CMS IOM Publication 100-02, &lt;em&gt;Medicare Benefit Policy Manual&lt;&sol;em&gt;, Chapter 15, Section 70 B. Medical Conditions for Which Testing is Covered.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to CMS IOM Publication 100-03, &lt;em&gt;Medicare National Coverage Determinations (NCD) Manual&lt;&sol;em&gt;, Chapter 1, Part 4, Section 240.4 Continuous Positive Airway Pressure (CPAP) Therapy For Obstructive Sleep Apnea (OSA) and Section 240.4.1 Sleep Testing for Obstructive Sleep Apnea (OSA) for indications and limitations.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Abnormal breathing events in sleep apnea syndromes include apnea, hypopnea and respiratory effort related arousals (RERA). Apnea is a cessation of airflow for at least 10 seconds. Hypopnea is an abnormal respiratory event lasting at least 10 seconds with at least a 30% reduction in thoracoabdominal movement or airflow as compared to baseline, and with at least a 4% decrease in oxyhemoglobin saturation. RERA is defined as a period during sleep lasting at least 10 seconds during which severe narrowing of the upper airways with increasing respiratory efforts leads to electroencephalographic arousal from sleep without an appreciable reduction in airflow and oxygen saturation.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Apneas can be classified as central, obstructive or mixed based on the presence of respiratory effort during the event. In obstructive apnea events, respiratory effort continues in the absence of airflow while in central apnea events, both airflow and respiratory effort are simultaneously absent. Mixed apnea events contain respiratory effort only during a portion of the apnea event.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;For a diagnosis of OSA to be made, the following criteria must be met:&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;A. Prior to sleep testing, the patient has a face-to-face clinical evaluation by the treating physician to assess the patient for OSA which must include, at a minimum, the following:&lt;&sol;p&gt;\n&lt;ol&gt;\n&lt;li&gt;Sleep history and symptoms including, but not limited to, snoring, daytime sleepiness, observed apneas, choking or gasping during sleep, morning headaches; and,&lt;&sol;li&gt;\n&lt;li&gt;Epworth Sleepiness Scale; and,&lt;&sol;li&gt;\n&lt;li&gt;Physical examination that documents body mass index, neck circumference and a focused cardiopulmonary and upper airway system evaluation.&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;B. The patient has a covered sleep test that meets either of the following criteria:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ol&gt;\n&lt;li&gt;The apnea-hypopnea index (AHI) or Respiratory Disturbance Index (RDI) is greater than or equal to 15 events per hour with a minimum of 30 events; or,&lt;&sol;li&gt;\n&lt;li&gt;The AHI or RDI is greater than or equal to 5 and less than or equal to 14 events per hour with a minimum of 10 events and documentation of:&amp;nbsp;\n&lt;ol style=&quot;list-style-type: lower-alpha;&quot;&gt;\n&lt;li&gt;Excessive daytime sleepiness, impaired cognition, mood disorders, or insomnia; or,&lt;&sol;li&gt;\n&lt;li&gt;Hypertension, ischemic heart disease, or history of stroke&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;OSA occurs when the muscles relax during sleep, causing soft tissue in the back of the throat to collapse and block the upper airway. This leads to partial reductions (hypopneas) and complete pauses (apneas) in breathing during sleep. Most pauses last between 10 and 30 seconds, but some may persist for one minute or longer. This can lead to abrupt reductions in blood oxygen saturation. OSA characterized by RERA events has been called upper airway resistance syndrome. In central sleep apnea, the airway is not blocked but respiratory coordination is impaired such that the brain does not signal the muscles of respiration to contract. All sleep apnea syndromes disrupt sleep, leading to excessive daytime sleepiness, fatigue and cognitive disturbances. OSA has also been associated with elevated risk for arterial hypertension, cardiac ischemic events, cerebral vascular accidents, insulin resistance and obesity.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;The diagnosis and severity of sleep apnea syndromes is established by the clinical evaluation and a positive PSG or HST. Staging of the severity of sleep apnea can be accomplished by utilization of the apnea-hypopnea index (AHI) which is defined as the average number of apneas and hypopneas per hour of sleep. The respiratory disturbance index (RDI) is another term used to establish the diagnosis of sleep apnea and stage its severity, which in sleep tests that measure sleep with EEG is defined as the average number of apneas and hypopneas, and RERA per hour of sleep. In Type III, Type IV HST, and in HST devices measuring three or more channels that include actigraphy, oximetry, and peripheral arterial tone where sleep is not measured, the RDI is defined as the average number of apneas and hypopneas per hour of recording.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Positive airway pressure (PAP) therapy is a non-invasive technique for providing continuous (CPAP) or variable levels of air pressure from a flow generator, via a nose mask, through the nares. The purpose is to prevent the collapse of the oropharyngeal walls and the obstruction of airflow during sleep, which occurs in OSA. CPAP is the most commonly used treatment for OSA. The appropriate level for CPAP is best determined during a CPAP titration PSG. A titration PSG provides useful information on the appropriate level of CPAP during one single night in a dedicated environment. Other factors, such as body and neck or mandibular position, weight changes, and nasal obstruction may affect the appropriate CPAP level. Since these effects may change over time, automatically-adjusting positive airway pressure devices (APAP) were developed. APAP devices are designed to automatically match the treatment pressure to the patient&#39;s needs. APAP devices react to perceived treatment pressure needs by manufacturer specific processes such that the information derived from APAP may differ by device and manufacturer. Certain APAP devices may be used in an unattended way to determine a fixed CPAP treatment pressure for patients with moderate to severe OSA without significant co-morbidities such as congestive heart failure, chronic obstructive pulmonary disease, central sleep apnea syndromes and hypoventilation syndromes. Similarly, certain APAP devices may be initiated and used in the self-adjusting mode for unattended treatment of patients previously diagnosed with moderate to severe OSA without the significant co-morbidities earlier described. A clear patient preference for APAP over manual CPAP has not been demonstrated by studies addressing the issue.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Bilevel positive airway pressure (BPAP) is a positive pressure treatment alternative to CPAP that delivers different pressures during exhalation and inhalation. The inhalation pressure does not adapt to the patient&#39;s changing needs, as in the APAP, but the exhalation pressure can be adjusted lower. The ability to set different inhalation and exhalation pressures results in lower average airway pressures than those delivered by CPAP. Using lower pressures may reduce the incidence of side effects, such as the sensation of suffocation, difficulty exhaling, nasal congestion, etc. which contribute to patient noncompliance. A clear patient preference for BPAP over CPAP has not been demonstrated by studies addressing the issue.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Split-Night Studies&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;p&gt;\n&lt;p&gt;Split-night studies involve polysomnography in the first half of the night followed, if there is an abnormal frequency of apneas and hypopneas, by PAP titration for the remainder of the night. Polysomnography with PAP titration is indicated in patients with sleep apnea previously diagnosed by a clinical evaluation and either a positive PSG or a positive HST. Typically split-night studies are performed for two major reasons:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ol&gt;\n&lt;li&gt;When a positive diagnosis (described below) of sleep apnea (obstructive, central or mixed) can be made within the first 4 hours of polysomnography. This could include emergency protocols where patient&amp;rsquo;s apnea is not safe to continue testing without PAP treatment&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;ol start=&quot;2&quot;&gt;\n&lt;li&gt;In patients with a prior history of OSA who need an updated polysomnography and PAP titration.&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;For Positive Airway Pressure (PAP) titration, a split-night study (initial diagnostic polysomnogram followed by PAP titration during polysomnography on the same night) is an alternative to one full night of diagnostic polysomnography, followed by a second night of titration for the treatment of obstructive sleep apnea (OSA) if the following criteria are met:&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;A positive test for OSA is established if either of the following criteria using the Apnea-Hypopnea Index (AHI) or Respiratory Disturbance Index (RDI) is met:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;AHI or RDI greater than or equal to 15 events per hour, or&lt;&sol;li&gt;\n&lt;li&gt;AHI or RDI greater than or equal to 5 and less than or equal to 14 events per hour with documented symptoms of excessive daytime sleepiness, impaired cognition, mood disorders or insomnia, or documented hypertension, ischemic heart disease, or history of&lt;&sol;li&gt;\n&lt;li&gt;There are at least three hours for PAP titration prior to the end of the test.&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;2.&lt;&sol;strong&gt; &lt;strong&gt;Narcolepsy:&amp;nbsp;&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to CMS IOM Publication 100-02, &lt;em&gt;Medicare Benefit Policy Manual&lt;&sol;em&gt;, Chapter 15, Section 70 B. Medical Conditions for Which Testing is Covered.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;Narcolepsy can occur with and without cataplexy (sudden, brief loss of muscle tone with retained consciousness precipitated by strong emotion).&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;A clinical history, sleep diaries, PSG, and MSLT are key items in the evaluation of narcolepsy. PSG followed by MSLT is useful in confirming the clinical impression. Narcoleptic patients often report disrupted sleep, and PSG often confirms fragmented sleep patterns. Ordinarily, a diagnosis of narcolepsy can be confirmed by demonstrating mean sleep latency of 8 minutes or less and two or more sleep onset sleep periods on prior night PSG and MSLT.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;The diagnosis of narcolepsy is usually confirmed by PSG followed by a MSLT. The following measurements are normally required to diagnose narcolepsy:&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;PSG assessment of the quality and quantity of nighttime sleep and to exclude alternate pathology such as&lt;&sol;li&gt;\n&lt;li&gt;OSA;&lt;&sol;li&gt;\n&lt;li&gt;MSLT derived mean sleep latency;&lt;&sol;li&gt;\n&lt;li&gt;The number of REM onset sleep episodes on the PSG and MSLT.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;Initial PSG and MSLT occasionally fail to identify narcolepsy. Repeat PSG may be indicated if:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;The first study is technically inadequate due to equipment failure;&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;ul&gt;\n&lt;li&gt;The subject could not sleep or slept for an insufficient amount of time to allow a clinical diagnosis;&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;ul&gt;\n&lt;li&gt;Initiation of therapy or confirmation of the efficacy of prescribed therapy is needed; or&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;ul&gt;\n&lt;li&gt;The results were inconclusive or ambiguous.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;3. Other Respiratory Disorders: &lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;This diagnostic category includes breathing disorders that are not principally defined by obstructive or central apnea&sol;hypopnea or the upper airways resistance syndrome.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;PSG is indicated for patients with neuromuscular disorder and sleep-related symptoms to evaluate symptoms of sleep disorder that are not adequately diagnosed by obtaining a sleep history, assessing sleep hygiene, and reviewing sleep diaries.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;PSG and HST are not indicated to diagnose chronic lung disease. Nocturnal hypoxemia in patients with chronic obstructive, restrictive, or reactive lung disease is usually adequately evaluated by oximetry and does not require PSG or HST. However, if the patient&amp;rsquo;s symptoms suggest a diagnosis of obstructive sleep apnea or periodic limb movement disorder, indications for PSG are the same as for those disorders in patients without chronic lung disease.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;4. Parasomnia: &lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to CMS IOM Publication 100-02, &lt;em&gt;Medicare Benefit Policy Manual&lt;&sol;em&gt;, Chapter 15, Section 70 B. Medical Conditions for Which Testing is Covered.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;In parasomnia, PSG is routinely indicated:&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;To assist with the diagnosis of paroxysmal arousals or other sleep disruptions that are thought to be seizure related when the initial clinical evaluation and results of a standard EEG are inconclusive.&lt;&sol;li&gt;\n&lt;li&gt;In evaluating sleep-related behaviors that are violent or otherwise potentially injurious to the patient or&lt;&sol;li&gt;\n&lt;li&gt;When evaluating patients with sleep behaviors suggestive of parasomnias that are unusual or atypical because of the patient&#39;s age at onset; the time, duration, or frequency of occurrence of the behavior; or the specifics of the particular motor patterns in question (e.g. stereotypical, repetitive, or focal).&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;In parasomnia, PSG may be indicated under the following circumstances:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;In situations with forensic considerations (e.g., if onset follows trauma or if the events themselves have been associated with personal injury).&lt;&sol;li&gt;\n&lt;li&gt;When the presumed parasomnia or sleep-related epilepsy does not respond to conventional therapy.&lt;&sol;li&gt;\n&lt;li&gt;PSG is not routinely indicated in cases of typical, uncomplicated, and non-injurious parasomnias when the diagnosis is clearly&amp;nbsp;delineated.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;5. Restless Legs Syndrome and Periodic Limb Movement Disorder: &lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Restless legs syndrome is a neurologic disorder characterized by disagreeable leg sensations that usually occur at rest or before sleep and are alleviated by motor activity. Periodic limb movements are involuntary, stereotypic, repetitive limb movements that may occur during sleep and usually involve the legs and, occasionally, the arms. Periodic limb movements during sleep often accompany restless legs syndrome. Periodic limb movement disorder is a sleep disorder characterized by periodic limb movements that cause frequent arousals and lead to insomnia or excessive daytime sleepiness. The results of PSG studies from patients with severe restless legs syndrome often show prolonged sleep latencies, decreased sleep efficiency, increased number of awakenings, significant reductions in total sleep time, and decreased amounts of slow-wave sleep. Patients with periodic limb movement disorder often have frequent periodic limb movements that are associated with arousals and awakenings, reduced total sleep time, and decreased sleep efficiency.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;PSG is indicated when a diagnosis of periodic limb movement disorder is considered because of complaints by the patient or an observer of repetitive limb movements during sleep and frequent awakenings, fragmented sleep, difficulty maintaining sleep, or excessive daytime sleepiness.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Limitations&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;HSTs may be used in addition to a face to face clinical assessment by the treating physician, Epworth Sleepiness Scale, and physical examination to diagnose Obstructive Sleep Apnea (OSA) specifically; it is intended only for those patients who exhibit clinical signs and symptoms of OSA. HST is not intended to be used for the diagnosis of narcolepsy, other respiratory disorders, impotence, parasomnia, restless legs syndrome, or periodic limb movements of sleep. HST is not intended to be used for patients with comorbidities: congestive heart failure, hypo-ventilation syndrome, moderate to severe pulmonary disease, or neuromuscular&amp;nbsp;disease.&lt;&sol;li&gt;\n&lt;li&gt;More than one Home Sleep Test (HST) to establish the diagnosis of OSA would not be expected. If more than one HST session is performed for suspected OSA, persuasive medical evidence justifying the medical necessity for the additional tests will be required. Similarly, a repeat Polysomnography (PSG) must meet the indications in the LCD and must be clearly supported in the medical record. Services performed in excess of established parameters, will be subject to prepay medical review.&amp;nbsp;&lt;&sol;li&gt;\n&lt;li&gt;MLST is not routinely indicated for most patients with sleep apnea.&lt;&sol;li&gt;\n&lt;li&gt;PSG is not routinely indicated to diagnose or treat restless legs syndrome, or for patients with epilepsy without specific complaints consistent with a sleep disorder.&lt;&sol;li&gt;\n&lt;li&gt;Sleep studies and polysomnography are not indicated in the management of chronic insomnia. However, if sleep apnea is suspected as a contributing factor, then sleep studies and polysomnography may be considered.&lt;&sol;li&gt;\n&lt;li&gt;Testing for Circadian rhythm sleep disorders is not covered. Circadian rhythm sleep disorders result from a mismatch between an individual&amp;rsquo;s sleep pattern and the timing and amount of sleep that the person desires, needs, requires, or expects. The six types of rhythm disorders are time zone change (jet lag) disorder, shift work disorder, irregular sleep-wake patterns, delayed sleep-phase syndrome, advanced sleep-phase syndrome, and non-24-hour sleep-wake disorder.&lt;&sol;li&gt;\n&lt;li&gt;There is limited durable medical equipment (DME) coverage for oral appliances for OSA. Polysomnography and&sol;or Home Sleep Testing for evaluation or titration of a noncovered oral appliance are not covered services.&lt;&sol;li&gt;\n&lt;li&gt;As noted, there is limited coverage of a custom fabricated mandibular advancement oral appliance used to treat obstructive sleep apnea (OSA) assuming all DME criteria and limitations are met. The utilization guidelines of HST&sol;polysomnography noted above applicable to a patient utilizing a covered appliance in lieu of CPAP therapy would apply for reasonable and necessary services.&lt;&sol;li&gt;\n&lt;li&gt;A single PSG is usually sufficient to titrate PAP therapy. Assuming an unattended portable monitoring or auto-titrating PAP device does not provide sufficient data, a single PSG is sufficient to titrate PAP therapy. Repeat PSG should not be routinely indicated for the assessment of treatment results in patients whose symptoms continue to be resolved with PAP treatment. Repeat PSG or PSG with CPAP titration may be indicated in the following circumstances:\n&lt;ol&gt;\n&lt;li&gt;After surgical treatment of patients with OSA, to ensure satisfactory response; or&lt;&sol;li&gt;\n&lt;li&gt;After surgical treatment of patients with OSA whose symptoms return despite a good initial response to treatment.&lt;&sol;li&gt;\n&lt;li&gt;After substantial weight loss has occurred in patients on PAP for treatment of OSA to ascertain whether PAP is still needed at the previously titrated pressure;&lt;&sol;li&gt;\n&lt;li&gt;After substantial weight gain has occurred in patients previously treated with PAP successfully, who are again symptomatic despite the continued use of PAP, to ascertain whether pressure adjustments are needed; or&lt;&sol;li&gt;\n&lt;li&gt;When clinical response is insufficient or when symptoms return despite a good initial response to treatment with PAP&lt;&sol;li&gt;\n&lt;li&gt;Initial CPAP was not tolerated and BPAP is to be used in lieu of CPAP&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;ul&gt;\n&lt;li&gt;Ordinarily, a single PSG or HST can diagnose adult OSA. However, if the beneficiary&amp;rsquo;s treating physician has good reason to believe that the result of an HST is insufficient in light of the beneficiary&amp;rsquo;s clinical findings, a subsequent diagnostic PSG could be performed. Such retest decisions would be made on a case-by-case basis. The routine use of a two test routine (HST followed by PSG) to diagnose sleep apnea would not be considered reasonable and necessary. If more than one PSG or HST diagnostic testing session is claimed, persuasive medical evidence justifying the medical necessity for the additional tests will be required.&lt;&sol;li&gt;\n&lt;li&gt;There are some situations in which it may be necessary for a provider to perform diagnostic and titration services on consecutive nights, IT would be unusual for a provider to do so routinely. Providers showing this utilization trend would be subject to medical review.&lt;&sol;li&gt;\n&lt;li&gt;The center&sol;laboratory must maintain and provide upon request sufficient documentation that the narcolepsy patient is severe enough to interfere with the patient&amp;rsquo;s well-being and health before benefits are provided for diagnostic testing.&amp;nbsp;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;As published in the CMS IOM Publication 100-08, &lt;em&gt;Medicare Program Integrity Manual&lt;&sol;em&gt;, Chapter 13, Section 13.5.4, an item or service may be covered by a contractor LCD if it is reasonable and necessary under the Social Security Act Section 1862 (a)(1)(A). Contractors shall determine and describe the circumstances under which the item or service is considered reasonable and necessary.&amp;nbsp;&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Provider Qualifications&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;For guidelines regarding supervision during performance of a procedure and regarding studies performed in an Independent Diagnostic Testing Facility, please refer to 42 CFR, Section 410.32 and Section 410.33 respectively.&lt;&sol;p&gt;\n&lt;p&gt;The following provider qualification requirements must be met for the service to be considered reasonable and necessary:&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Physicians:&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;The raw data from all sleep tests must be reviewed and the tests must be interpreted by either:&lt;&sol;p&gt;\n&lt;ol&gt;\n&lt;li&gt;A Diplomate of the American Board of Sleep Medicine (ABSM) &lt;strong&gt;OR&lt;&sol;strong&gt; Board of Medical Specialties (ABMS) &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;A physician board certified in sleep medicine by a member board of the American Board of Medical Specialties (ABMS) &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;An osteopathic physician board certified in sleep medicine by a member board of the American Osteopathic Association (AOA) &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;An active physician staff member of an AASM accredited sleep center or sleep laboratory &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;An active physician staff member of a Joint Commission accredited sleep laboratory &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;An active physician staff member of a ACHC-accredited sleep laboratory &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;A Diplomate of the American Board of Family Medicine (ABFM) with Certificate of Added Qualifications (CAQ) in Sleep Medicine.&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;&lt;strong&gt;Sleep Technologist&sol;Technician &lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Sleep technicians or technologists attending PSG or sleep studies affiliated with HST must have appropriate personnel certification. Examples of certification in PSG and sleep technology for technologists are;\n&lt;ol&gt;\n&lt;li&gt;Registered Polysomnography Technologist (RPSGT)&lt;&sol;li&gt;\n&lt;li&gt;Registered Electroencephalographic technologist (R. EEG T.) &amp;ndash; Polysomnography&lt;&sol;li&gt;\n&lt;li&gt;Certified Respiratory Therapist -Sleep Disorders Specialist (CRT-SDS)&lt;&sol;li&gt;\n&lt;li&gt;Registered Respiratory Therapist Sleep Disorders Specialist (RRT-SDS)&lt;&sol;li&gt;\n&lt;li&gt;American Board of Sleep Medicine Registered Sleep Technologist (RST)&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;Credentialing must be provided by nationally recognized credentialing organizations such as:&amp;nbsp;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Board of Registered Polysomnographic Technologists (BRPT) that provides (RPSGT) credential; &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;American Board of Registration of Electroencephalographic and Evoked Potential Technologists (ABRET) that provides R. EEG T.) &amp;ndash; Polysomnography credential; &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Performed in a sleep center or laboratory accredited by the American Academy of Sleep Medicine (AASM), or Accreditation Commission for Health Care (ACHC), or Joint Commission; &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;American Board of Sleep Medicine (ABSM) that provides credentialing in sleep technology; &lt;strong&gt;OR&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;National Board for Respiratory Care, Inc. (NBRC) that provides specialty examination for respiratory therapists performing sleep disorders testing and therapeutic intervention (CRT-SDS and RRT-SDS)&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;All technologists and technicians conducting sleep testing who are not registered by the BRPT, ABRET, ABSM, NBRC or other accepted certification body, must be affiliated with an AASM or ACHC accredited sleep facility or Joint Commission accredited sleep facility (a Joint Commission accredited sleep laboratory). Unregistered technologists and technicians must maintain appropriate training and supervision, and, be supervised by a registered and licensed technologist, where license is required by state law.&lt;&sol;p&gt;\n&lt;p&gt;Technologist staffing must be adequate to address the workload of the sleep facility and assure the safety of patients.&lt;&sol;p&gt;\n&lt;p&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Unattended Sleep Testing&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;p&gt;\n&lt;p&gt;The technical component of HST and unattended sleep studies must be provided by an accredited sleep center or laboratory as noted above and meet the requirements of the LCD for coverage. The only exception would be the global billing (professional&sol;technical components [PC&sol;TC]) of HST by an office based physician who meets the requirements under the Physician Training&sol;Certification as noted earlier. In this case, the PC&sol;TC for HST can be covered for the purpose of testing a patient for the diagnosis of OSA if the home sleep testing is reasonable and necessary for the diagnosis of the patient&amp;rsquo;s condition as outlined in the LCD, and the office based technician doing the patient instruction and HST scoring meet the training&sol;credentialing requirements as outlined above. Under this circumstance, the physician would be the interpreter of the test and bill globally.&lt;&sol;p&gt;\n&lt;p&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Facility Accreditation:&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;p&gt;\n&lt;p&gt;In order to perform the technical component (TC) of PSG and sleep testing (including HST), the following must be met:&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;The sleep center or laboratory must maintain documentation on file that indicates it is accredited by the American Academy of Sleep Medicine (AASM), Accreditation Commission for Health Care (ACHC), or that it is accredited as a sleep laboratory by the Joint Commission. If the Joint Commission survey of the general hospital accreditation includes the hospital-based sleep lab, an additional accreditation is not needed. This documentation must be available on request. The AASM, ACHC, or Joint Commission accreditation applies to the hospital and freestanding facilities (including sleep clinics that are part of a physician&amp;rsquo;s office, and all other non-hospital-based facilities where sleep studies are performed.&lt;&sol;li&gt;\n&lt;&sol;ul&gt;",
+     "diagnoses_support": "",
+     "icd9_dont_support_para": "",
+     "icd9_dont_support_ast": "",
+     "diagnoses_dont_support": "",
+     "coding_guidelines": "",
+     "doc_reqs": "",
+     "appendices": "",
+     "util_guide": "",
+     "source_info": "&lt;p&gt;First Coast Service Options, Inc. reference LCD numbers &amp;ndash; L29907, L29949, L29951&lt;br &sol;&gt;&lt;br &sol;&gt; AHRQ Diagnosis and Treatment of Obstructive Sleep Apnea in Adults, Executive Summary. Comparative Effectiveness Review Number 32, July 2011.&lt;br &sol;&gt;&lt;br &sol;&gt; AHRQ Technology Assessment, &amp;ldquo;Home diagnosis of Obstructive Sleep Apnea-Hypopnea Syndrome&amp;rdquo;, August 8, 2007.&lt;br &sol;&gt;&lt;br &sol;&gt; AHRQ Technology Assessment, &amp;ldquo;Obstructive Sleep Apnea-Hypopnea Syndrome: modeling different diagnostic strategies&amp;rdquo;; December 4, 2007.&lt;br &sol;&gt;&lt;br &sol;&gt; American Academy of Sleep Medicine. (2007). Standards for accreditation of sleep disorders centers. Westchester, IL.&lt;br &sol;&gt;&lt;br &sol;&gt;Anderson, P., and Vega, C. (2008). AASM guidelines give qualified endorsement to portable sleep monitoring; CMS proposes reimbursement.&amp;nbsp;Retrieved on April 3, 2008.&lt;br &sol;&gt;&lt;br &sol;&gt;Benedictis, T., Larson, H., Kemp, G., Barston, S., &amp;amp; Segal, R. (2007). Understanding sleep: sleep needs, cycles, and stages.&amp;nbsp;Retrieved on April 2, 2008.&lt;br &sol;&gt;&lt;br &sol;&gt;Chesson, A., Berry, R., &amp;amp; Pack, A. (2003). Practice parameters for the use of portable monitoring devices in the investigation of suspected obstructive sleep apnea in adults. SLEEP, Nov 1; 26(7): 907-13. &lt;br &sol;&gt;&lt;br &sol;&gt;Collop, N. (2004). Consistency crucial to polysomnography scoring. Advance for sleep, Retrieved on April 16, 2008.&lt;&sol;p&gt;\n&lt;p&gt;Collop, N., Anderson, W., Boehlecke, B., Claman, D., Goldberg, R., Gottlieb, D., et al. (2007). Clinical Guidelines for the use of unattended portable monitors in the diagnosis of obstructive sleep apnea in adult patients. Journal of Clinical Sleep Medicine, 3(7).&lt;br &sol;&gt;&lt;br &sol;&gt; Deutsch P, Simmons M, Wallace J. Cost-Effectiveness of Split-Night PSG and Home Studies in the Evaluation of Obstructive Sleep Apnea Syndrome. Journal of Clinical Sleep Medicine (2006);2(2):145-153. &lt;br &sol;&gt;&lt;br &sol;&gt;Flemons, W. (2002). Obstructive sleep apnea. The New England Journal of Medicine, 347(7).&lt;br &sol;&gt;&lt;br &sol;&gt;Kushida, C., Chediak, A., Berry, R., Brown, L., Gozal, D., Iber, C., et al. (2008). Clinical guidelines for the manual titration of positive airway pressure in patients with obstructive sleep apnea. Journal of Clinical Sleep Medicine, 4(2): 157-171.&lt;br &sol;&gt;&lt;br &sol;&gt;Kushida, C., Littner, M., Hirshkowitz, M., Morgenthaler, T., Alessi, C., Bailey, D., et al. (2006). Practice parameters for use of continuous and bilevel positive airway pressure devices to treat adult patients with&amp;nbsp; sleep-related breathing disorders. SLEEP, 29(3).&lt;br &sol;&gt;&lt;br &sol;&gt;Kushida, C., Littner, M., Morgenthaler, T., Alessi, C., Bailey, D. Coleman, J., et al. (2005). Practice parameters for the indications for polysomnography and related procedures: an update for 2005. SLEEP, 28(4).&lt;br &sol;&gt;&lt;br &sol;&gt;Littner, M., Kushida, C., Wise, M., Davila, D., Morgenthaler, T., Lee-Chiong, T., et al. (2005). Practice parameters for clinical use of the multiple sleep latency test and the maintenance of wakefulness test. Sleep, Jan 1;28(1):113-21.&lt;br &sol;&gt;&lt;br &sol;&gt;Morgenthaler, T., Aurora, R., Brown, T., Zak, R., Alessi, C, Boehlecke, B., et al. (2008). Practice parameters for the use of autotitrating continuous positive airway pressure devices for titrating pressures and treating adult patients with obstructive sleep apnea syndrome: an update for 2007. SLEEP, 31(1).&lt;br &sol;&gt;&lt;br &sol;&gt;Morgenthaler, T., Kapur, V., Brown, T., Swick, T., Alessi, C., Aurora, R., et al. (2007). Practice parameters for the treatment of narcolepsy and other hypersomnias of central origin. SLEEP, 30(12).&lt;br &sol;&gt;&lt;br &sol;&gt;National Institute of Neurological Disorders and Stroke. (2007). Brain basics: understanding sleep. Bethesda, MD.&lt;br &sol;&gt;&lt;br &sol;&gt;Other Medicare Contractors&amp;rsquo; LCDs.&lt;&sol;p&gt;\n&lt;p&gt;Local Coverage Determination (LCD): Positive Airway Pressure (PAP) Devices for the Treatment of Obstructive Sleep Apnea (L11518)&lt;br &sol;&gt;&lt;br &sol;&gt;Other Private Insurers&amp;rsquo; practice guidelines.&lt;br &sol;&gt;&lt;br &sol;&gt;Parthasarathy, S., Haynes, P., Budhiraja, R., Habib, M., and Quan, S. (2006). A national survey of the effect of sleep medicine specialists and American Academy of Sleep Medicine Accreditation on management of obstructive sleep apnea. Journal of Clinical Sleep Medicine, Apr. 15;2(2):133-42.&lt;br &sol;&gt;&lt;br &sol;&gt;Roldan, G. (2007). Scoring Sleep. Microsoft Power Point &amp;ndash; G. Roldan &amp;ndash; New Scoring Rules-2007(2).ppt.&amp;nbsp; Retrieved on April 16, 2008.&lt;&sol;p&gt;\n&lt;p&gt;Schoenstadt, A. (2006). Diagnosing narcolepsy.&amp;nbsp;Retrieved on April 3, 2008.&lt;&sol;p&gt;\n&lt;p&gt;Silber, M. (2002). Ask the sleep expert: narcolepsy and cataplexy. National Sleep Foundation.&amp;nbsp;Retrieved on April 2, 2008.&lt;br &sol;&gt;&lt;br &sol;&gt;The American Board of Family Medicine Certificate of Added Qualifications: Sleep Medicine.2009.&lt;br &sol;&gt;&lt;br &sol;&gt;The Joint Commission, Revised Chapter Human Resources. (2009). Ambulatory Health Care Accreditation Program.&lt;br &sol;&gt;&lt;br &sol;&gt;The Joint Commission, Revised Chapter Medical Staff. (2009). Hospital Accreditation Program.&lt;&sol;p&gt;",
+     "adv_meeting": "",
+     "comment_start_dt": "",
+     "comment_end_dt": "",
+     "notice_start_dt": "11/05/2015",
+     "rev_hist_num": "",
+     "history_exp": "",
+     "last_reviewed_on": "01/31/2018",
+     "thirty_percent": "N",
+     "status": "A",
+     "last_updated": "06/19/2020",
+     "draft_contact": null,
+     "revenue_para": "",
+     "source_lcd_id": 29905,
+     "add_icd10_info": "",
+     "keywords": "",
+     "associated_info": "&lt;p&gt;&lt;strong&gt;Documentation Requirements&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to the Local Coverage Article: Billing and Coding: Polysomnography and Sleep Testing (A57496) for documentation requirements that apply to the reasonable and necessary provisions outlined in this LCD.&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Utilization Guidelines&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Please refer to the Local Coverage Article: Billing and Coding: Polysomnography and Sleep Testing (A57496) for utilization guidelines that apply to the reasonable and necessary provisions outlined in this LCD.&lt;&sol;p&gt;",
+     "notice_end_dt": "12/20/2015",
+     "date_retired": "",
+     "draft_released_date": "",
+     "icd10_doc": "Y",
+     "synopsis_changes": "",
+     "bibliography": "&lt;p&gt;N&sol;A&lt;&sol;p&gt;",
+     "summary_of_evidence": "&lt;p&gt;N&sol;A&lt;&sol;p&gt;",
+     "analysis_of_evidence": "&lt;p&gt;N&sol;A&lt;&sol;p&gt;",
+     "mcd_publish_date": "",
+     "issue": "",
+     "issue_change": "",
+     "mac_initiated": "N"
+    }
+   ]
+  },
+  "/data/lcd/contractor?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "contractor_id",
+     "contractor_type_id",
+     "contractor_version",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "contractor_id": 368,
+     "contractor_type_id": 12,
+     "contractor_version": 1,
+     "last_updated": "06/19/2020"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "contractor_id": 370,
+     "contractor_type_id": 12,
+     "contractor_version": 1,
+     "last_updated": "06/19/2020"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "contractor_id": 369,
+     "contractor_type_id": 12,
+     "contractor_version": 1,
+     "last_updated": "06/19/2020"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "contractor_id": 371,
+     "contractor_type_id": 12,
+     "contractor_version": 1,
+     "last_updated": "06/19/2020"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "contractor_id": 372,
+     "contractor_type_id": 12,
+     "contractor_version": 1,
+     "last_updated": "06/19/2020"
+    }
+   ]
+  },
+  "/data/lcd/primary-jurisdiction?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": " Your parameters returned 0 results, so the data array is empty.",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "state_id",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": []
+  },
+  "/data/lcd/related-documents?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "related_num",
+     "r_article_id",
+     "r_article_version",
+     "r_lcd_id",
+     "r_lcd_version",
+     "r_contractor_id",
+     "last_updated",
+     "url"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "related_num": 1,
+     "r_article_id": null,
+     "r_article_version": null,
+     "r_lcd_id": 36222,
+     "r_lcd_version": 4,
+     "r_contractor_id": 368,
+     "last_updated": "10/30/2015",
+     "url": "https://localcoverage.cms.gov/mcd_archive/view/lcd.aspx?lcdInfo=36222:3"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "related_num": 2,
+     "r_article_id": 55831,
+     "r_article_version": 3,
+     "r_lcd_id": null,
+     "r_lcd_version": null,
+     "r_contractor_id": 368,
+     "last_updated": "12/06/2017",
+     "url": "https://localcoverage.cms.gov/mcd_archive/view/article.aspx?articleInfo=55831:2"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "related_num": 4,
+     "r_article_id": 57496,
+     "r_article_version": 14,
+     "r_lcd_id": null,
+     "r_lcd_version": null,
+     "r_contractor_id": 368,
+     "last_updated": "10/11/2019",
+     "url": "/data/article?articleid=57496&ver=14"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "related_num": 5,
+     "r_article_id": 58259,
+     "r_article_version": 3,
+     "r_lcd_id": null,
+     "r_lcd_version": null,
+     "r_contractor_id": 368,
+     "last_updated": "06/19/2020",
+     "url": "https://localcoverage.cms.gov/mcd_archive/view/article.aspx?articleInfo=58259:2"
+    }
+   ]
+  },
+  "/data/lcd/related-ncd-documents?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "related_num",
+     "r_ncd_id",
+     "r_ncd_version",
+     "last_updated",
+     "url"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "related_num": 1,
+     "r_ncd_id": 226,
+     "r_ncd_version": 1,
+     "last_updated": "04/29/2025",
+     "url": "/data/ncd?ncdid=226&ncdver=1"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "related_num": 2,
+     "r_ncd_id": 330,
+     "r_ncd_version": 1,
+     "last_updated": "04/29/2025",
+     "url": "/data/ncd?ncdid=330&ncdver=1"
+    }
+   ]
+  },
+  "/data/lcd/revision-history?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "rev_hist_num",
+     "rev_hist_date",
+     "rev_hist_exp",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 33405,
+     "lcd_version": 25,
+     "rev_hist_num": 9,
+     "rev_hist_date": "07/01/2020",
+     "rev_hist_exp": "&lt;p&gt;Revision Number: 9&lt;br &sol;&gt;Publication: June 2020 Connection&lt;br &sol;&gt;LCR A&sol;B2020-049&lt;&sol;p&gt;\n&lt;p&gt;Explanation of Revision: Based on a CMS directive, the &amp;ldquo;Limitations&amp;rdquo; section of the LCD was revised to remove language regarding actigraphy. The effective date of this revision is based on date of service.&lt;&sol;p&gt;",
+     "last_updated": "06/19/2020"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 23,
+     "rev_hist_num": 8,
+     "rev_hist_date": "10/15/2019",
+     "rev_hist_exp": "&lt;p&gt;Revision Number : 8&lt;br &sol;&gt; Publication: October 2019 Connection&lt;br &sol;&gt; LCR A&sol;B2019-068&lt;&sol;p&gt;\n&lt;p&gt;Explanation of Revision: Based on Change Request (CR) 10901, the LCD was revised to remove all billing and coding and all language not related to reasonable and necessary provisions (&amp;ldquo;Bill Type Codes&amp;rdquo;, &amp;ldquo;Revenue Codes&amp;rdquo;, &amp;ldquo;CPT&sol;HCPCS Codes&amp;rdquo;, &amp;ldquo;ICD-10 Codes that Support Medical Necessity&amp;rdquo;, &amp;ldquo;Documentation Requirements&amp;rdquo; and &amp;ldquo;Utilization Guidelines&amp;rdquo; sections of the LCD) and place them into a newly created billing and coding article. During the process of moving the ICD-10-CM diagnosis codes to the billing and coding article, the ICD-10-CM diagnosis code ranges were broken out and listed individually Also, the CMS IOM language has been removed from the LCD and instead, the IOM citation related to this language is referenced in the &amp;ldquo;CMS National Coverage Policy&amp;rdquo; section of the LCD. In addition, the Social Security Act, Code of Federal Regulations, and IOM reference sections were updated. The effective date of this revision is for claims processed on or after January 8, 2019 dates of service on or after October 3, 2018.&lt;&sol;p&gt;\n&lt;p&gt;At this time 21st Century Cures Act will apply to new and revised LCDs that restrict coverage which requires comment and notice. This revision is not a restriction to the coverage determination and therefore not all the fields included on the LCD are applicable as noted in this LCD.&lt;&sol;p&gt;",
+     "last_updated": "10/11/2019"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 18,
+     "rev_hist_num": 7,
+     "rev_hist_date": "01/22/2019",
+     "rev_hist_exp": "&lt;p&gt;Revision Number: 7&lt;br &sol;&gt; Publication: February 2019 Connection&lt;br &sol;&gt; LCR A&sol;B2019-009&lt;&sol;p&gt;\n&lt;p&gt;Explanation of Revision: Based on an annual review the &amp;ldquo;Sources of Information&amp;rdquo; section of the LCD was updated to include multiple published sources.&amp;nbsp;The effective date of this revision is based on process date.&lt;&sol;p&gt;\n&lt;p&gt;01&sol;22&sol;2019: At this time 21st Century Cures Act will apply to new and revised LCDs that restrict coverage which requires comment and notice. This revision is not a restriction to the coverage determination and therefore not all the fields included on the LCD are applicable as noted in this LCD.&lt;&sol;p&gt;",
+     "last_updated": "02/01/2019"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 16,
+     "rev_hist_num": 6,
+     "rev_hist_date": "03/15/2018",
+     "rev_hist_exp": "&lt;p&gt;Revision Number: 2&lt;&sol;p&gt;\n&lt;p&gt;Publication: March 2018 Connection&lt;&sol;p&gt;\n&lt;p&gt;LCR A&sol;B2018-027&lt;&sol;p&gt;\n&lt;p&gt;Explanation of Revision:&amp;nbsp; Based on an annual review of the LCD, it was determined that some of the italicized language in the &amp;ldquo;Indications and Limitations of Coverage and&sol;or Medical Necessity&amp;rdquo; section of the LCD does not represent direct quotation from the CMS sources listed in the LCD; therefore, this LCD is being revised to assure consistency with the CMS sources. The effective date of this revision is based on date of service.&lt;&sol;p&gt;\n&lt;p&gt;03&sol;15&sol;2018:&amp;nbsp; At this time 21st Century Cures Act will apply to new and revised LCDs that restrict coverage which requires comment and notice.&amp;nbsp; This revision is not a restriction to the coverage determination and therefore not all the fields included on the LCD are applicable as noted in this policy.&lt;&sol;p&gt;",
+     "last_updated": "03/07/2018"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 12,
+     "rev_hist_num": 5,
+     "rev_hist_date": "12/21/2015",
+     "rev_hist_exp": "Revision Number:5&lt;br &sol;&gt;Publication: November 2015 Connection&lt;br &sol;&gt;LCR A&sol;B2015-024&lt;br &sol;&gt;&lt;br &sol;&gt;Explanation of revision: The following sections of the LCD has been revised: Indications and Limitations of Coverage and&sol;or Medical Necessity; Utilization guidelines. This LCD is effective for dates of service on or after 12&sol;21&sol;2015. ",
+     "last_updated": "10/30/2015"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 11,
+     "rev_hist_num": 4,
+     "rev_hist_date": "12/21/2015",
+     "rev_hist_exp": "Revision Number: 4&lt;br &sol;&gt;Publication: November 2015 Connection&lt;br &sol;&gt;LCR A&sol;B2015-023&lt;br &sol;&gt;&lt;br &sol;&gt;Explanation of revision:  The following sections of the LCD has been revised: Indications and Limitations of Coverage and&sol;or Medical Necessity; Utilization guidelines. This LCD is effective for dates of service on or after 12&sol;21&sol;2015. &lt;br &sol;&gt;",
+     "last_updated": "10/30/2015"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 10,
+     "rev_hist_num": 3,
+     "rev_hist_date": "12/21/2015",
+     "rev_hist_exp": "Revision Number: 3&lt;br &sol;&gt;Publication: November 2015 Connection&lt;br &sol;&gt;LCR A&sol;B2015-023&lt;br &sol;&gt;&lt;br &sol;&gt;Explanation of revision:  The following sections of the LCD has been revised: Indications and Limitations of Coverage and&sol;or Medical Necessity; Utilization guidelines. This LCD is effective for dates of service on or after 12&sol;21&sol;2015. &lt;br &sol;&gt;",
+     "last_updated": "10/30/2015"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 8,
+     "rev_hist_num": 2,
+     "rev_hist_date": "10/01/2015",
+     "rev_hist_exp": "The language and&sol;or ICD-10-CM diagnoses were updated to be consistent with the current ICD-9-CM LCD’s language and coding.",
+     "last_updated": "09/14/2015"
+    },
+    {
+     "lcd_id": 33405,
+     "lcd_version": 6,
+     "rev_hist_num": 1,
+     "rev_hist_date": "10/01/2015",
+     "rev_hist_exp": "8&sol;22&sol;2014 - The language and&sol;or ICD-10-CM diagnoses were updated to be consistent with the current ICD-9-CM LCD’s language and coding.",
+     "last_updated": "08/22/2014"
+    }
+   ]
+  },
+  "/data/lcd/urls?lcdid=33405&ver=25": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": " Your parameters returned 0 results, so the data array is empty.",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "url_type_id",
+     "url_type_description",
+     "url_id",
+     "url",
+     "url_name",
+     "url_description",
+     "sort_order",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": []
+  },
+  "/data/lcd/future-retire?lcdid=33405": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": " Your parameters returned 0 results, so the data array is empty.",
+    "fields": [
+     "lcd_id",
+     "retire_date"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": []
+  },
+  "/data/contractor/?contractor_id=368": {
+   "data": [
+    {
+     "contractor_id": 368,
+     "contract_type_id": 12,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "09101",
+     "contractor_name": "First Coast Service Options, Inc."
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=370": {
+   "data": [
+    {
+     "contractor_id": 370,
+     "contract_type_id": 12,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "09102",
+     "contractor_name": "First Coast Service Options, Inc."
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=369": {
+   "data": [
+    {
+     "contractor_id": 369,
+     "contract_type_id": 12,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "09201",
+     "contractor_name": "First Coast Service Options, Inc."
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=371": {
+   "data": [
+    {
+     "contractor_id": 371,
+     "contract_type_id": 12,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "09202",
+     "contractor_name": "First Coast Service Options, Inc."
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=372": {
+   "data": [
+    {
+     "contractor_id": 372,
+     "contract_type_id": 12,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "09302",
+     "contractor_name": "First Coast Service Options, Inc."
+    }
+   ]
+  }
+ }
+}

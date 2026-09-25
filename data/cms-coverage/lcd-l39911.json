@@ -1,0 +1,323 @@
+{
+ "lcd_id": "L39911",
+ "title": "Total Joint Arthroplasty",
+ "document_id": 39911,
+ "document_version": 10,
+ "document_type": "LCD",
+ "status": "Active (API status \"A\"; no retirement or future retirement listed)",
+ "contractor": {
+  "name": "WPS Insurance Corporation",
+  "contract_type": "A and B MAC (MAC - Part A, MAC - Part B)",
+  "jurisdictions": [
+   "J5",
+   "J8"
+  ],
+  "contracts": [
+   {
+    "contract_number": "05101",
+    "contract_type": "MAC A",
+    "jurisdiction": "J5",
+    "states": [
+     "Iowa"
+    ]
+   },
+   {
+    "contract_number": "05102",
+    "contract_type": "MAC B",
+    "jurisdiction": "J5",
+    "states": [
+     "Iowa"
+    ]
+   },
+   {
+    "contract_number": "05201",
+    "contract_type": "MAC A",
+    "jurisdiction": "J5",
+    "states": [
+     "Kansas"
+    ]
+   },
+   {
+    "contract_number": "05202",
+    "contract_type": "MAC B",
+    "jurisdiction": "J5",
+    "states": [
+     "Kansas"
+    ]
+   },
+   {
+    "contract_number": "05301",
+    "contract_type": "MAC A",
+    "jurisdiction": "J5",
+    "states": [
+     "Missouri - Entire State"
+    ]
+   },
+   {
+    "contract_number": "05302",
+    "contract_type": "MAC B",
+    "jurisdiction": "J5",
+    "states": [
+     "Missouri - Entire State"
+    ]
+   },
+   {
+    "contract_number": "05401",
+    "contract_type": "MAC A",
+    "jurisdiction": "J5",
+    "states": [
+     "Nebraska"
+    ]
+   },
+   {
+    "contract_number": "05402",
+    "contract_type": "MAC B",
+    "jurisdiction": "J5",
+    "states": [
+     "Nebraska"
+    ]
+   },
+   {
+    "contract_number": "05901",
+    "contract_type": "MAC A",
+    "jurisdiction": "J5",
+    "states": [
+     "Alabama",
+     "Alaska",
+     "Arizona",
+     "Arkansas",
+     "California - Entire State",
+     "Colorado",
+     "Connecticut",
+     "Delaware",
+     "Florida",
+     "Georgia",
+     "Hawaii",
+     "Idaho",
+     "Illinois",
+     "Indiana",
+     "Iowa",
+     "Kansas",
+     "Kentucky",
+     "Louisiana",
+     "Maine",
+     "Maryland",
+     "Massachusetts",
+     "Michigan",
+     "Mississippi",
+     "Missouri - Entire State",
+     "Montana",
+     "Nebraska",
+     "Nevada",
+     "New Hampshire",
+     "New Jersey",
+     "New Mexico",
+     "North Carolina",
+     "North Dakota",
+     "Ohio",
+     "Oklahoma",
+     "Oregon",
+     "Pennsylvania",
+     "Rhode Island",
+     "South Carolina",
+     "South Dakota",
+     "Tennessee",
+     "Texas",
+     "Utah",
+     "Vermont",
+     "Virginia",
+     "Washington",
+     "West Virginia",
+     "Wisconsin",
+     "Wyoming"
+    ]
+   },
+   {
+    "contract_number": "08101",
+    "contract_type": "MAC A",
+    "jurisdiction": "J8",
+    "states": [
+     "Indiana"
+    ]
+   },
+   {
+    "contract_number": "08102",
+    "contract_type": "MAC B",
+    "jurisdiction": "J8",
+    "states": [
+     "Indiana"
+    ]
+   },
+   {
+    "contract_number": "08201",
+    "contract_type": "MAC A",
+    "jurisdiction": "J8",
+    "states": [
+     "Michigan"
+    ]
+   },
+   {
+    "contract_number": "08202",
+    "contract_type": "MAC B",
+    "jurisdiction": "J8",
+    "states": [
+     "Michigan"
+    ]
+   }
+  ],
+  "name_on_mcd_page": "Wisconsin Physicians Service Insurance Corporation"
+ },
+ "original_effective_date": "2024-10-13",
+ "revision_effective_date": "2026-08-27",
+ "revision_ending_date": null,
+ "retirement_date": null,
+ "last_reviewed": "2026-07-21",
+ "last_updated": "2026-08-28",
+ "related_articles": [
+  {
+   "article_id": "A59811",
+   "version": 7,
+   "title": "Billing and Coding: Total Joint Arthroplasty",
+   "role": "Billing and coding article (codes, documentation requirements)",
+   "effective_date": "2026-08-27",
+   "status": "Active",
+   "api_url": "https://api.coverage.cms.gov/v1/data/article/?articleid=59811&ver=7"
+  },
+  {
+   "article_id": "A59902",
+   "version": 2,
+   "title": "Response to Comments: Total Joint Arthroplasty (DL39911)",
+   "role": "Response to comments"
+  }
+ ],
+ "related_ncds": [],
+ "coverage_model": "MAC Local Coverage Determination: reasonable and necessary criteria under SSA 1862(a)(1)(A) for the listed MAC jurisdictions. Medicare Advantage plans that serve these jurisdictions must follow applicable NCDs and LCDs (42 CFR 422.101(b)).",
+ "source": {
+  "api_url": "https://api.coverage.cms.gov/v1/data/lcd/?lcdid=39911&ver=10",
+  "mcd_url": "https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=39911&ver=10",
+  "criteria_source": "LCD L39911 v10 section \"Coverage Indications, Limitations, and/or Medical Necessity\" (Covered Indications: Total knee arthroplasty (TKA); Limitations). A59811 v7 Documentation Requirements (named by the LCD as the source of documentation requirements).",
+  "raw_response": "data/cms-coverage/raw/lcd-l39911-api-response.json",
+  "retrieved": "2026-09-25",
+  "retrieval_method": "Public CMS Coverage API (/v1/data/lcd with license-agreement token; /v1/data/lcd/* child endpoints; /v1/data/contractor) plus the public MCD LCD page for the contract, jurisdiction, and state table"
+ },
+ "covered_indication_summary": "Primary total knee arthroplasty is medically necessary when 1 or more of these are met: failure of previous osteotomy, distal femur fracture, proximal tibia fracture, malignancy of the distal femur, proximal tibia, knee joint or adjacent soft tissues, avascular necrosis of the knee, or advanced joint disease. Advanced joint disease needs all of: imaging evidence (subchondral cysts, subchondral sclerosis, periarticular osteophytes, joint subluxation, joint space narrowing, or avascular necrosis), pain or functional disability from the disease, and an unsuccessful history of appropriate conservative therapy (usually 3 months or more) that is clearly addressed in the pre-procedure record. TKA is not covered when a listed contraindication is present, and the LCD does not apply to unicompartmental knee replacement.",
+ "criteria": [
+  {
+   "id": "TKA-1",
+   "category": "indication",
+   "required": true,
+   "logic": "ANY_ONE_OF",
+   "text": "Total knee replacement surgery will be considered medically necessary when 1 or more of the following criteria are met (Covered Indications, Total knee arthroplasty (TKA)):",
+   "options": [
+    "Failure of previous osteotomy",
+    "Distal femur fracture",
+    "Proximal tibia fracture",
+    "Malignancy of the distal femur, proximal tibia, knee joint or adjacent soft tissues",
+    "Avascular necrosis of the knee",
+    "Advanced joint disease demonstrated by all of TKA-2, TKA-3, and TKA-4",
+    "Failed previous unicompartmental joint replacement (Limitations)"
+   ],
+   "check_hints": [
+    "diagnosis and laterality stated",
+    "for the advanced joint disease path, TKA-2, TKA-3, and TKA-4 must all be met"
+   ]
+  },
+  {
+   "id": "TKA-2",
+   "category": "imaging",
+   "required": true,
+   "logic": "ANY_ONE_OF",
+   "applies_to": "TKA-1 advanced joint disease path",
+   "text": "Radiographic supported evidence of advanced joint disease, or, when conventional radiography is not adequate, MRI and/or CT (CT when MRI is non-diagnostic or not able to be performed) supported evidence, showing one of the following (Covered Indications, advanced joint disease; A59811 Documentation Requirements):",
+   "options": [
+    "Subchondral cysts",
+    "Subchondral sclerosis",
+    "Periarticular osteophytes",
+    "Joint subluxation",
+    "Joint space narrowing",
+    "Avascular necrosis"
+   ],
+   "check_hints": [
+    "dated radiology report of the operative knee",
+    "named finding from the list"
+   ]
+  },
+  {
+   "id": "TKA-3",
+   "category": "symptoms_function",
+   "required": true,
+   "applies_to": "TKA-1 advanced joint disease path",
+   "text": "Pain or functional disability attributable to the advanced joint disease. The record documents the extent to which pain or functional disability interferes with ADLs (for example dressing, feeding, toileting, grooming, physical ambulation including balance/risk of falls, and bathing), increases with activity, or increases with weight bearing. (Covered Indications, advanced joint disease; A59811 Documentation Requirements)",
+   "check_hints": [
+    "pain linked to the arthritic knee",
+    "specific ADL limits",
+    "pain with activity or weight bearing"
+   ]
+  },
+  {
+   "id": "TKA-4",
+   "category": "conservative_therapy",
+   "required": true,
+   "logic": "ANY_ONE_OF",
+   "applies_to": "TKA-1 advanced joint disease path",
+   "text": "Unsuccessful history of appropriate conservative therapy (non-surgical medical management) that is clearly addressed in the pre-procedure medical record. Non-surgical medical management is usually implemented for 3 months or more to assess effectiveness and typically includes 1 or more of the following. When non-surgical management is not appropriate, the medical record must clearly document the bases for that conclusion. (Covered Indications, advanced joint disease; A59811 Documentation Requirements)",
+   "options": [
+    "Anti-inflammatory medications",
+    "Analgesics",
+    "Flexibility and muscle strengthening exercises",
+    "Supervised physical therapy (ADLs diminished despite completing a plan of care)",
+    "Activity restrictions as is reasonable",
+    "Assistive device use",
+    "Weight reduction as appropriate",
+    "Therapeutic injections into the knee as appropriate"
+   ],
+   "check_hints": [
+    "start dates and duration of each therapy (usually >= 3 months total)",
+    "documented lack of benefit",
+    "or a documented basis for why non-surgical care is not appropriate"
+   ]
+  },
+  {
+   "id": "TKA-5",
+   "category": "contraindications",
+   "required": true,
+   "text": "None of the following contraindications is present: active infection of the hip or knee joint or active systemic bacteremia; active skin infection or open wound within the planned surgical site of the hip or knee; neuropathic arthritis; rapidly progressing neurological disease. (Limitations)",
+   "check_hints": [
+    "skin at operative site intact",
+    "no active infection or bacteremia",
+    "no neuropathic (Charcot) arthropathy",
+    "no rapidly progressing neurological disease"
+   ]
+  },
+  {
+   "id": "TKA-6",
+   "category": "procedure_device",
+   "required": true,
+   "text": "The planned procedure is a total knee arthroplasty. The LCD indications are not to be applied to unicompartmental knee replacement. The implant is an FDA class II or class III device that meets 21 CFR Part 888 (Orthopedic Devices). (Limitations)",
+   "check_hints": [
+    "operative plan names total (tricompartmental) knee arthroplasty and laterality",
+    "FDA-cleared implant system named"
+   ]
+  }
+ ],
+ "non_covered": [
+  "TKA or THA is not considered medically reasonable and necessary when any of the above criteria are not met. (Limitations)",
+  "TKA or THA is not considered medically reasonable and necessary when 1 or more of the listed contraindications are present: active infection of the hip or knee joint or active systemic bacteremia; active skin infection or open wound within the planned surgical site; neuropathic arthritis; rapidly progressing neurological disease. (Limitations)",
+  "The indications in this LCD are not to be applied for unicompartmental knee replacement surgery. (Limitations)"
+ ],
+ "notes": [
+  "The LCD also covers total hip arthroplasty and TKA/THA revision. Only primary TKA criteria are modeled here; the full text keeps all sections.",
+  "A59811 Documentation Requirements: for patients with significant conditions or co-morbidities (for example coronary artery disease or obstructive pulmonary disease), the risk/benefit of the TKA should be appropriately addressed in the medical record.",
+  "A59811: non-surgical medical management may be inappropriate, ineffective or counterproductive with bone on bone articulation, severe deformity, or severe pain (particularly at rest) with significant disabling interference with ADLs.",
+  "A59811: if the patient does not meet all LCD criteria but the treating physician considers the procedure covered under current standards of care, the pre-procedure documentation must clearly address the reasons.",
+  "Version 10 (revision effective 08/27/2026) follows the biennial review of 07/21/2026 with no change in coverage. The LCD replaced retired LCD L39910.",
+  "WPS jurisdictions: J5 (Iowa, Kansas, Missouri, Nebraska) and J8 (Indiana, Michigan). The MCD page also lists J5 Part A contract 05901 with a nationwide state list.",
+  "Code examples from A59811 (bare numbers only): CPT 27447. ICD-10-CM M17.11 and M17.12 are on the A59811 covered list.",
+  "Good demo-approval scenario: 71-year-old in Michigan with right knee primary osteoarthritis (M17.11), weight-bearing radiographs with medial joint space narrowing, osteophytes, subchondral sclerosis and cysts, pain on weight bearing that limits walking, stairs, and bathing, more than 6 months of failed NSAIDs, supervised physical therapy, cane use, weight loss, and corticosteroid injections, no contraindications, and a planned right TKA (27447) with an FDA-cleared implant."
+ ],
+ "full_text": {
+  "cms_national_coverage_policy": "Italicized font represents CMS national language/wording copied directly from CMS Manuals or CMS Transmittals. Contractors are prohibited from changing national language/wording.\n\nInternet Only Manual (IOM) Citations:\n\n- CMS IOM Publication 100-08, Medicare Program Integrity Manual,\n\n- Chapter 6, Section 6.5.2 Conducting Patient Status Reviews of Claims for Medicare Part A Payment for Inpatient Hospital Admissions\n\n- Chapter 13, Section 13.5.4 Reasonable and Necessary Provision in an LCD\n\nSocial Security Act (Title XVIII) Standard References:\n\n- Title XVIII of the Social Security Act, Section 1862(a)(1)(A) states that no Medicare payment shall be made for items or services which are not reasonable and necessary for the diagnosis or treatment of illness or injury.\n\n- Title XVIII of the Social Security Act, Section 1862(a)(7). This section excludes routine physical examinations.\n\n- Title XVIII of the Social Security Act, Section 1833(e) states that no payment shall be made to any provider for any claim that lacks the necessary information to process the claim.\n\nFederal Register References:\n\n- Code of Federal Regulations (CFR), Title 21, Volume 8, Chapter I, Subchapter H, Part 888 Orthopedic Devices.",
+  "coverage_indications_limitations_medical_necessity": "General Information\n\nArthroplasty entails replacing part or all the joint with an endoprosthesis: an implant constructed of non-biological materials such as metal, ceramic, or polyethylene. In total knee arthroplasty (TKA), diseased articular surfaces are replaced. In total hip arthroplasty (THA) both the femoral head and the acetabulum or socket are replaced.\n\nJoint replacement surgery has been performed on millions of people over the past several decades. There are roughly over 1.2 million total knee and hip replacements performed annually in the Unites States and this number will continue to rise as our population ages.20 Total joint replacement has proven to be an important medical advancement in the field of orthopedic surgery with the hip and the knee being the most commonly replaced joints.5\n\nThe knee is the largest joint in the body and is vital to movement. It is made up of the lower end of the femur, upper end of the tibia, and the patella. The knee is comprised of 3 compartments, the medial, the lateral, and the patellofemoral. The ends of the femur and tibia are covered with articular cartilage that helps the knee bones to move smoothly across each other as you bend and straighten the leg. Between the femur and the tibia there are also 2 areas of meniscus cartilage which act to reduce shock between the bones and cushion and stabilize the joint.\n\nThe hip is the largest joint in your body after the knee. It functions to provide balance and support for your upper body, bear your body weight and move the upper leg. The hip is comprised of 2 compartments, the femoral head which is the ball, and the acetabulum which is the socket. These are covered with articular cartilage, the bursa, and are lubricated by synovial fluid produced by the synovial membrane.\n\nThe most common reason people seek knee replacement surgery is for arthritis of the knee joint. Types of arthritis include osteoarthritis (OA), rheumatoid arthritis (RA), and traumatic arthritis. Pain is most prevalent with activity, but immobility can cause difficulty in mobilizing after being seated for a long time. Arthritis can cause severe limitations when performing activities of daily living (ADL) such as but not limited to walking, squatting, and climbing stairs. Other findings that prompt consideration of TKA include chronic knee inflammation or swelling not relieved by rest, knee stiffness, lack of pain relief after taking non-steroidal anti-inflammatory medications, and failure to achieve symptom improvement with other conservative therapies such as steroid injections and physical therapy. Osteonecrosis (ON), fracture and malignancy are additional reasons to proceed with total knee replacement surgery. The goal of total knee replacement surgery is to relieve pain and improve or increase patient function.\n\nTotal hip replacement surgery is most often performed due to severe pain caused by OA of the hip joint. RA, traumatic arthritis, malignancy involving the hip joint, fracture and ON of the femoral head are also causes for hip replacement surgery. Pain from the damaged hip joint can cause disruption of sleep due to the inability to lie on the affected hip, and can also cause limitations to ADLs such as walking, bathing and cooking. When pain is not relieved with conservative therapies such as non-steroidal anti-inflammatories (NSAIDS), physical therapy, activity modification, or assistive devices, hip replacement may be indicated.\n\nOccasionally, there can be failure in the prior total knee or hip replacement. Failure can be due but not limited to, an infection involving the joint, substantial bone loss in the structures supporting the prosthesis, aseptic loosening or wear of the prosthetic components, and fracture. When these circumstances occur, there may be a need to do a total knee or total hip revision.\n\nCovered Indications\n\nTotal knee replacement surgery will be considered medically necessary when 1 or more of the following criteria are met:\n\n- Total knee arthroplasty (TKA)\n\n- Failure of previous osteotomy;6,7 or\n\n- Distal femur fracture;6 or\n\n- Proximal tibia fracture;6 or\n\n- Malignancy of the distal femur, proximal tibia, knee joint or adjacent soft tissues;6,7 or\n\n- Avascular necrosis of the knee;6,7 or\n\n- Advanced joint disease demonstrated by all the following:\n\n- Radiographic supported evidence or when conventional radiography is not adequate, magnetic resonance imaging (MRI) and/or computed tomography (CT) (in situations when MRI is non-diagnostic or not able to be performed) supported evidence (subchondral cysts, subchondral sclerosis, periarticular osteophytes, joint subluxation, joint space narrowing, avascular necrosis);7 and\n\n- Pain or functional disability attributable to the advanced joint disease,6 and\n\n- Unsuccessful history of appropriate conservative therapy (non-surgical medical management) that is clearly addressed in the pre-procedure medical record. Non-surgical medical management is usually implemented for 3-months or more to assess effectiveness. Conservative treatment as clinically appropriate for the patient’s current episode of care typically include 1 or more of the following: anti-inflammatory medications, analgesics, flexibility and muscle strengthening exercises, supervised physical therapy (ADLs diminished despite completing a plan of care), activity restrictions as is reasonable, assistive device use, weight reduction as appropriate, and/or therapeutic injections into the knee as appropriate. When non-surgical management is not appropriate, the medical record must clearly document the bases for that conclusion.1,2,\n\n- Replacement/Revision of TKA\n\n-\n\n- Disabling pain or functional disability;9 or\n\n- Progressive or substantial periprosthetic bone loss;7 or\n\n- Fracture or mechanic failure of 1 or more components;7 or\n\n- Infection;7 or\n\n- Aseptic loosening of 1 or more components;7 or\n\n- Failure and wear of the prosthetic components leading to symptomatic synovitis,7 or\n\n- Implant or knee misalignment;9 or\n\n- Extensor mechanism instability,9 or\n\n- Knee stiffness/arthrofibrosis9\n\nTotal hip replacement surgery will be considered medically necessary when 1 or more of the following criteria are met:\n\n- Total hip arthroplasty (THA)\n\n- Malignancy of the joint involving the bones or soft tissues of the pelvis or proximal femur;10 or\n\n- Avascular necrosis (ON of femoral head);10,15 or\n\n- Fracture of the femoral neck;10 or\n\n- Acetabular fracture;15 or\n\n- Non-union or failure of previous hip fracture surgery;14 or\n\n- Mal-union of acetabular or proximal femur fracture;10 or\n\n- Advanced joint disease as evidenced by all the following:\n\n- Radiographic, or MRI evidence supporting the advanced joint disease;12 and\n\n- Pain or functional disability attributable to the advanced joint disease,12 and\n\n- Unsuccessful history of appropriate conservative therapy (non-surgical medical management) that is clearly addressed in the pre-procedure medical record. Non-surgical medical management is usually implemented for 3 months or more to assess effectiveness. Conservative treatment as clinically appropriate for the patient’s current episode of care typically include 1 or more of the following: unsupervised exercise (i.e., aerobic, strengthening, stretching, Tai-chi, etc.) or completion of a supervised physical therapy program (land or aquatic based), topical or oral anti-inflammatory medications, analgesics, assistive device use, weight reduction as appropriate, acupuncture or therapeutic intraarticular injections as appropriate. When non-surgical management is not appropriate, the medical record must clearly document the basis for that conclusion.1,10,19\n\n- Replacement/Revision THA\n\n- Instability of 1 or both components;14 or\n\n- Fracture or mechanical failure of the implant;14 or\n\n- Recurrent or irreducible dislocation;14 or\n\n- Infection;14 or\n\n- Clinically significant leg length inequality not amenable to conservative management;10 or\n\n- Treatment of a displaced periprosthetic fracture;14 or\n\n- Progressive or substantial bone loss;14 or\n\n- Clinically significant audible noise;14 or\n\n- Adverse local tissue reaction10\n\nLimitations\n\nTKA or THA is not considered medically reasonable and necessary when any of the above criteria are not met.\n\nTKA or THA is not considered medically reasonable and necessary when 1 or more of the following contraindications are present:\n\n- Active infection of the hip or knee joint or active systemic bacteremia7,10\n\n- Active skin infection or open wound within the planned surgical site of the hip or knee7\n\n- Neuropathic arthritis10\n\n- Rapidly progressing neurological disease10\n\nThis local coverage determination (LCD) is only addressing medical necessity criteria for performing total knee and hip replacement surgery. The indications in this LCD are not to be applied for unicompartmental knee replacement surgery which is only contained to 1 compartment of the knee. However, failed previous unicompartmental joint replacement is an indication for performing TKA.\n\nThe devices/implants for total knee and total hip replacement surgeries are regulated by the Food and Drug Administration (FDA) as medical devices. The devices used should be class II or class III devices that meet the requirements as outlined in the CFR, Title 21, Volume 8, Chapter I, Subchapter H, Part 888 Orthopedic Devices.\n\nPlease see the associated billing and coding article A59811 Billing and Coding: Total Joint Arthroplasty for information on documentation requirements.",
+  "article_a59811_documentation_requirements": "Documentation Requirements\n\nAll documentation must be maintained in the patient's medical record and made available to the contractor upon request.\n\nEvery page of the record must be legible and include appropriate patient identification information (e.g., complete name, dates of service[s]). The documentation must include the legible signature of the physician or non-physician practitioner responsible for and providing the care to the patient.\n\nThe submitted medical record must support the use of the selected ICD-10-CM code(s). The submitted CPT/HCPCS code must describe the service performed.\n\nDocumentation Requirements\n\n- When the procedure is indicated for advanced joint disease, the following should be documented in the medical record:\n\n- Arthritis of the knee or hip supported by X-ray or MRI. The X-ray or MRI should demonstrate one of the following: a) subchondral cysts, b) subchondral sclerosis, c) periarticular osteophytes, d) joint subluxation, e) joint space narrowing, or f) avascular necrosis.\n\n- The extent to which pain or functional disability interferes with ADLs (functional disability), increases with activity or increases with weight bearing. ADLs include, but are not limited to, dressing, feeding, toileting, grooming, physical ambulation (including balance/risk of falls), and bathing.\n\n- Unsuccessful conservative therapy (non-surgical medical management). The documentation should demonstrate a history of a reasonable attempt (usually 3 months or more) at conservative therapy as appropriate for the patient in their current episode of care. Clinically appropriate non-surgical medical management typically includes 1 or more of the following:\n\n- anti-inflammatory medications and/or analgesics; and/or\n\n- flexibility and muscle strengthening exercises; and/or\n\n- supervised physical therapy; and/or\n\n- assistive device use; and/or\n\n- reasonable activity restrictions; and/or\n\n- weight reduction as appropriate; and/or\n\n- therapeutic injections into the joint as appropriate.\n\nNon-surgical medical management may be inappropriate, ineffective or counterproductive when 1 or more of the following is present:\n\n- bone on bone articulation; and/or\n\n- severe deformity; and/or\n\n- Severe pain (particularly at rest) and significant disabling interference with activities of daily living (ADL).\n\n-\n\n- For patients with significant conditions or co-morbidities, the risk/benefit of non-cardiac surgery, such as Total Knee Arthroplasty (TKA) or total hip arthroplasty (THA) should be appropriately addressed in the medical record.\n\n- Medical record documentation for other TKA and THA indications outlined in the LCD should include the following, when indicated:\n\n- Supporting evidence (e.g., pathology reports and referral from an Oncologist for a malignancy of the joint or X-ray of a fracture).\n\n- Pain at the hip or knee when indicated as a reason for the procedure. For example, documented pain that interferes with ADLs functional disability, pain that is increased with initiation of activities or pain that increases with weight bearing.\n\n- For patients with significant conditions or co-morbidities, such as but not limited to coronary artery disease or obstructive pulmonary disease, the risk/benefit of the TKA or THA procedure should be appropriately addressed in the medical record.\n\n- When infection is the reason for revision TKA or THA surgery, laboratory and/or pathology reports must be documented in the medical record and all documentation regarding treatment of the infection and a physician note indicating that it is appropriate to proceed with surgery should be in the medical record as well.\n\n- In the instance that the patient is undergoing a bilateral knee or hip replacement, all criteria listed above would apply to the bilateral surgery when indicated. The medical record should also support the medical necessity for performing THA or TKA bilaterally.\n\n- If in certain circumstances the patient does not meet all of the required criteria outlined in the local coverage determination (LCD) for a procedure, but the treating physician feels that the procedure is a covered procedure given the current standards of care, then the documentation must clearly outline the patient’s episode of care that supports the major procedure and must clearly address the reason(s) for coverage. For example, if clinical findings (or lack of) for an indication are not consistent with the LCD criteria, it should be directly addressed in the pre-procedure documentation. For example, if certain conservative measures are not necessary for a given patient, it should be directly noted in the pre-procedure documentation. The clinical judgment of the treating physician is always a consideration if clearly addressed in the pre-procedure record and if consistent with the episode of care for the patient as documented in patient records and claim history."
+ }
+}

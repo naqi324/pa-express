@@ -1,0 +1,621 @@
+{
+ "retrieved": "2026-09-25",
+ "base_url": "https://api.coverage.cms.gov/v1",
+ "note": "Public CMS Coverage API responses, unmodified, keyed by request path. /data/lcd requests used the license-agreement Bearer token.",
+ "responses": {
+  "/data/lcd/?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "display_id",
+     "title",
+     "determination_number",
+     "cms_cov_policy",
+     "orig_det_eff_date",
+     "ent_det_end_date",
+     "rev_eff_date",
+     "rev_end_date",
+     "indication",
+     "diagnoses_support",
+     "icd9_dont_support_para",
+     "icd9_dont_support_ast",
+     "diagnoses_dont_support",
+     "coding_guidelines",
+     "doc_reqs",
+     "appendices",
+     "util_guide",
+     "source_info",
+     "adv_meeting",
+     "comment_start_dt",
+     "comment_end_dt",
+     "notice_start_dt",
+     "rev_hist_num",
+     "history_exp",
+     "last_reviewed_on",
+     "thirty_percent",
+     "status",
+     "last_updated",
+     "draft_contact",
+     "revenue_para",
+     "source_lcd_id",
+     "add_icd10_info",
+     "keywords",
+     "associated_info",
+     "notice_end_dt",
+     "date_retired",
+     "draft_released_date",
+     "icd10_doc",
+     "synopsis_changes",
+     "bibliography",
+     "summary_of_evidence",
+     "analysis_of_evidence",
+     "mcd_publish_date",
+     "issue",
+     "issue_change",
+     "mac_initiated"
+    ],
+    "children": [
+     "/data/lcd/related-documents?lcdid=39911&ver=10",
+     "/data/lcd/related-ncd-documents?lcdid=39911&ver=10",
+     "/data/lcd/future-retire?lcdid=39911",
+     "/data/lcd/related-source-icd9?lcdid=39911&ver=10",
+     "/data/lcd/advisory-committee?lcdid=39911&ver=10",
+     "/data/lcd/contractor?lcdid=39911&ver=10",
+     "/data/lcd/hcpc-code-group?lcdid=39911&ver=10",
+     "/data/lcd/hcpc-code?lcdid=39911&ver=10",
+     "/data/lcd/reason-change?lcdid=39911&ver=10",
+     "/data/lcd/requestor-letters?lcdid=39911&ver=10",
+     "/data/lcd/revision-history?lcdid=39911&ver=10",
+     "/data/lcd/sticky-note?lcdid=39911&ver=10",
+     "/data/lcd/synopsis-changes?lcdid=39911&ver=10",
+     "/data/lcd/urls?lcdid=39911&ver=10",
+     "/data/lcd/primary-jurisdiction?lcdid=39911&ver=10",
+     "/data/lcd/tracking-sheet?lcdid=39911&ver=10"
+    ],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "display_id": null,
+     "title": "Total Joint Arthroplasty",
+     "determination_number": "",
+     "cms_cov_policy": "&lt;p&gt;&lt;em&gt;Italicized&lt;&sol;em&gt; font represents CMS national language&sol;wording copied directly from CMS Manuals or CMS Transmittals. Contractors are prohibited from changing national language&sol;wording.&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Internet Only Manual (IOM) Citations:&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;CMS IOM Publication 100-08, &lt;em&gt;Medicare Program Integrity Manual&lt;&sol;em&gt;,\n&lt;ul&gt;\n&lt;li&gt;Chapter 6, Section 6.5.2 Conducting Patient Status Reviews of Claims for Medicare Part A Payment for Inpatient Hospital Admissions&lt;&sol;li&gt;\n&lt;li&gt;Chapter 13, Section 13.5.4 Reasonable and Necessary Provision in an LCD&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;Social Security Act (Title XVIII) Standard References:&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Title XVIII of the Social Security Act, Section 1862(a)(1)(A) states that no Medicare payment shall be made for items or services which are not reasonable and necessary for the diagnosis or treatment of illness or injury.&lt;&sol;li&gt;\n&lt;li&gt;Title XVIII of the Social Security Act, Section 1862(a)(7). This section excludes routine physical examinations.&lt;&sol;li&gt;\n&lt;li&gt;Title XVIII of the Social Security Act, Section 1833(e) states that no payment shall be made to any provider for any claim that lacks the necessary information to process the claim.&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;&lt;strong&gt;Federal Register References:&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Code of Federal Regulations (CFR), Title 21, Volume 8, Chapter I, Subchapter H, Part 888 Orthopedic Devices.&lt;&sol;li&gt;\n&lt;&sol;ul&gt;",
+     "orig_det_eff_date": "10/13/2024",
+     "ent_det_end_date": "",
+     "rev_eff_date": "08/27/2026",
+     "rev_end_date": "",
+     "indication": "&lt;p&gt;&lt;strong&gt;General Information&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Arthroplasty entails replacing part or all the joint with an endoprosthesis: an implant constructed of non-biological materials such as metal, ceramic, or polyethylene. In total knee arthroplasty (TKA), diseased articular surfaces are replaced. In total hip arthroplasty (THA) both the femoral head and the acetabulum or socket are replaced.&lt;&sol;p&gt;\n&lt;p&gt;Joint replacement surgery has been performed on millions of people over the past several decades. There are roughly over 1.2 million total knee and hip replacements performed annually in the Unites States and this number will continue to rise as our population ages.&lt;sup&gt;20&lt;&sol;sup&gt; Total joint replacement has proven to be an important medical advancement in the field of orthopedic surgery with the hip and the knee being the most commonly replaced joints.&lt;sup&gt;5&lt;&sol;sup&gt;&lt;&sol;p&gt;\n&lt;p&gt;The knee is the largest joint in the body and is vital to movement. It is made up of the lower end of the femur, upper end of the tibia, and the patella. The knee is comprised of 3 compartments, the medial, the lateral, and the patellofemoral. The ends of the femur and tibia are covered with articular cartilage that helps the knee bones to move smoothly across each other as you bend and straighten the leg. Between the femur and the tibia there are also 2 areas of meniscus cartilage which act to reduce shock between the bones and cushion and stabilize the joint.&lt;&sol;p&gt;\n&lt;p&gt;The hip is the largest joint in your body after the knee. It functions to provide balance and support for your upper body, bear your body weight and move the upper leg. The hip is comprised of 2 compartments, the femoral head which is the ball, and the acetabulum which is the socket. These are covered with articular cartilage, the bursa, and are lubricated by synovial fluid produced by the synovial membrane.&lt;&sol;p&gt;\n&lt;p&gt;The most common reason people seek knee replacement surgery is for arthritis of the knee joint. Types of arthritis include osteoarthritis (OA), rheumatoid arthritis (RA), and traumatic arthritis. Pain is most prevalent with activity, but immobility can cause difficulty in mobilizing after being seated for a long time. Arthritis can cause severe limitations when performing activities of daily living (ADL) such as but not limited to walking, squatting, and climbing stairs. Other findings that prompt consideration of TKA include chronic knee inflammation or swelling not relieved by rest, knee stiffness, lack of pain relief after taking non-steroidal anti-inflammatory medications, and failure to achieve symptom improvement with other conservative therapies such as steroid injections and physical therapy. Osteonecrosis (ON), fracture and malignancy are additional reasons to proceed with total knee replacement surgery. The goal of total knee replacement surgery is to relieve pain and improve or increase patient function.&lt;&sol;p&gt;\n&lt;p&gt;Total hip replacement surgery is most often performed due to severe pain caused by OA of the hip joint. RA, traumatic arthritis, malignancy involving the hip joint, fracture and ON of the femoral head are also causes for hip replacement surgery. Pain from the damaged hip joint can cause disruption of sleep due to the inability to lie on the affected hip, and can also cause limitations to ADLs such as walking, bathing and cooking. When pain is not relieved with conservative therapies such as non-steroidal anti-inflammatories (NSAIDS), physical therapy, activity modification, or assistive devices, hip replacement may be indicated.&lt;&sol;p&gt;\n&lt;p&gt;Occasionally, there can be failure in the prior total knee or hip replacement. Failure can be due but not limited to, an infection involving the joint, substantial bone loss in the structures supporting the prosthesis, aseptic loosening or wear of the prosthetic components, and fracture. When these circumstances occur, there may be a need to do a total knee or total hip revision.&lt;&sol;p&gt;\n&lt;p&gt;&lt;strong&gt;Covered Indications&lt;&sol;strong&gt;&lt;&sol;p&gt;\n&lt;p&gt;Total knee replacement surgery will be considered medically necessary when &lt;span style=&quot;text-decoration: underline;&quot;&gt;1 or more&lt;&sol;span&gt; of the following criteria are met:&lt;&sol;p&gt;\n&lt;ol&gt;\n&lt;li&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Total knee arthroplasty (TKA)&lt;&sol;strong&gt;&lt;&sol;span&gt;\n&lt;ol style=&quot;list-style-type: lower-alpha;&quot;&gt;\n&lt;li&gt;Failure of previous osteotomy;&lt;sup&gt;6,7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Distal femur fracture;&lt;sup&gt;6&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Proximal tibia fracture;&lt;sup&gt;6&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Malignancy of the distal femur, proximal tibia, knee joint or adjacent soft tissues;&lt;sup&gt;6,7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Avascular necrosis of the knee;&lt;sup&gt;6,7 &lt;&sol;sup&gt;&lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Advanced joint disease demonstrated by all the following:\n&lt;ul&gt;\n&lt;li&gt;Radiographic supported evidence or when conventional radiography is not adequate, magnetic resonance imaging (MRI) and&sol;or computed tomography (CT) (in situations when MRI is non-diagnostic or not able to be performed) supported evidence (subchondral cysts, subchondral sclerosis, periarticular osteophytes, joint subluxation, joint space narrowing, avascular necrosis);&lt;sup&gt;7&lt;&sol;sup&gt; &lt;strong&gt;and&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Pain or functional disability attributable to the advanced joint disease,&lt;sup&gt;6&lt;&sol;sup&gt; &lt;strong&gt;and&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Unsuccessful history of appropriate conservative therapy (non-surgical medical management) that is clearly addressed in the pre-procedure medical record. Non-surgical medical management is usually implemented for 3-months or more to assess effectiveness. Conservative treatment as clinically appropriate for the patient&amp;#8217;s current episode of care typically include 1 or more of the following: anti-inflammatory medications, analgesics, flexibility and muscle strengthening exercises, supervised physical therapy (ADLs diminished despite completing a plan of care), activity restrictions as is reasonable, assistive device use, weight reduction as appropriate, and&sol;or therapeutic injections into the knee as appropriate. When non-surgical management is not appropriate, the medical record must clearly document the bases for that conclusion.&lt;sup&gt;1,2,&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;li&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Replacement&sol;Revision of TKA&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;li&gt;\n&lt;li style=&quot;list-style-type: none;&quot;&gt;\n&lt;ol style=&quot;list-style-type: lower-alpha;&quot;&gt;\n&lt;li&gt;Disabling pain or functional disability;&lt;sup&gt;9&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Progressive or substantial periprosthetic bone loss;&lt;sup&gt;7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Fracture or mechanic failure of 1 or more components;&lt;sup&gt;7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Infection;&lt;sup&gt;7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Aseptic loosening of 1 or more components;&lt;sup&gt;7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Failure and wear of the prosthetic components leading to symptomatic synovitis,&lt;sup&gt;7&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Implant or knee misalignment;&lt;sup&gt;9&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Extensor mechanism instability,&lt;sup&gt;9&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Knee stiffness&sol;arthrofibrosis&lt;sup&gt;9&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;Total hip replacement surgery will be considered medically necessary when &lt;span style=&quot;text-decoration: underline;&quot;&gt;1 or more&lt;&sol;span&gt; of the following criteria are met:&lt;&sol;p&gt;\n&lt;ol start=&quot;3&quot;&gt;\n&lt;li&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Total hip arthroplasty (THA)&lt;&sol;strong&gt;&lt;&sol;span&gt;\n&lt;ol style=&quot;list-style-type: lower-alpha;&quot;&gt;\n&lt;li&gt;Malignancy of the joint involving the bones or soft tissues of the pelvis or proximal femur;&lt;sup&gt;10&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Avascular necrosis (ON of femoral head);&lt;sup&gt;10,15&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Fracture of the femoral neck;&lt;sup&gt;10&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Acetabular fracture;&lt;sup&gt;15&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Non-union or failure of previous hip fracture surgery;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Mal-union of acetabular or proximal femur fracture;&lt;sup&gt;10&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Advanced joint disease as evidenced by all the following:\n&lt;ul&gt;\n&lt;li&gt;Radiographic, or MRI evidence supporting the advanced joint disease;&lt;sup&gt;12&lt;&sol;sup&gt; and&lt;&sol;li&gt;\n&lt;li&gt;Pain or functional disability attributable to the advanced joint disease,&lt;sup&gt;12&lt;&sol;sup&gt; &lt;strong&gt;and&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Unsuccessful history of appropriate conservative therapy (non-surgical medical management) that is clearly addressed in the pre-procedure medical record. Non-surgical medical management is usually implemented for 3 months or more to assess effectiveness. Conservative treatment as clinically appropriate for the patient&amp;#8217;s current episode of care typically include 1 or more of the following: unsupervised exercise (i.e., aerobic, strengthening, stretching, Tai-chi, etc.) or completion of a supervised physical therapy program (land or aquatic based), topical or oral anti-inflammatory medications, analgesics, assistive device use, weight reduction as appropriate, acupuncture or therapeutic intraarticular injections as appropriate. When non-surgical management is not appropriate, the medical record must clearly document the basis for that conclusion.&lt;sup&gt;1,10,19&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;li&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Replacement&sol;Revision THA&lt;&sol;strong&gt;&lt;&sol;span&gt;\n&lt;ol style=&quot;list-style-type: lower-alpha;&quot;&gt;\n&lt;li&gt;Instability of 1 or both components;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Fracture or mechanical failure of the implant;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Recurrent or irreducible dislocation;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Infection;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Clinically significant leg length inequality not amenable to conservative management;&lt;sup&gt;10&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Treatment of a displaced periprosthetic fracture;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Progressive or substantial bone loss;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Clinically significant audible noise;&lt;sup&gt;14&lt;&sol;sup&gt; &lt;strong&gt;or&lt;&sol;strong&gt;&lt;&sol;li&gt;\n&lt;li&gt;Adverse local tissue reaction&lt;sup&gt;10&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;&sol;li&gt;\n&lt;&sol;ol&gt;\n&lt;p&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Limitations&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;p&gt;\n&lt;p&gt;TKA or THA is not considered medically reasonable and necessary when any of the above criteria are not met.&lt;&sol;p&gt;\n&lt;p&gt;TKA or THA is not considered medically reasonable and necessary when 1 or more of the following contraindications are present:&lt;&sol;p&gt;\n&lt;ul&gt;\n&lt;li&gt;Active infection of the hip or knee joint or active systemic bacteremia&lt;sup&gt;7,10&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;li&gt;Active skin infection or open wound within the planned surgical site of the hip or knee&lt;sup&gt;7&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;li&gt;Neuropathic arthritis&lt;sup&gt;10&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;li&gt;Rapidly progressing neurological disease&lt;sup&gt;10&lt;&sol;sup&gt;&lt;&sol;li&gt;\n&lt;&sol;ul&gt;\n&lt;p&gt;This local coverage determination (LCD) is only addressing medical necessity criteria for performing total knee and hip replacement surgery. The indications in this LCD are not to be applied for unicompartmental knee replacement surgery which is only contained to 1 compartment of the knee. However, failed previous unicompartmental joint replacement is an indication for performing TKA.&lt;&sol;p&gt;\n&lt;p&gt;The devices&sol;implants for total knee and total hip replacement surgeries are regulated by the Food and Drug Administration (FDA) as medical devices. The devices used should be class II or class III devices that meet the requirements as outlined in the CFR, Title 21, Volume 8, Chapter I, Subchapter H, Part 888 Orthopedic Devices.&lt;&sol;p&gt;\n&lt;p&gt;Please see the associated billing and coding article A59811 Billing and Coding: Total Joint Arthroplasty for information on documentation requirements.&lt;&sol;p&gt;",
+     "diagnoses_support": "",
+     "icd9_dont_support_para": "",
+     "icd9_dont_support_ast": "",
+     "diagnoses_dont_support": "",
+     "coding_guidelines": "",
+     "doc_reqs": "",
+     "appendices": "",
+     "util_guide": "",
+     "source_info": "&lt;p&gt;Other Contractor&amp;#8217;s policies: Noridian Healthcare Solutions, LLC LCD L33494, Total Joint Arthroplasty; National Government Services, Inc. LCD L36039, Total Joint Arthroplasty and First Coast Service Options, Inc. LCD L32078 for Major Joint Replacement (Hip and Knee)&lt;&sol;p&gt;",
+     "adv_meeting": "",
+     "comment_start_dt": "",
+     "comment_end_dt": "",
+     "notice_start_dt": "08/29/2024",
+     "rev_hist_num": "",
+     "history_exp": "",
+     "last_reviewed_on": "07/21/2026",
+     "thirty_percent": "N",
+     "status": "A",
+     "last_updated": "08/28/2026",
+     "draft_contact": null,
+     "revenue_para": "",
+     "source_lcd_id": null,
+     "add_icd10_info": "",
+     "keywords": "",
+     "associated_info": "",
+     "notice_end_dt": "10/12/2024",
+     "date_retired": "",
+     "draft_released_date": "",
+     "icd10_doc": "Y",
+     "synopsis_changes": "",
+     "bibliography": "&lt;ol&gt;\n&lt;li&gt;Zhang W, Moskowitz RW, Nuki G, et al. OARSI recommendations for the management of hip and knee osteoarthritis, Part II: OARSI evidence-based, expert consensus guidelines. &lt;em&gt;Osteoarthritis Cartilage&lt;&sol;em&gt;. 2008;16(2):137-162. doi:10.1016&sol;j.joca.2007.12.013&lt;&sol;li&gt;\n&lt;li&gt;Brophy RH, Fillingham YA. AAOS Clinical Practice Guideline Summary: Management of Osteoarthritis of the Knee (Nonarthroplasty), Third Edition. &lt;em&gt;J Am Acad Orthop Surg&lt;&sol;em&gt;. 2022;30(9):e721-e729. doi:10.5435&sol;JAAOS-D-21-01233&lt;&sol;li&gt;\n&lt;li&gt;Fransen M, McConnell S, Harmer AR, Van der Esch M, Simic M, Bennell KL. Exercise for osteoarthritis of the knee: a Cochrane systematic review. &lt;em&gt;Br J Sports Med&lt;&sol;em&gt;. 2015;49(24):1554-1557. doi:10.1136&sol;bjsports-2015-095424&lt;&sol;li&gt;\n&lt;li&gt;Baker KR, Nelson ME, Felson DT, Layne JE, Sarno R, Roubenoff R. The efficacy of home based progressive strength training in older adults with knee osteoarthritis: a randomized controlled trial. &lt;em&gt;J Rheumatol&lt;&sol;em&gt;. 2001;28(7):1655-1665.&lt;&sol;li&gt;\n&lt;li&gt;Skou ST, Roos EM, Laursen MB, et al. A Randomized, Controlled Trial of Total Knee Replacement. &lt;em&gt;N Engl J Med&lt;&sol;em&gt;. 2015;373(17):1597-1606. doi:10.1056&sol;NEJMoa1505467&lt;&sol;li&gt;\n&lt;li&gt;American Academy of Orthopaedic Surgeons Surgical Management of Osteoarthritis of the Knee Appropriate Use Criteria. aaos.org&sol;smoakauc. Published December 9, 2016&lt;&sol;li&gt;\n&lt;li&gt;Martin, G.M. and Harris, I. (2023) Total knee arthroplasty, UpToDate. Available at: https:&sol;&sol;www.uptodate.com&sol;contents&sol;total-knee-arthroplasty Accessed: 10 April 2024.&lt;&sol;li&gt;\n&lt;li&gt;Hannon CP, Goodman SM, Austin MS, et al. 2023 American College of Rheumatology and American Association of Hip and Knee Surgeons Clinical Practice Guideline for the Optimal Timing of Elective Hip or Knee Arthroplasty for Patients With Symptomatic Moderate-to-Severe Osteoarthritis or Advanced Symptomatic Osteonecrosis With Secondary Arthritis for Whom Nonoperative Therapy Is Ineffective. &lt;em&gt;Arthritis Care Res (Hoboken)&lt;&sol;em&gt;. 2023;75(11):2227-2238. doi:10.1002&sol;acr.25175&lt;&sol;li&gt;\n&lt;li&gt;Postler A, L&amp;#252;tzner C, Beyer F, Tille E, L&amp;#252;tzner J. Analysis of Total Knee Arthroplasty revision causes. &lt;em&gt;BMC Musculoskelet Disord&lt;&sol;em&gt;. 2018;19(1):55. Published 2018 Feb 14. doi:10.1186&sol;s12891-018-1977-y&lt;&sol;li&gt;\n&lt;li&gt;Erens GA, Crowley M, Hunter D, UpToDate, Inc. Total Hip Arthroplasty.; 2024. https:&sol;&sol;www.uptodate.com&sol;contents&sol;total-hip-arthroplasty&sol;print.&lt;&sol;li&gt;\n&lt;li&gt;Hirvonen J, Blom M, Tuominen U, et al. Health-related quality of life in patients waiting for major joint replacement. A comparison between patients and population controls. &lt;em&gt;Health Qual Life Outcomes&lt;&sol;em&gt;. 2006;4:3. Published 2006 Jan 19. doi:10.1186&sol;1477-7525-4-3&lt;&sol;li&gt;\n&lt;li&gt;Gademan MG, Hofstede SN, Vliet Vlieland TP, Nelissen RG, Marang-van de Mheen PJ. Indication criteria for total hip or knee arthroplasty in osteoarthritis: a state-of-the-science overview. &lt;em&gt;BMC Musculoskelet Disord&lt;&sol;em&gt;. 2016;17(1):463. Published 2016 Nov 9. doi:10.1186&sol;s12891-016-1325-z&lt;&sol;li&gt;\n&lt;li&gt;Mok TN, He QY, Teng Q, et al. Arthroscopic Hip Surgery versus Conservative Therapy on Femoroacetabular Impingement Syndrome: A Meta-Analysis of RCTs. &lt;em&gt;Orthop Surg&lt;&sol;em&gt;. 2021;13(6):1755-1764. doi:10.1111&sol;os.13099&lt;&sol;li&gt;\n&lt;li&gt;Springer BD, Fehring TK, Griffin WL, Odum SM, Masonis JL. Why revision total hip arthroplasty fails. &lt;em&gt;Clin Orthop Relat Res&lt;&sol;em&gt;. 2009;467(1):166-173. doi:10.1007&sol;s11999-008-0566-z&lt;&sol;li&gt;\n&lt;li&gt;Kumar P, Sen RK, Aggarwal S, Jindal K. Common hip conditions requiring primary total hip arthroplasty and comparison of their post-operative functional outcomes. &lt;em&gt;J Clin Orthop Trauma&lt;&sol;em&gt;. 2020;11(Suppl 2):S192-S195. doi:10.1016&sol;j.jcot.2019.02.009&lt;&sol;li&gt;\n&lt;li&gt;Ackerman IN, Bennell KL, Osborne RH. Decline in Health-Related Quality of Life reported by more than half of those waiting for joint replacement surgery: a prospective cohort study. &lt;em&gt;BMC Musculoskelet Disord&lt;&sol;em&gt;. 2011;12:108. Published 2011 May 23. doi:10.1186&sol;1471-2474-12-108&lt;&sol;li&gt;\n&lt;li&gt;Evans JT, Evans JP, Walker RW, Blom AW, Whitehouse MR, Sayers A. How long does a hip replacement last? A systematic review and meta-analysis of case series and national registry reports with more than 15 years of follow-up. &lt;em&gt;Lancet&lt;&sol;em&gt;. 2019;393(10172):647-654. doi:10.1016&sol;S0140-6736(18)31665-9&lt;&sol;li&gt;\n&lt;li&gt;American Academy of Orthopaedic Surgeons Management of Osteoarthritis of the Hip Evidence-Based Clinical Practice Guideline. aaos.org&sol;oahcpg2 Published 12&sol;01&sol;2023&lt;&sol;li&gt;\n&lt;li&gt;Kolasinski SL, Neogi T, Hochberg MC, et al. 2019 American College of Rheumatology&sol;Arthritis Foundation Guideline for the Management of Osteoarthritis of the Hand, Hip, and Knee [published correction appears in Arthritis Care Res (Hoboken). 2021 May;73(5):764]. &lt;em&gt;Arthritis Care Res (Hoboken)&lt;&sol;em&gt;. 2020;72(2):149-162. doi:10.1002&sol;acr.24131&lt;&sol;li&gt;\n&lt;li&gt;Joint replacement surgery | american college of rheumatology. American College of Rheumatology. March 2025. Accessed July 21, 2026. https:&sol;&sol;rheumatology.org&sol;patients&sol;joint-replacement-surgery.&lt;&sol;li&gt;\n&lt;&sol;ol&gt;",
+     "summary_of_evidence": "&lt;p&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Knee&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;p&gt;\n&lt;p&gt;The Osteoarthritis Research Society International conducted a systematic review of 23 existing guidelines published between 1945 and January of 2006, to develop concise recommendations for managing hip and knee OA.&lt;sup&gt;1&lt;&sol;sup&gt; Sixteen experts were gathered from primary care, rheumatology, orthopedics and evidence-based medicine to form a team to develop an expert consensus guideline. The existing literature was chosen based on the appraisal of guidelines research and evaluation (AGREE) instrument, and a Delphi exercise with confidence intervals (CI) at 95% was used to create 25 recommendations. The results included but are not limited to exercise, weight reduction, education, pharmacological therapy, physical therapy, bracing, ambulatory aids, and intraarticular or hyaluronan injections. The authors concluded that when these conservative measures do not adequately manage pain and improve function, joint arthroplasty is effective at improving quality of life (QOL) outcomes and pain.&lt;&sol;p&gt;\n&lt;p&gt;Individuals with OA of the knee often report joint pain, stiffness, and difficulty with ambulation. The American Academy of Orthopedic Surgeons (AAOS) Appropriate Use Criteria (AUC) guideline gives recommendations for non-surgical treatment for OA of the knee.&lt;sup&gt;2&lt;&sol;sup&gt; These criteria were determined based on literature review combined with clinical expertise of physicians from diverse medical specialties. A writing panel developed clinical based scenarios which were then subject to 2 rounds of voting from a panel, first to rate the appropriateness of each treatment modality, and second to discuss disagreement from the first round of voting, clarification needed, and to then vote again. Voting consisted of rating appropriateness using a 9-point scale with 7-9 being appropriate, 4-6 being may be appropriate but more research is needed to remove uncertainty, and 1-3 being rarely appropriate. Like Osteoarthritis Research Society International (OARSI),&lt;sup&gt;1&lt;&sol;sup&gt; they concluded that appropriate non-surgical measures include but are not limited to, self-management that includes exercise, walking, and weight loss, physical therapy modalities, knee braces, assistive devices, NSAIDs and intraarticular corticosteroids. They determined platelet rich plasma was rarely indicated as a treatment for knee OA symptoms.&lt;&sol;p&gt;\n&lt;p&gt;Knee OA more than any other disease in the elderly can hinder independence with tasks such as walking, stair climbing, and housekeeping.&lt;sup&gt;3,4&lt;&sol;sup&gt; It is common, especially in women, for those affected by knee OA to have knee extensor or quadricep weakness. The American College of Rheumatology recommends exercise as a non-surgical treatment for OA to improve strength.&lt;sup&gt;4&lt;&sol;sup&gt;&amp;#160; Baker and colleagues conducted a randomized controlled trial (RTC) of 46 patients blinded into 2 groups. A total of 23 patients received exercise intervention alone and 22 received only nutrition education. Both groups received home visits once every 2 weeks over the 4-month period. The exercise group intervention consisted of a home-based progressive strength training program. The nutrition control group was provided with a booklet based on the USA food pyramid and asked to keep a good log on 3 nonconsecutive days of every 2 weeks. Primary and secondary outcomes were measured at baseline and at the end of 4-months of interventions. Primary outcome measurement used was the Western Ontario&sol;McMaster Universities Osteoarthritis Index (WOMAC) and secondary outcomes measured were clinical knee examination, strength, physical performance, QOL, nutrition, and adherence. In both groups, 19 participated in the trial until it&amp;#8217;s completion. At the end of 4 months, the exercise group had a 71% improvement in knee extension strength, a 36% improvement in pain, and 38% improvement in physical function compared to the control group at 3%, 22% and 32% respectively. They concluded that substantial improvements in strength, pain, QOL, and ability to function physically result from participating in high intensity, home based exercise programs.&lt;&sol;p&gt;\n&lt;p&gt;Fransen et al conducted a systemic review to determine the effect therapeutic exercise had on joint pain, physical function and QOL in patients with knee OA.&lt;sup&gt;3&lt;&sol;sup&gt; They identified 54 randomized controlled trials (RCTs) from 5 electronic databases that compared various forms of land-based exercises against a non-exercise control group. The results of 44 trials were pooled and concluded that pain was significantly reduced with exercise and there was moderately improved physical function. Thirteen of the pooled study results showed a notable benefit on QOL immediately after treatment. These studies continued to show benefits 2- and 6-months later, though declining. The authors concluded that land-based exercise gives short term benefit that lasts up to 2-6 months after treatment ends.&lt;&sol;p&gt;\n&lt;p&gt;Skou et al. conducted an RCT of 100 patients with moderate to severe knee OA who had met the criteria for TKA.&lt;sup&gt;5&lt;&sol;sup&gt; Fifty patients were placed on 12 weeks of nonsurgical conservative treatment alone, and 50 underwent total knee replacement followed by 12 weeks of nonsurgical treatment. Nonsurgical treatment consisted of dietary guidance, insole use, exercise, pain medication, and education. The primary outcome was to evaluate changes from the baseline Knee Injury and Osteoarthritis Outcome Score (KOOS) in areas of pain, symptoms, ADLs, and QOL over a 12-month period. Of the 100 patients, 95 completed the 12-month follow up with 13 of the nonsurgical group undergoing total knee replacement before 12-months. They concluded that the patients who underwent TKA had a greater improvement in KOOS score, though they did have a higher number of serious adverse events as well (24 vs. 6, P=0.005).&lt;&sol;p&gt;\n&lt;p&gt;The AAOS developed an AUC for the surgical management of OA.&lt;sup&gt;6&lt;&sol;sup&gt; They estimate that by 2024, the number of people over 65 years of age who have knee OA will be 77.2 million as people are living longer. To develop this appropriate use criteria, 2 expert panels in orthopedic surgery and other appropriate medical fields participated. A writing panel created a list of 864 scenarios and 3 treatments were offered. A voting panel then evaluated the appropriateness of the 3 treatments. Each scenario was subject to 3 rounds of voting. They determined pain that limits walking function, instability in function, 1 or more compartments, joint space narrowing visible on imaging and mechanical symptoms were appropriate for TKA.&lt;&sol;p&gt;\n&lt;p&gt;Martin et al. performed a topic review including indications and perioperative considerations for TKA.&lt;sup&gt;7&lt;&sol;sup&gt; OA is the most common type of arthritis in adults and has led to TKA being performed in over 95% of patients in the United States. Other indications for performing TKA are destruction from disease such as but not limited to RA&sol;inflammatory arthritis, posttraumatic degenerative joint disease, ON, and congenital abnormalities of the joint. When knee pain is severe and is unresponsive to nonoperative treatment, TKA is indicated. The authors agree that a variety of nonsurgical treatment should be tried before proceeding with TKA. While TKA is relatively safe, there are contraindications where TKA should not be performed that include active infection, neurological disease that affects the extensor mechanism, chronic lower extremity ischemia, and in patients that are still growing. Operative risk should be thoroughly assessed prior to TKA such as physical assessment that includes a comprehensive knee exam, spine and hip exam, evaluating motor strength and tone especially in the quadriceps or extensor mechanism, deep tendon reflex, gait, pulses, and skin. A medical risk assessment should be performed. Patients undergoing TKA will be subject to blood loss, anesthesia as well as a postoperative rehabilitation program following joint replacement. With many patients being older, underlying comorbidities must also be considered. Radiographic images should support advanced arthritic changes and exclude other causes for pain and dysfunction. &lt;br&gt;&lt;br&gt;The American College of Rheumatology (ACR) and the American Association of Hip and Knee Surgeons (AAHKS) developed a clinical practice guideline for determining the ideal time to perform hip and knee arthroplasty after a systematic review of literature.&lt;sup&gt;8&lt;&sol;sup&gt; The used the population, intervention, comparator, outcomes (PICO) method to formulate 13 clinically relevant questions. Using a Grading Recommendations Assessment, Development and Evaluation (GRADE) approach, a panel of 13 physicians and patients rated the quality of evidence in 176 papers to determine their recommendations. The population included patients with moderate-to-severe pain, loss of function and imaging evidence of moderate-to-severe OA or ON with secondary arthritis, that have completed at least 1 trial of nonsurgical treatment. Nonsurgical therapy included but was not limited to analgesics (NSAIDs, acetaminophen, etc.), ambulatory assistive devices, weight loss, bracing, intraarticular injections, and modifying activity. The authors determined that in patients with OA or ON with secondary arthritis where nonsurgical treatment has failed, joint arthroplasty should be performed without delay for any additional treatments. They do not recommend delaying surgery for weight loss in patients to meet a specific weight or body mass index (BMI) number. They conditionally recommend delaying joint arthroplasty in patients with uncontrolled diabetes until glycemic results are improved, and in those with nicotine dependence until nicotine use is either reduced or stopped entirely. They acknowledge a paucity of high-quality evidence to support the recommendations.&lt;&sol;p&gt;\n&lt;p&gt;Postler and colleagues conducted a retrospective case study to determine the major causes of TKA revisions.&lt;sup&gt;9&lt;&sol;sup&gt; They looked at 402 TKA revision surgeries performed in their department from January 2010 to December 2015. They analyzed radiographic results, blood tests, joint aspiration, intraoperative findings, cultures and tissue sample results. The authors found the most frequent reason for revision surgery was infection. Other reasons were aseptic loosening, periprosthetic fracture, instability, pain, arthrofibrosis, extensor mechanism insufficiency, and implant failure. Limitations in the study were a lack of baseline information for the initial TKA given that most patients were treated in the department based on referral, and time between the initial TKA and the need for a revision was not known. The authors acknowledge that their department cases were probably more complicated than other joint replacement registries, however they believe the data is typical for tertiary care centers.&lt;&sol;p&gt;\n&lt;p&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;&lt;strong&gt;Hip&lt;&sol;strong&gt;&lt;&sol;span&gt;&lt;&sol;p&gt;\n&lt;p&gt;Authors aimed to consolidate best practice guidelines for total hip arthroplasty including indications, contraindications, and perioperative care.&lt;sup&gt;10&lt;&sol;sup&gt; Indications for total hip arthroplasty (THA) include patients that have failed conservative or other surgical options and have continued debilitating pain and interference in daily living. Deformity or limited motion can also be reasons for THA. Conditions affecting the hip include OA, RA, psoriatic arthritis, spondyloarthropathy, Femoroacetabular Impingement Syndrome (FAIS), developmental hip dysplasia, trauma, neoplasms, osteonecrosis, or childhood hip disorders. Providers should not proceed with THA if there are active infections, skeletal immaturity, quadriplegia, permanent or irreversible muscle weakness, or preexisting conditions such as recent myocardial infarction, unstable angina, heart failure or severe anemia. Conservative treatments include weight reduction, physical therapy, NSAIDs, assistive devices, intraarticular glucocorticoid injections, or addressing underlying inflammatory disorders. Post-operative rehabilitation and follow-up are important to ensure appropriate healing. Patients with high BMI have a higher risk of early revision due to infection.&lt;&sol;p&gt;\n&lt;p&gt;Hirvonen et al conducted a prospective multicenter study to assess the QOL in patients awaiting a major joint replacement.&lt;sup&gt;11&lt;&sol;sup&gt; Population controls were selected for comparison for 133 patients. Health Related Quality of Life (HRQoL) 15D questionnaires, which measures quality of movement, sleep, sexual activity, vitality, usual activity, discomfort and symptoms, and psychological factors were distributed to all participants. Matching was done on age, sex, housing, and home municipality to remove the bias of confounding variables. At baseline, there were statistically significant differences in the scores of patients and population controls. Patients reported worse scores in terms of moving (P &amp;lt; 0.001), sleeping (P &amp;lt; 0.001), sexual activity (P &amp;lt; 0.001), vitality (P &amp;lt;0.001), usual activities, (P &amp;lt; 0.001), and discomfort and symptoms (P &amp;lt; 0.001). Patients also reported worse scores than the population controls in psychological measures such as depression (P &amp;lt; 0.001) and distress (P = 0.004). Researchers concluded that a worse HRQoL was consistently noted in patients that were waiting to undergo major joint replacement, but scores did not worsen during the waiting period.&lt;&sol;p&gt;\n&lt;p&gt;Researchers performed a systematic literature review to evaluate the indication for total hip or knee arthroplasty in patients with OA.&lt;sup&gt;12&lt;&sol;sup&gt; Guidelines and research on indications published from orthopaedic and arthritis organizations were collected to synthesize data. A total of 18 papers were assessed including 6 original studies and 12 reviews. Pain indications for THA included hip pain during activities or at rest, pain refractory to non-surgical management, and incapacitating pain unresponsive to conservative therapy. Functional indications included constricted range of motion, functional impairment (substantial or other), and function limiting symptoms (major lifestyle changes or activities important to patient). Radiological indications included evidence of arthritis, findings of joint space narrowing, bone sclerosis, bone cysts femoral&sol;acetabular osteophytes, and evidence of joint degeneration. Of the 5 hip only studies, 2 indicated failure of conservative therapy and 1 indicated conservative therapy should be the initial course of treatment. Three knee and hip articles were collected, however, guidelines, criteria and recommendations remained unclear from these sources.&lt;&sol;p&gt;\n&lt;p&gt;Mok et al conducted a meta-analysis assessing THA versus conservative therapy.&lt;sup&gt;13&lt;&sol;sup&gt; A total of 3 RTCs were collected after applying inclusion&sol;exclusion criteria. The 3 articles assessed 650 FAIS patients. Using the Hip Outcome Score (HOS) sports scale to measure outcomes, authors concluded there was no significant difference between Arthroscopic Hip Surgery (AHS) or conservative treatment. Using the International Hip Outcome Total (iHOT) and Hip Outcome Score of Activities of Daily Living (HOS ADL) scales, AHS presented more favorable outcomes in patients with FAIS. Other conditions were not assessed for the comparison or surgical versus conservative treatment.&lt;&sol;p&gt;\n&lt;p&gt;A retrospective study was executed to assess causes of failure in 1100 THAs (1036 patients) and required revision surgeries.&lt;sup&gt;14&lt;&sol;sup&gt; Patient data was collected was collected from 1985 to 2005 with a minimum follow-up period of 2 years. Of the 1100 THAs, the initial indication for revision was as follows: aseptic loosening (45%), instability (16%), osteolysis&sol;wear (16%), deep periprosthetic infection (11%), periprosthetic fracture (6%), or other (7%). During follow-up, 141 patients required a second revision noting the following causes: instability (35%), aseptic loosening (30%), osteolysis&sol;wear (12%), deep periprosthetic infection (12%), other (9%), periprosthetic fracture (2%). Overall survivorship was 82% at 10 years and 72.6% at 15 years. Instability and aseptic loosening attributed to 65% of failure of revisions. Survivorship was impacted by diagnosis and cause of revision.&lt;&sol;p&gt;\n&lt;p&gt;Kumar et al retrospectively investigated 118 hips (99 patients) to evaluate common hip conditions that require THA and post-operative outcomes.&lt;sup&gt;15&lt;&sol;sup&gt; The Harris Hip Score (HHS) was used to assess dysfunction following THA. Males more frequently underwent hip arthroplasty in this sample of patients (3.1:1). Uncemented Total Hip Replacement (THR) was used in 75% of cases and cement was used in patients with trauma sequelae with deficient acetabulum or poor bone density. The lowest scores were found in patients with inflammatory arthritis (IA) and best scores in non-traumatic avascular necrosis (AVN). Primary OA was also commonly found in patients.&lt;&sol;p&gt;\n&lt;p&gt;Ackerman et al conducted a prospective cohort study to measure the impact of waiting for TJA on HRQoL.&lt;sup&gt;16&lt;&sol;sup&gt; The study comprised of 134 patients completing self-reported questionnaires including Assessment of Quality of Life (AQoL), WOMAC, and Kessler Psychological Distress Scale (K10). Scores were captured when patients were put on the orthopaedic waiting list and at preadmission for surgery. Approximately 69% of patients waited an average of 6 months or longer for Major Joint Replacement (MJR) surgery. About 25% of patients were on the waitlist for less than 6 months. Patients reported various conditions such as OA (78%) or RA (18%). Other comorbidities included back pain (44%), osteoporosis (13%), gout (7%), fibromyalgia (&amp;lt;1%), hypertension (40%), diabetes (13%), coronary artery disease (13%), asthma (12%), anxiety&sol;depression (11%), or cancer (4%). Previous joint replacement was reported in 20% of patients. Using the AQoL score, both knee (p=0.39) and hip (p=0.01) replacement patients showed a worse score at preadmission. Using the WOMAC score, knee (p=0.50) and hip (0.35) replacement patients showed worse scores at preadmission. In regard to the K10 scale, psychological distress was worse at preadmission in knee (p=0.33) and hip (p=0.50) patients.&lt;&sol;p&gt;\n&lt;p&gt;Evans et al performed a systematic review to evaluate the survivorship of hip replacements and causes of failure.&lt;sup&gt;17&lt;&sol;sup&gt; A total of 44 articles were included in this study comprising of 13 212 THAs with 15 years of follow-up, 121 384 THAs from the Australian Orthopaedic Association National Joint Replacement Registry Annual Report, and 94 292 THAs from the Finnish Arthroplasty Report. More than half of all patients were female (56.2%, 55%, 58.5% respectively). Using pooling, the survivorship of 15 years was 89.4%. Survivorship at 20 years was 70.2% and 57.9% at 25 years. Researchers concluded that age, sex, and implant type directly correlated with the success and survivorship of the replacement.&lt;&sol;p&gt;\n&lt;p&gt;AAHKS members developed guidelines, recommendations and indications for patients that require THA including both surgical and conservative recommendations.&lt;sup&gt;18&lt;&sol;sup&gt; Authors follow PICO structure to refine literature supporting this document. Strong recommendations were made against the use of intraarticular hyaluronic acid to treat symptomatic hip OA but supported the use of NSAIDs. Tranexamic Acid was strongly supported to reduce blood loss in those undergoing THA. Moderate recommendations were made for both physical therapy as a conservative treatment and post operatively. Corticosteroid injections were also moderately recommended for pain management and to improve function. Physicians moderately recommended the exposure approach for THA and for the use of cemented femoral stems. There was limited evidence supporting the impact of BMI on adverse events and clinical outcomes. There was also limited evidence supporting adverse events related to diabetes, tobacco use, or social determinants of health. The use of opioids and acetaminophen was unanimously rejected as pain management options. There was insufficient evidence to suggest an increased risk of stiff spine syndrome in conjunction with OA. Limited evidence was available to support the use of Neuraxial to reduce adverse events.&lt;&sol;p&gt;",
+     "analysis_of_evidence": "&lt;p&gt;The knee followed by the hip are the largest joints in the body. While there are many reasons patients seek joint replacement, OA is 1 of the most prevalent causes of wearing of the knee and hip joints. The evidence of literature supports that knee arthroplasty and hip arthroplasty are safe and effective procedures in patients where conservative measures have failed to relieve symptoms and improve patient function, independence, and QOL.&lt;&sol;p&gt;\n&lt;p&gt;Multiple organizations such as the AAOS, ACR, OARSI, and AAHKS, all have developed guidelines for non-surgical and surgical management of the knee and hip joints. While these guidelines slightly vary, they all support conservative measures to improve pain, mobility and function.&lt;&sol;p&gt;\n&lt;p&gt;TKA is a common surgical procedure with various indications for necessity. Conditions requiring TKA vary, and conservative therapy may offer relief to patients. The literature supports conservative therapy is the first line of treatment included but not limited to physical therapy, corticosteroid injections, weight reduction and NSAIDs as appropriate. Failure to improve mobility, function or reduce pain using conservative measures are indications that TKA may be appropriate. There are contraindications for TKA including but not limited to, active infection, neurological disease that affects the extensor mechanism, and chronic lower extremity ischemia. Both conservative and surgical treatments have shown to improve QOL in patients. A TKA revision or replacement may be required if there is infection, instability, pain, failure of implant or fracture.&lt;&sol;p&gt;\n&lt;p&gt;THA is the second most common major joint replacement surgery with many of the same indications and treatment options as TKA. Patients requiring THA will be prescribed conservative measures similar to those of THA including physical therapy, corticosteroid injections, weight reduction and NSAIDs. Both treatments have shown improved HRQoL scores. THA eligibility is determined by using lab studies, imaging, and function tests. Patients with comorbidities such as FAIS, OA, developmental hip dysplasia, childhood hip disorders, or neoplasms are also considered for eligibility. THA should not be performed if there is an active infection, skeletal immaturity, quadriplegia, permanent or irreversible muscle weakness, or preexisting conditions such as recent myocardial infarction, unstable angina, heart failure or severe anemia. Causes for THA revision or replacement include fracture, infection, instability, and aseptic loosening.&lt;&sol;p&gt;",
+     "mcd_publish_date": "",
+     "issue": "&lt;p&gt;Limited coverage for total joint (knee and hip) arthroplasty and revisions as described in the coverage indications of the policy.&lt;&sol;p&gt;",
+     "issue_change": "",
+     "mac_initiated": "N"
+    }
+   ]
+  },
+  "/data/lcd/contractor?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "contractor_id",
+     "contractor_type_id",
+     "contractor_version",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 143,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 147,
+     "contractor_type_id": 9,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 144,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 148,
+     "contractor_type_id": 9,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 145,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 149,
+     "contractor_type_id": 9,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 146,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 151,
+     "contractor_type_id": 9,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 268,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 264,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 265,
+     "contractor_type_id": 9,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 266,
+     "contractor_type_id": 8,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "contractor_id": 267,
+     "contractor_type_id": 9,
+     "contractor_version": 1,
+     "last_updated": "08/28/2026"
+    }
+   ]
+  },
+  "/data/lcd/primary-jurisdiction?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": " Your parameters returned 0 results, so the data array is empty.",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "state_id",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": []
+  },
+  "/data/lcd/related-documents?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "related_num",
+     "r_article_id",
+     "r_article_version",
+     "r_lcd_id",
+     "r_lcd_version",
+     "r_contractor_id",
+     "last_updated",
+     "url"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "related_num": 1,
+     "r_article_id": null,
+     "r_article_version": null,
+     "r_lcd_id": 39910,
+     "r_lcd_version": 3,
+     "r_contractor_id": 143,
+     "last_updated": "08/14/2024",
+     "url": "https://localcoverage.cms.gov/mcd_archive/view/lcd.aspx?lcdInfo=39910:2"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "related_num": 2,
+     "r_article_id": 59811,
+     "r_article_version": 7,
+     "r_lcd_id": null,
+     "r_lcd_version": null,
+     "r_contractor_id": 143,
+     "last_updated": "08/22/2024",
+     "url": "/data/article?articleid=59811&ver=7"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "related_num": 3,
+     "r_article_id": 59902,
+     "r_article_version": 2,
+     "r_lcd_id": null,
+     "r_lcd_version": null,
+     "r_contractor_id": 143,
+     "last_updated": "08/22/2024",
+     "url": "/data/article?articleid=59902&ver=2"
+    }
+   ]
+  },
+  "/data/lcd/related-ncd-documents?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "related_num",
+     "r_ncd_id",
+     "r_ncd_version",
+     "last_updated",
+     "url"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "related_num": 1,
+     "r_ncd_id": 0,
+     "r_ncd_version": 1,
+     "last_updated": "04/29/2025",
+     "url": "/data/ncd?ncdid=0&ncdver=1"
+    }
+   ]
+  },
+  "/data/lcd/revision-history?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": "",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "rev_hist_num",
+     "rev_hist_date",
+     "rev_hist_exp",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": [
+    {
+     "lcd_id": 39911,
+     "lcd_version": 10,
+     "rev_hist_num": 4,
+     "rev_hist_date": "08/27/2026",
+     "rev_hist_exp": "&lt;p&gt;Posted 09&sol;03&sol;2026 Typographical errors corrected throughout.&amp;#160;&lt;&sol;p&gt;",
+     "last_updated": "08/28/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 9,
+     "rev_hist_num": 3,
+     "rev_hist_date": "08/27/2026",
+     "rev_hist_exp": "&lt;p&gt;Posted 08&sol;27&sol;2026 Biennial review completed 07&sol;21&sol;2026. Grammatical and typographical changes were made throughout with no change in coverage.&lt;&sol;p&gt;\n&lt;p&gt;&amp;#160;&lt;&sol;p&gt;",
+     "last_updated": "08/21/2026"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 7,
+     "rev_hist_num": 2,
+     "rev_hist_date": "02/28/2025",
+     "rev_hist_exp": "&lt;p&gt;Posted 02&sol;27&sol;2025 Under &lt;strong&gt;Summary of Evidence&lt;&sol;strong&gt; the word gender was revised to the word sex. This change is effective 02&sol;28&sol;2025.&lt;&sol;p&gt;",
+     "last_updated": "02/20/2025"
+    },
+    {
+     "lcd_id": 39911,
+     "lcd_version": 5,
+     "rev_hist_num": 1,
+     "rev_hist_date": "10/13/2024",
+     "rev_hist_exp": "&lt;p&gt;Posted 10&sol;31&sol;2024 Under &lt;strong&gt;Covered Indications&lt;&sol;strong&gt; for &lt;strong&gt;Total knee arthroplasty&lt;&sol;strong&gt; deleted line e. Failure of previous osteotomy as it is a duplicate of line a.&lt;&sol;p&gt;",
+     "last_updated": "10/21/2024"
+    }
+   ]
+  },
+  "/data/lcd/urls?lcdid=39911&ver=10": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": " Your parameters returned 0 results, so the data array is empty.",
+    "fields": [
+     "lcd_id",
+     "lcd_version",
+     "url_type_id",
+     "url_type_description",
+     "url_id",
+     "url",
+     "url_name",
+     "url_description",
+     "sort_order",
+     "last_updated"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": []
+  },
+  "/data/lcd/future-retire?lcdid=39911": {
+   "meta": {
+    "status": {
+     "id": 200,
+     "message": "OK"
+    },
+    "notes": " Your parameters returned 0 results, so the data array is empty.",
+    "fields": [
+     "lcd_id",
+     "retire_date"
+    ],
+    "children": [],
+    "next_token": ""
+   },
+   "data": []
+  },
+  "/data/contractor/?contractor_id=143": {
+   "data": [
+    {
+     "contractor_id": 143,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "05101",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=147": {
+   "data": [
+    {
+     "contractor_id": 147,
+     "contract_type_id": 9,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "05102",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=144": {
+   "data": [
+    {
+     "contractor_id": 144,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "05201",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=148": {
+   "data": [
+    {
+     "contractor_id": 148,
+     "contract_type_id": 9,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "05202",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=145": {
+   "data": [
+    {
+     "contractor_id": 145,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "05301",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=149": {
+   "data": [
+    {
+     "contractor_id": 149,
+     "contract_type_id": 9,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "05302",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=146": {
+   "data": [
+    {
+     "contractor_id": 146,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "05401",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=151": {
+   "data": [
+    {
+     "contractor_id": 151,
+     "contract_type_id": 9,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "05402",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=268": {
+   "data": [
+    {
+     "contractor_id": 268,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "05901",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=264": {
+   "data": [
+    {
+     "contractor_id": 264,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "08101",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=265": {
+   "data": [
+    {
+     "contractor_id": 265,
+     "contract_type_id": 9,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "08102",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=266": {
+   "data": [
+    {
+     "contractor_id": 266,
+     "contract_type_id": 8,
+     "contract_subtype_id": 1,
+     "contractor_version": 1,
+     "contract_number": "08201",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  },
+  "/data/contractor/?contractor_id=267": {
+   "data": [
+    {
+     "contractor_id": 267,
+     "contract_type_id": 9,
+     "contract_subtype_id": 2,
+     "contractor_version": 1,
+     "contract_number": "08202",
+     "contractor_name": "WPS Insurance Corporation"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,393 @@
+{
+ "lcd_id": "L34220",
+ "title": "Lumbar MRI",
+ "document_id": 34220,
+ "document_version": 40,
+ "document_type": "LCD",
+ "status": "Active (API status \"A\"; no retirement or future retirement listed)",
+ "contractor": {
+  "name": "Noridian Healthcare Solutions, LLC",
+  "contract_type": "A and B MAC (MAC - Part A, MAC - Part B)",
+  "jurisdictions": [
+   "JE",
+   "JF"
+  ],
+  "contracts": [
+   {
+    "contract_number": "01111",
+    "contract_type": "MAC A",
+    "jurisdiction": "JE",
+    "states": [
+     "California - Entire State"
+    ]
+   },
+   {
+    "contract_number": "01112",
+    "contract_type": "MAC B",
+    "jurisdiction": "JE",
+    "states": [
+     "California - Northern"
+    ]
+   },
+   {
+    "contract_number": "01182",
+    "contract_type": "MAC B",
+    "jurisdiction": "JE",
+    "states": [
+     "California - Southern"
+    ]
+   },
+   {
+    "contract_number": "01211",
+    "contract_type": "MAC A",
+    "jurisdiction": "JE",
+    "states": [
+     "American Samoa",
+     "Guam",
+     "Hawaii",
+     "Northern Mariana Islands"
+    ]
+   },
+   {
+    "contract_number": "01212",
+    "contract_type": "MAC B",
+    "jurisdiction": "JE",
+    "states": [
+     "American Samoa",
+     "Guam",
+     "Hawaii",
+     "Northern Mariana Islands"
+    ]
+   },
+   {
+    "contract_number": "01311",
+    "contract_type": "MAC A",
+    "jurisdiction": "JE",
+    "states": [
+     "Nevada"
+    ]
+   },
+   {
+    "contract_number": "01312",
+    "contract_type": "MAC B",
+    "jurisdiction": "JE",
+    "states": [
+     "Nevada"
+    ]
+   },
+   {
+    "contract_number": "01911",
+    "contract_type": "MAC A",
+    "jurisdiction": "JE",
+    "states": [
+     "American Samoa",
+     "California - Entire State",
+     "Guam",
+     "Hawaii",
+     "Nevada",
+     "Northern Mariana Islands"
+    ]
+   },
+   {
+    "contract_number": "02101",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Alaska"
+    ]
+   },
+   {
+    "contract_number": "02102",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Alaska"
+    ]
+   },
+   {
+    "contract_number": "02201",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Idaho"
+    ]
+   },
+   {
+    "contract_number": "02202",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Idaho"
+    ]
+   },
+   {
+    "contract_number": "02301",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Oregon"
+    ]
+   },
+   {
+    "contract_number": "02302",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Oregon"
+    ]
+   },
+   {
+    "contract_number": "02401",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Washington"
+    ]
+   },
+   {
+    "contract_number": "02402",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Washington"
+    ]
+   },
+   {
+    "contract_number": "03101",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Arizona"
+    ]
+   },
+   {
+    "contract_number": "03102",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Arizona"
+    ]
+   },
+   {
+    "contract_number": "03201",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Montana"
+    ]
+   },
+   {
+    "contract_number": "03202",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Montana"
+    ]
+   },
+   {
+    "contract_number": "03301",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "North Dakota"
+    ]
+   },
+   {
+    "contract_number": "03302",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "North Dakota"
+    ]
+   },
+   {
+    "contract_number": "03401",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "South Dakota"
+    ]
+   },
+   {
+    "contract_number": "03402",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "South Dakota"
+    ]
+   },
+   {
+    "contract_number": "03501",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Utah"
+    ]
+   },
+   {
+    "contract_number": "03502",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Utah"
+    ]
+   },
+   {
+    "contract_number": "03601",
+    "contract_type": "MAC A",
+    "jurisdiction": "JF",
+    "states": [
+     "Wyoming"
+    ]
+   },
+   {
+    "contract_number": "03602",
+    "contract_type": "MAC B",
+    "jurisdiction": "JF",
+    "states": [
+     "Wyoming"
+    ]
+   }
+  ]
+ },
+ "original_effective_date": "2015-10-01",
+ "revision_effective_date": "2025-10-23",
+ "revision_ending_date": null,
+ "retirement_date": null,
+ "last_reviewed": "2022-08-11",
+ "last_updated": "2025-10-14",
+ "related_articles": [
+  {
+   "article_id": "A57206",
+   "version": 30,
+   "title": "Billing and Coding: Lumbar MRI",
+   "role": "Billing and coding article (codes, documentation requirements, utilization guidelines)",
+   "effective_date": "2025-10-23",
+   "status": "Active",
+   "api_url": "https://api.coverage.cms.gov/v1/data/article/?articleid=57206&ver=30"
+  },
+  {
+   "article_id": "A56017",
+   "version": 2,
+   "title": "Response to Comments: Lumbar MRI",
+   "role": "Response to comments"
+  },
+  {
+   "article_id": "A56018",
+   "version": 2,
+   "title": "Response to Comments: Lumbar MRI",
+   "role": "Response to comments"
+  }
+ ],
+ "related_ncds": [
+  {
+   "ncd": "220.2",
+   "title": "Magnetic Resonance Imaging"
+  },
+  {
+   "ncd": "220.1",
+   "title": "Computerized Tomography"
+  }
+ ],
+ "coverage_model": "MAC Local Coverage Determination: reasonable and necessary criteria under SSA 1862(a)(1)(A) for the listed MAC jurisdictions. Medicare Advantage plans that serve these jurisdictions must follow applicable NCDs and LCDs (42 CFR 422.101(b)).",
+ "source": {
+  "api_url": "https://api.coverage.cms.gov/v1/data/lcd/?lcdid=34220&ver=40",
+  "mcd_url": "https://www.cms.gov/medicare-coverage-database/view/lcd.aspx?lcdid=34220&ver=40",
+  "criteria_source": "LCD L34220 v40 sections \"CMS National Coverage Policy\", \"Coverage Indications, Limitations, and/or Medical Necessity\", and \"Associated Information\" (Documentation Requirements, Utilization Guidelines). A57206 v30 repeats the same documentation requirements.",
+  "raw_response": "data/cms-coverage/raw/lcd-l34220-api-response.json",
+  "retrieved": "2026-09-25",
+  "retrieval_method": "Public CMS Coverage API (/v1/data/lcd with license-agreement token; /v1/data/lcd/* child endpoints; /v1/data/contractor) plus the public MCD LCD page for the contract, jurisdiction, and state table"
+ },
+ "covered_indication_summary": "Lumbar MRI is covered when history and physical examination findings support it: a \"red flag\" condition (for example suspected tumor, infection, herniated disc with nerve compression, or a major neurological problem), or a non-red-flag condition after at least four weeks of failed conservative management. The information from the MRI must be used for medical decision-making; for uncomplicated degenerative disc disease or herniated nucleus pulposus, surgery or other aggressive treatment (for example an injection) must be under consideration. The study must not duplicate other imaging, and it must be done on an FDA pre-market approved MRI unit.",
+ "criteria": [
+  {
+   "id": "LMRI-1",
+   "category": "order",
+   "required": true,
+   "text": "An attending/treating physician's order is required for each test. The order must be properly signed and dated. (Associated Information, Documentation Requirements)",
+   "check_hints": [
+    "signed and dated order from the treating provider",
+    "order names lumbar MRI and the clinical reason"
+   ]
+  },
+  {
+   "id": "LMRI-2",
+   "category": "clinical_evaluation",
+   "required": true,
+   "text": "The clinical findings and relevant prior treatment that support the need for the MRI are documented in the MRI report or clinical record. Red flags are identified through an appropriate history plus a physical examination that typically includes evaluating muscle strength, limb circumference, reflexes, sensation, straight leg raise, and sitting knee extension tests. (Associated Information, Documentation Requirements; Coverage Indications, Limitations, and/or Medical Necessity)",
+   "check_hints": [
+    "symptom onset date and duration",
+    "neurologic exam: strength, reflexes, sensation, straight leg raise",
+    "prior treatment and response recorded"
+   ]
+  },
+  {
+   "id": "LMRI-3",
+   "category": "indication",
+   "required": true,
+   "logic": "ANY_ONE_OF",
+   "text": "The patient meets at least one lumbar MRI indication pathway (Coverage Indications, Limitations, and/or Medical Necessity):",
+   "options": [
+    "A \"red flag\" is noted on the medical history and physical examination: major trauma; minor trauma in a potentially osteoporotic patient; history of cancer; fever; chills; unexplained weight loss; recent bacterial infection; IV drug abuse; immune suppression; pain that worsens when supine or at night; saddle anesthesia; recent onset of bladder dysfunction; clinically significant or progressive neurologic deficit in the lower extremity; unexpected laxity of the anal sphincter; perianal or perineal sensory loss; clinically significant motor weakness; or other nerve root compromise.",
+    "No red flag is present, symptoms have lasted more than 1 month, and the patient has not responded to a reasonable trial of conservative management lasting at least four weeks."
+   ],
+   "check_hints": [
+    "named red flag with supporting exam finding",
+    "or: symptom duration > 1 month plus dates and outcome of >= 4 weeks conservative care"
+   ]
+  },
+  {
+   "id": "LMRI-4",
+   "category": "medical_decision_making",
+   "required": true,
+   "text": "The information gained from the MRI will be used for medical decision-making, and the referring physician's record supports a contemplated diagnosis or treatment change derived from the MRI findings. When the MRI evaluates uncomplicated degenerative disc disease or herniated nucleus pulposus, a surgical intervention or other aggressive treatment (e.g. intervertebral joint injection) must be under consideration. (Coverage Indications, Limitations, and/or Medical Necessity; Associated Information, Documentation Requirements)",
+   "check_hints": [
+    "plan names the injection, surgical referral, or other treatment that depends on the MRI result"
+   ]
+  },
+  {
+   "id": "LMRI-5",
+   "category": "duplication",
+   "required": true,
+   "text": "The lumbar MRI does not duplicate other imaging studies (such as a spinal CT scan). Normally only one lumbar MRI is sufficient to diagnose the condition; a second lumbar MRI needs documentation that comparative test results are needed to make a more definitive treatment decision. (Coverage Indications, Limitations, and/or Medical Necessity; Associated Information, Utilization Guidelines)",
+   "check_hints": [
+    "prior lumbar imaging listed with modality and date",
+    "no prior lumbar MRI or CT for this episode, or a documented reason for comparison"
+   ]
+  },
+  {
+   "id": "LMRI-6",
+   "category": "technical_safety",
+   "required": true,
+   "text": "The MRI unit has FDA pre-market approval and is operated within the approved parameters. No listed contraindication applies: allergy to contrast media (when contrast is used); pregnancy is handled at the discretion of the primary doctor; MRI is not covered for patients with metallic clips on vascular aneurysms. (Coverage Indications, Limitations, and/or Medical Necessity; CMS National Coverage Policy, citing NCD 220.2)",
+   "check_hints": [
+    "with or without contrast stated",
+    "MRI safety screen: no aneurysm clips; pacemaker only if MR-conditional per FDA labeling",
+    "imaging facility identified"
+   ]
+  }
+ ],
+ "non_covered": [
+  "A lumbar MRI used to evaluate uncomplicated degenerative disc disease or herniated nucleus pulposus is not considered medically necessary when a surgical intervention or other aggressive treatment (e.g. intervertebral joint injection) is not under consideration. (Coverage Indications, Limitations, and/or Medical Necessity)",
+  "When the findings will not affect the treatment choices, the test is not reasonable or necessary. (Coverage Indications, Limitations, and/or Medical Necessity)",
+  "Spinal imaging tests are not generally necessary during the first month of symptoms except when a \"red flag\" is noted on the medical history and physical examination. (Coverage Indications, Limitations, and/or Medical Necessity)",
+  "Investigational and not covered: measurement of blood flow, spectroscopy, imaging of cortical bone and calcifications, and procedures involving spatial resolution of bone or calcifications. (Coverage Indications, Limitations, and/or Medical Necessity)",
+  "A lumbar MRI that duplicates other imaging studies (such as a spinal CT scan) may be unreasonable or unnecessary. (Coverage Indications, Limitations, and/or Medical Necessity)",
+  "MRI abnormalities alone do not retrospectively validate the need for the test without other supporting clinical rationale. (Coverage Indications, Limitations, and/or Medical Necessity)",
+  "MRI is not covered for patients with metallic clips on vascular aneurysms. (CMS National Coverage Policy)",
+  "No additional payment for multiple MRIs in different positions (reclining and upright). (Coverage Indications, Limitations, and/or Medical Necessity)"
+ ],
+ "notes": [
+  "Fallback policy for the knee MRI scenario. No active LCD or billing article in any MAC jurisdiction covers knee or other lower-extremity MRI (full final-LCD list of 969 rows and article list of 2236 rows checked on 2026-09-25). Knee MRI falls only under NCD 220.2, which has no knee-specific clinical criteria. L34220 is the closest active MAC policy for musculoskeletal advanced imaging with testable criteria.",
+  "Version 40 (revision effective 10/23/2025) consolidates JE and JF into one policy. The former JF policy L37281 \"Lumbar MRI\" retired on 10/23/2025.",
+  "Under this LCD, radicular signs (\"other nerve root compromise\", \"clinically significant motor weakness\") count as red flags. The four-week conservative-care rule applies to the non-red-flag pathway.",
+  "Contrast in the spine is indicated for recurrent disc versus scar or granulation tissue, spinal cord neoplasm, any case of myelopathy, and inflammatory cord disease. The demo uses a study without contrast.",
+  "Code examples from A57206 (bare numbers only): CPT 72148, 72149, 72158. ICD-10-CM M54.16 and M51.16 are on the A57206 covered list.",
+  "Good demo-approval scenario: 58-year-old in a JF state (for example Oregon), 8 weeks of left L5 radicular pain, positive straight leg raise, great-toe extensor weakness and dorsal-foot numbness, 6 weeks of failed physical therapy and NSAIDs, no prior lumbar MRI or CT, MRI without contrast (72148) ordered to plan a transforaminal epidural steroid injection versus surgical referral."
+ ],
+ "full_text": {
+  "cms_national_coverage_policy": "Title XVIII of the Social Security Act (SSA), §1862(a)(1)(A) states that no Medicare payment shall be made for items or services that \"are not reasonable and necessary for the diagnosis or treatment of illness or injury or to improve the functioning of a malformed body member.\"\n\nTitle XVIII of the Social Security Act, §1862(a)(7) and 42 Code of Federal Regulations (CFR), §411.15 particular services excluded from coverage.\n\nTitle XVIII of the Social Security Act, §1833(e) prohibits Medicare payment for any claim lacking the necessary documentation to process the claim.\n\nTitle XVIII of the Social Security Act, §1842(p)(1)states that each claim submitted by a physician or practitioner shall include the appropriate diagnosis code (or codes)...\". §1842(b)(18)(C) defines a practitioner. For services from physicians and (§1842(b)(18)(C)) practitioner submitted with an ICD-10 code that is missing, invalid, or truncated, contractors must return the billed service to the provider as unprocessable in accordance with CR 1910, Transmittal 1728, dated November 1, 2001 (MCM Part 3, Claim Process §3005.4(p)).\n\n42 CFR §411.15(k) excludes specific services that are not reasonable and necessary.\n\nCMS Manual System, Pub. 100-08, Medicare Program Integrity Manual, Chapter 3, §3.4.1.3, Diagnosis Code Requirement\n\n42 CFR 410.32 and 410.33 indicates that diagnostic tests are payable only when ordered by the physician who is treating the beneficiary for a specific medical problem and who uses the results in such treatment.\n\nCMS Manual System, Pub. 100-02, Medicare Benefit Policy Manual, Chapter 15, §§60, 60.1, 60.2, 60.3, 60.4, 60.4.1 and 80 indicate that the technical component of diagnostic tests is not covered as \"incident to\" physician healthcare services, but under a distinct coverage category and subject to supervision levels found in the Physician Fee Schedule database.\n\nCMS Manual System, Pub. 100-08, Medicare Program Integrity Manual, Chapter 10, §§5-5.7.2 indicates that non-physician owned facilities performing primarily diagnostic tests should be enrolled as IDTFs rather than billing under physician PINs. See also 42 CFR 410.33.\n\nCMS Manual System, Pub. 100-02, Medicare Benefit Policy Manual, Chapter 15, §80.4.1 and §250 govern payment for X-ray services supplied for patients in a Part A stay in a skilled nursing facility, or other facility, including payments under arrangement.\n\nCFR 486.100 stipulates that portable X-rays must comply with Federal, State, and local laws and regulations.\n\nCMS Manual System, Pub. 100-04, Medicare Claims Processing Manual, Chapter 13, §§40, 40.1.4 Magnetic Resonance Imaging (MRI) Procedures and Payment Requirements. Effective January 1, 2017 separate payment for the contrast media and the need to use the appropriate HCPCS “Q” code (Q9945 – Q9954; Q9958-Q9964) for the contrast medium utilized in performing the service. §40 allows beneficiaries with implanted PMs or cardioverter defibrillators (ICDs) for use in an MRI environment in a Medicare approved clinical study. §40.1.4, Medicare will allow for coverage of MRI for beneficiaries with implanted pacemakers (PMs) when the PMs are used according to the Food and Drug Administration (FDA)-approved labeling for use in an MRI environment as described in section 220.2.C.1 of the NCD manual, effective July 7, 2011.\n\nCMS Manual System, Pub. 100-04, Medicare Claims Processing Manual, Chapter 13, §100.1 describes how physicians should handle billing when two providers read a diagnostic radiologic procedure.\n\nCMS Manual System, Pub. 100-03, Medicare National Coverage Determinations Manual, Chapter 1, Part 4, §220.2; Magnetic Resonance Imaging (MRI), the contraindications section 220.2.C.1 of the NCD was revised to read that the contraindications will not apply to pacemakers when used according to the FDA-approved labeling in an MRI environment or in clinical trials.\n\nCMS publication 100-3, Medicare National Coverage Determinations, Sections 220.1 \"Computerized Tomography\", and 220.2-220.2.B.2d and Section 220.2.c-220.D \"Magnetic Resonance Imaging\".\n\nDenies Coverage of MRI for:\n\n1. Imaging of cortical bone and calcification\n\n2. Procedures involving spatial resolution of bone or calcification\n\n3. MRI is not covered for patients with metallic clips on vascular aneurysms.\n\nCMS publication 100-04 Medicare Claims Processing Manual Chapter 13 Section 40 denies coverage of MRI for: Measurement of blood flow and spectroscopy",
+  "coverage_indications_limitations_medical_necessity": "Magnetic Resonance Imaging (MRI) is a noninvasive method of imaging body structures based on the distribution of fixed water and other hydrogen-rich molecules in the human body. MRI uses a powerful magnet to align hydrogen atoms within the patient's soft tissues. As the nuclei return from excitation to equilibrium, the MRI receiver coil receives radio frequency wave signals that are transformed by the computer into diagnostic images. MRI produces cross sectional and 3-D images of soft tissues. Because bone contains little water (hydrogen nuclei), bone is relatively invisible to MRI. Blood is also relatively invisible because the hydrogen nuclei are moving in the blood stream.\n\nMRI contrast agents can improve the sensitivity and/or specificity of an image, by altering inherent tissue response to magnetic fields. The contrast agent most commonly used is gadolinium.\n\nMRI has proven useful in diagnosing cerebral infarctions, tumors, abscesses, edema, hemorrhage, nerve fiber demyelination (as in multiple sclerosis), and other disorders that increase fluid content of the affected tissues.\n\nMRI of the spinal canal has the advantage of noninvasive visualization of the spinal cord.\n\nMRI can:\n\n- Differentiate solid from cystic tumors,\n\n- Diagnose and localize spinal cord compression;\n\n- Diagnose syringomyelia (progressive, chronic sensory disturbance, atrophy and spasticity of the spinal cord), disc disease, and any altered relationship between vertebral bodies, discs, spinal cord and nerve roots;\n\n- Detect congenital spinal dysraphism (failure of fusion of parts along the dorsal midline of the spinal cord);\n\n- Provide early detection of osteomyelitis, and\n\n- Detect spinal cord abnormalities associated with osteomyelitis.\n\nCoverage is limited to MRI units that have received FDA pre-market approval. Such units must be operated within the parameters specified by the approval.\n\nContrast is indicated for studying the central nervous system for metastatic disease, inflammatory disease, recurrent tumor versus scar, differentiation of microvascular from macrovascular infarction, and selected cases of complex vascular disease. Within the study of the spine, contrast also is indicated to differentiate recurrent disc versus scar or granulation tissue, spinal cord neoplasm, any case of myelopathy, and inflammatory cord disease.\n\nHistory and clinical findings are critical factors to determine when a lumbar MRI is needed in order to efficiently manage low back pain and related disorders.\n\nLumbar MRI may be indicated for a patient with a “red-flag” condition , such as a suspected tumor, infection, herniated intervertebral disc with nerve compression, or a major neurological problem. The MRI test result may be needed to evaluate these conditions to determine the need for surgery or other aggressive therapy, such as a work-up for metastatic cancer.\n\n\"Red flags\" are identified through an appropriate history plus a physical examination that typically includes evaluating muscle strength, limb circumference, reflexes, sensation, straight leg raise, and sitting knee extension tests.\n\n\"Red flags\" include:\n\n- Major trauma\n\n- Minor trauma in a potentially osteoporotic patient\n\n- History of cancer\n\n- Fever\n\n- Chills\n\n- Unexplained weight loss\n\n- Recent bacterial infection\n\n- IV drug abuse\n\n- Immune suppression\n\n- Pain that worsens when supine or at night\n\n- Saddle anesthesia\n\n- Recent onset of bladder dysfunction\n\n- Clinically significant or progressive neurologic deficit in the lower extremity\n\n- Unexpected laxity of the anal sphincter\n\n- Perianal or perineal sensory loss,\n\n- Clinically significant motor weakness, or\n\n- Other nerve root compromise\n\nEighty (80) to ninety (90) percent of patients with low back pain improve one month after symptom onset even without treatment. Therefore, spinal imaging tests are not generally necessary during the first month of symptoms except when a \"red flag\" (suggesting a medically emergent condition) is noted on the medical history and physical examination. For a \"non-red flag\" condition, the MRI may be appropriate after 1 month of symptoms.\n\nFor example, for a patient with low back pain syndrome where there is no known injury, history of cancer, or septic disorder and there are no symptoms or signs suggesting nerve root disorder or spinal cord dysfunction (i.e. no \"red flags\"), MRI will be covered only if the patient has not responded to a reasonable trial of conservative management lasting at least four weeks.\n\nIf a patient's limitations due to low back symptoms do not improve within four weeks, findings on reassessment may reveal an indication for a MRI. However, since MRI changes are common in asymptomatic patients, MRI abnormalities alone do not retrospectively validate the need for the test without other supporting clinical rationale.\n\nA lumbar MRI used to evaluate uncomplicated degenerative disc disease or herniated nucleus pulposus is not considered medically necessary when a surgical intervention or other aggressive treatment (e.g. intervertebral joint injection) is not under consideration.\n\nWhen a lumbar MRI is ordered, Medicare expects that the information gained from the test will be used for medical decision-making. When the findings will not affect the treatment choices, the test is not reasonable or necessary.\n\nCertain uses of lumbar MRI are considered investigational and are therefore not covered by Medicare. These include the measurement of blood flow, spectroscopy, imaging of cortical bone and calcifications, and for procedures involving spatial resolution of bone or calcifications.\n\nA lumbar MRI that is a duplication of other imaging studies (such as a spinal CT scan) may be unreasonable or unnecessary. A lumbar MRI, however, could be complementary to a lumbar CT if there are inconclusive findings on a CT scan. Conversely, a lumbar CT may be warranted following an MRI study if the MRI study is found to be inconclusive. Documentation should support the medical necessity for the need for both studies.\n\nThe payment for a single lumbar MRI procedure includes two (2) and three (3) sequences.\n\nContraindications and limitations of lumbar MRI testing include:\n\n- Patients with an allergy to contrast media,\n\n- The effects upon a fetus are unknown at this time; therefore, pregnancy is to be handled at the discretion of the primary doctor,\n\n- When the technical component is performed without the professional component.\n\nPayment for more than one professional component (PC) of a single lumbar MRI:\n\nMedicare will not pay twice for service that is required only once to diagnose or treat an illness or injury. Typically, this A/B MAC will pay for only one PC. This A/B MAC may pay for a second PC when the additional physician's expertise is necessary and reasonable to diagnose or treat the patient, such as to clarify a questionable finding. The physician performing the initial PC must have a valid reason to require another physician's expertise, such as to interpret a confusing MRI. The second physician's knowledge and expertise must be significantly greater than that of the first reader, and it must contribute substantially to the interpretation.\n\nMultiple PCs of a single MRI in institutional settings:\n\nIn hospital settings, the physicians involved with MRI interpretations should reach an agreement among themselves as to who should bill Medicare for MRI interpretations and reports. If the physicians involved cannot resolve these issues among themselves, this A/B MAC will pay for the interpretation and report that directly contributes to the diagnosis and treatment of the individual patient. Typically, this will be the MRI interpretation and report that is performed simultaneously with the evaluation and management of the patient.\n\nEach payable interpretation must include a complete, written report similar to one that is prepared by a specialist in the field. The content of the written report must address the relevant clinical issues, available comparative data, and test findings. The format of the report must be separately identifiable. It may be included under a separate heading within the clinical record.\n\nMulti-position MRI (reclining, standing)\n\nMedicare does not provide additional payment for multiple MRI’s such as in the reclining and upright positions. Bill for one unit of the MRI service.",
+  "associated_information": "Documentation Requirements\n\nSupportive documentation evidencing the condition and treatment is expected to be documented in the medical record and be available upon request.\n\nThe patient’s medical record must be legible and clearly indicate the necessity and reasonableness of the service.\n\nThe documentation must clearly support the ICD-10-CM code(s) reported on the claim.\n\nAn attending/treating physician’s order is required for each test. The order must be properly signed and dated.\n\nLumbar MRI abnormalities alone do not validate the need for the test without other supporting clinical rationale. Radiologists and/or ordering physicians should include sufficient clinical information in the report to justify its necessity.\n\nThe clinical findings and relevant prior treatment that support the need for the MRI must be documented in the MRI report or clinical record and made available to the contractor upon request.\n\nThe medical record of the referring physician must support a contemplated diagnosis or treatment change derived from the MRI findings. The contractor may request medical records from the referring physician if the radiologist’s documentation does not validate that the service is reasonable and necessary.\n\nAccording to national regulations, clinics which are (a) not physician owned and which are (b) billing Medicare primarily for diagnostic tests may be required to enroll as IDTFs. For example, a nonphysician owner who establishes a Magnetic Resonance Imaging clinic by leasing office space, equipment, and hiring technicians, and hires a retired ophthalmologist to provide off-site (general) supervision of diagnostic testing without treatment would be more appropriately enrolled as an IDTF rather than merely billing all services through the physician's PIN.\n\nUtilization Guidelines\n\nNormally only one lumbar MRI is sufficient to diagnose the patient's condition. However, a second lumbar MRI, for the same patient, may be allowed providing the documentation indicates that comparative test results were needed to make a more definitive treatment decision.\n\nPayment will be allowed for multiple scans of different areas of the body performed on the same day for the same patient when reasonable and necessary."
+ }
+}
