@@ -1,16 +1,28 @@
 """Data invariants for the demo scenarios in backend/app/data/scenarios.py.
 
-Each test runs once per scenario in SCENARIOS, so a new scenario is checked
-without a test change.
+Most tests run once per scenario in SCENARIOS, so a new scenario is checked
+without a test change. The PSG test checks the one scenario that must pend on a
+missing Epworth score. The API tests use the real registry and check that seeding
+loads each scenario once.
 """
 
-import pytest
+import re
 
+import pytest
+from httpx import ASGITransport, AsyncClient
+
+import backend.app.main as main_module
 from backend.app.config import Settings
 from backend.app.data.scenarios import SCENARIOS, get_scenario, get_scenarios
 from backend.app.engines.rubric import RubricEngine
 from backend.app.schemas import PARequest, PolicyRef
-from backend.app.services.coverage import normalize_policy_id
+from backend.app.services.coverage import (
+    contractor_name,
+    document_version,
+    find_policy_file,
+    normalize_policy_id,
+)
+from backend.app.services.policies import load_policy_document
 
 SCENARIO_IDS = [scenario["id"] for scenario in SCENARIOS]
 
@@ -106,3 +118,114 @@ async def test_offline_engine_reaches_expected_path(scenario: dict) -> None:
     assert determination.recommendation == scenario["expected_path"]
     assert determination.attribution.policy_source_type == scenario["policy"]["source_type"]
     assert determination.attribution.policy_code == scenario["policy"]["code"]
+    assert determination.coverage_check is not None
+    assert determination.coverage_check.source_type == scenario["policy"]["source_type"]
+
+    facts = scenario["criteria_facts"]
+    open_texts = [
+        criterion["criterion_text"]
+        for criterion in scenario["criteria"]
+        if facts[criterion["criterion_id"]]["status"] != "MET"
+    ]
+    assert determination.gaps == open_texts
+    met = len(scenario["criteria"]) - len(open_texts)
+    assert determination.criteria_met == f"{met}/{len(scenario['criteria'])} required criteria met"
+
+
+@pytest.mark.parametrize("scenario", SCENARIOS, ids=SCENARIO_IDS)
+def test_criteria_nesting_is_well_formed(scenario: dict) -> None:
+    criteria = scenario["criteria"]
+    assert criteria[0]["depth"] == 0
+    for previous, current in zip(criteria, criteria[1:]):
+        assert current["depth"] <= previous["depth"] + 1, (
+            f"{current['criterion_id']}: depth skips a level"
+        )
+        if current["depth"] > previous["depth"]:
+            assert previous["logic"], (
+                f"{previous['criterion_id']}: a parent criterion needs a logic label"
+            )
+
+
+@pytest.mark.parametrize("scenario", SCENARIOS, ids=SCENARIO_IDS)
+def test_policy_matches_local_file(scenario: dict) -> None:
+    policy = scenario["policy"]
+    policy_file = find_policy_file(policy["code"])
+    assert policy_file is not None, f"No local policy file for {policy['code']}"
+    raw = policy_file.raw
+    assert policy["title"] == raw["title"]
+    assert policy["version"] == document_version(raw)
+    assert policy["source_url"] == raw["source"]["mcd_url"]
+    if policy["source_type"] == "lcd":
+        assert policy["lcd_id"] == raw["lcd_id"]
+        assert policy["contractor"] == contractor_name(raw)
+
+    # Every criterion in the file has an authored criterion in the scenario.
+    file_ids = {item["id"] for item in raw["criteria"]}
+    scenario_ids = {criterion["criterion_id"] for criterion in scenario["criteria"]}
+    assert file_ids <= scenario_ids
+
+    document = load_policy_document(policy["code"], SCENARIOS)
+    assert document.local_file_available
+    review_sets = {item.scenario_id: item for item in document.review_criteria}
+    assert scenario["id"] in review_sets
+    assert [c.criterion_id for c in review_sets[scenario["id"]].criteria] == [
+        criterion["criterion_id"] for criterion in scenario["criteria"]
+    ]
+
+
+# "Epworth" in any case, or the abbreviation "ESS" as a whole word.
+_SLEEPINESS_SCALE = re.compile(r"(?i:epworth)|\bESS\b")
+
+
+def test_psg_scenario_pends_only_on_missing_epworth_score() -> None:
+    scenario = get_scenario("lcd-l33405-psg")
+    assert scenario is not None
+    open_items = [
+        criterion_id
+        for criterion_id, fact in scenario["criteria_facts"].items()
+        if fact["status"] != "MET"
+    ]
+    assert open_items == ["PSG-3"]
+    assert scenario["criteria_facts"]["PSG-3"]["status"] == "INSUFFICIENT"
+
+    # The packet names the scale at most as a blank field. No line that names
+    # it may carry a number, so no Epworth score exists anywhere.
+    for document in scenario["clinical_documents"]:
+        for line in document["text"].splitlines():
+            if _SLEEPINESS_SCALE.search(line):
+                assert not re.search(r"\d", line), (
+                    f"{document['title']!r} has a possible Epworth score: {line!r}"
+                )
+
+
+@pytest.fixture
+async def app_client(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(main_module.settings, "mock_processing_seconds", 0.0)
+    transport = ASGITransport(app=main_module.app)
+    async with AsyncClient(transport=transport, base_url="http://testserver") as client:
+        yield client
+
+
+async def test_api_lists_every_scenario(app_client: AsyncClient) -> None:
+    response = await app_client.get("/api/scenarios")
+    assert response.status_code == 200
+    listing = {row["id"]: row for row in response.json()}
+    assert list(listing) == SCENARIO_IDS
+    for scenario in SCENARIOS:
+        row = listing[scenario["id"]]
+        assert row["expected_path"] == scenario["expected_path"]
+        assert row["plan_type"] == scenario["member"]["plan_type"]
+        assert row["policy_label"] == f"Medicare {scenario['policy']['code']}"
+
+
+async def test_seed_loads_every_scenario_once(app_client: AsyncClient) -> None:
+    first = await app_client.post("/api/requests/seed", json={})
+    assert first.status_code == 201
+    rows = first.json()
+    assert sorted(row["scenario_id"] for row in rows) == sorted(SCENARIO_IDS)
+    expedited = {row["scenario_id"] for row in rows if row["urgency"] == "expedited"}
+    assert expedited == {"ncd-20-32-tavr"}
+
+    second = await app_client.post("/api/requests/seed", json={})
+    assert second.status_code == 201
+    assert {row["id"] for row in second.json()} == {row["id"] for row in rows}

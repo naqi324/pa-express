@@ -187,5 +187,15 @@ The provider letter prints one policy line from the attribution:
 - `PA_EXPRESS_AWS_PROFILE` defaults to empty, which means the standard AWS
   credential chain. The source defaulted to a named profile.
 - Ports: backend 8004, frontend 5175. The FastAPI title is "Prior Auth Express".
-- The demo caseload has two scenarios (NCD 150.3 DXA and NCD 20.32 TAVR). New LCD
-  scenarios need only a scenario entry and an optional `lcd-*.json` file.
+- The demo caseload has five scenarios. Each has a local policy file.
+
+  | Scenario id | Policy | Contractor | Plan type | Expected path |
+  |---|---|---|---|---|
+  | `ncd-150-3-dxa` | NCD 150.3 v2 | — | `medicare_advantage` | approve |
+  | `ncd-20-32-tavr` | NCD 20.32 v2 | — | `medicare_advantage` | approve |
+  | `lcd-l34220-lumbar-mri` | LCD L34220 v40 | Noridian (JE/JF), Oregon member | `commercial` | approve |
+  | `lcd-l33405-psg` | LCD L33405 v25 | First Coast (JN), Florida member | `medicaid` | pend (no Epworth score) |
+  | `lcd-l39911-tka` | LCD L39911 v10 | WPS (J5/J8), Michigan member | `medicare_advantage` | approve |
+
+  New scenarios need only a scenario entry and an optional `ncd-*.json` or
+  `lcd-*.json` file.
