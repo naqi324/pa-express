@@ -151,6 +151,23 @@ def test_catalog_resolves_defaults_and_rejects_unsupported_efforts() -> None:
     assert unknown.value.code == "MODEL_NOT_SUPPORTED"
 
 
+def test_settings_read_blank_efforts_as_the_model_default(monkeypatch) -> None:
+    monkeypatch.setenv("PA_EXPRESS_CLAUDE_EFFORT", "")
+    monkeypatch.setenv("PA_EXPRESS_OPENAI_GPT_MODEL_ID", "gpt-6-luna")
+    monkeypatch.setenv("PA_EXPRESS_OPENAI_GPT_EFFORT", " ")
+    settings = Settings()
+    assert settings.claude_effort == "medium"
+    assert settings.openai_gpt_effort == "medium"
+
+
+def test_settings_read_host_lists_as_csv_or_json(monkeypatch) -> None:
+    monkeypatch.setenv("PA_EXPRESS_ALLOWED_ORIGINS", "http://127.0.0.1:5175, http://localhost:5175")
+    monkeypatch.setenv("PA_EXPRESS_TRUSTED_HOSTS", '["127.0.0.1", "localhost"]')
+    settings = Settings()
+    assert settings.allowed_origins == ["http://127.0.0.1:5175", "http://localhost:5175"]
+    assert settings.trusted_hosts == ["127.0.0.1", "localhost"]
+
+
 def test_catalog_maps_bedrock_to_inference_profiles() -> None:
     assert provider_model_id("anthropic_claude", "claude-opus-5-5", "cli") == "claude-opus-5-5"
     assert (

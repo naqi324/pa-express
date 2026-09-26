@@ -1,8 +1,9 @@
+import json
 from functools import lru_cache
-from typing import Literal, Optional
+from typing import Annotated, Literal, Optional
 
 from pydantic import Field, SecretStr, field_validator, model_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 from .engines.catalog import method_support
 from .schemas import (
@@ -23,10 +24,12 @@ class Settings(BaseSettings):
     hosted_mode: bool = False
     claude_enabled: bool = True
     openai_gpt_enabled: bool = True
-    allowed_origins: list[str] = Field(
+    # NoDecode passes the raw variable to parse_csv_or_list, which accepts a
+    # comma-separated list or a JSON array.
+    allowed_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["http://127.0.0.1:5175", "http://localhost:5175"]
     )
-    trusted_hosts: list[str] = Field(
+    trusted_hosts: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["127.0.0.1", "localhost", "testserver"]
     )
     session_cookie_name: str = "pa_express_session"
@@ -65,7 +68,18 @@ class Settings(BaseSettings):
         if value is None:
             return value
         if isinstance(value, str):
-            return [item.strip() for item in value.split(",") if item.strip()]
+            text = value.strip()
+            if text.startswith("["):
+                return json.loads(text)
+            return [item.strip() for item in text.split(",") if item.strip()]
+        return value
+
+    @field_validator("claude_effort", "openai_gpt_effort", mode="before")
+    @classmethod
+    def blank_effort_is_default(cls, value: object) -> object:
+        # An empty variable selects the model's default effort.
+        if isinstance(value, str) and not value.strip():
+            return None
         return value
 
     @field_validator("session_cookie_name")
