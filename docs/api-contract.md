@@ -57,9 +57,9 @@ fall through to the SPA handler; unknown `/api/*` paths return 404
 | POST | `/api/requests/{id}/evaluations` | `EvaluationRequest` | `EvaluationStatus` (202) | re-run; resets disposition, letter, validity window, requested items, and `notified_at` |
 | GET | `/api/requests/{id}/evaluations/{eval_id}` | — | `EvaluationStatus` | poll until `completed` or `failed`; carries `determination` and a fallback notice in `error` |
 | GET | `/api/requests/{id}/determination` | — | `Determination` | latest completed determination |
-| GET | `/api/requests/{id}/llm-inspection` | — | `LlmInspection` | prompt, provider payload, raw response, parsed JSON, errors; `traces=[]` for Offline |
+| GET | `/api/requests/{id}/llm-inspection` | — | `LlmInspection` | prompt, provider payload, raw response, parsed JSON, errors; `traces=[]` for the rules engine |
 | POST | `/api/requests/{id}/actions` | `HumanActionRequest` | `PARequest` | approve → `approved` (+ validity window, 90 days by default); pend → `pended` (+ `requested_items`); refer_md → `referred_md` (+ `md_summary`) |
-| GET | `/api/requests/{id}/letter` | — | `Letter` | composed on first read from the determination and the current status |
+| GET | `/api/requests/{id}/letter` | optional `tz` query (IANA zone) | `Letter` | composed on first read from the determination and the current status; dated in `tz`, or UTC when `tz` is missing or unknown |
 | POST | `/api/requests/{id}/letter` | `LetterUpdateRequest` | `Letter` | `save` keeps a draft; `mark_ready` finalizes and sets `notified_at` |
 | GET | `/api/policies/{policy_id}` | — | `PolicyDocument` | local-only policy lookup (see below) |
 | GET | `/api/coverage/{policy_id}` | — | `CoverageCheck` | local NCD or LCD file summary (see below) |
@@ -72,7 +72,8 @@ fall through to the SPA handler; unknown `/api/*` paths return 404
 
 ## Engines
 
-Engine ids: `offline | anthropic_claude | openai_gpt`. The default is `offline`.
+Engine ids: `offline | anthropic_claude | openai_gpt`. The default is `offline`, shown to
+reviewers as "Rules engine".
 
 | Engine | `auth_style` | Defaults |
 |---|---|---|
@@ -85,8 +86,8 @@ Settings use the `PA_EXPRESS_` environment prefix (see `.env.example`).
 ## Evaluation semantics
 
 - An unavailable or failing engine never fails the case. The registry runs the
-  Offline engine instead. `EvaluationStatus.error` carries
-  `"<label> unavailable — fell back to Offline: <reason>"`, and
+  rules engine instead. `EvaluationStatus.error` carries
+  `"<label> unavailable — fell back to the rules engine: <reason>"`, and
   `determination.attribution.engine` names the engine that actually ran.
 - The recommendation is only `approve | pend`. No engine denies.
 - The lenient rubric approves when every required criterion is `MET`. Any
@@ -96,7 +97,7 @@ Settings use the `PA_EXPRESS_` environment prefix (see `.env.example`).
 - Model-backed engines get the vendored prior-auth-review skill and rubric in the
   prompt. The server rejects output that omits a criterion, cites a quote that is
   not verbatim in the named document, recommends against the rubric, or marks a
-  criterion `MET` without evidence. A rejection triggers the Offline fallback.
+  criterion `MET` without evidence. A rejection triggers the rules-engine fallback.
 - `criteria_met` is a display string such as `"4/4 required criteria met"`.
 - Traces are in memory and bounded. They never include AWS keys or Codex tokens.
 - Engines never set a disposition. Only a human action moves
@@ -139,7 +140,7 @@ route makes a network call. The data comes from the top level of
 - `GET /api/coverage/{id}` returns a `CoverageCheck`: `policy_id`,
   `source_type`, `version`, `title`, `covered`, `summary`, `source_url`, plus
   `ncd_id` / `ncd_version` for an NCD or `lcd_id` / `contractor` for an LCD.
-- The Offline engine attaches a `CoverageCheck` when the cited NCD or LCD has a
+- The rules engine attaches a `CoverageCheck` when the cited NCD or LCD has a
   local file, and `null` otherwise.
 
 ## Attribution and letters
