@@ -243,7 +243,7 @@ async function resetToDefaults(): Promise<void> {
   <form class="configure" novalidate @submit.prevent="save">
     <p class="configure-intro">
       These settings apply to <strong>{{ name }}</strong> for this browser session only. They are held in server
-      memory — never written to disk or logged — and cleared when the backend restarts.
+      memory&nbsp;— never written to disk or logged&nbsp;— and cleared when the backend restarts.
     </p>
 
     <fieldset>
@@ -284,29 +284,31 @@ async function resetToDefaults(): Promise<void> {
       <dd class="num">{{ current.command }}</dd>
     </dl>
 
-    <div v-else-if="form.authMethod === 'api_key'" class="form-field">
-      <label :for="`${formId}-api-key`">{{ chosenMethod?.label ?? 'API key' }}</label>
-      <input
-        :id="`${formId}-api-key`"
-        v-model="form.apiKey"
-        class="input configure-secret"
-        type="password"
-        autocomplete="new-password"
-        spellcheck="false"
-        :aria-invalid="showKeyError"
-        :aria-describedby="describedBy(`${formId}-api-key-hint`, showKeyError && `${formId}-api-key-error`)"
-      />
-      <p :id="`${formId}-api-key-hint`" class="hint num">
-        {{
-          keyStored
-            ? `${storedKeyText} Leave blank to keep it.`
-            : 'Write-only. The key stays in server memory and is never shown again.'
-        }}
-      </p>
-      <p v-if="showKeyError" :id="`${formId}-api-key-error`" class="field-error" role="alert">
-        <TriangleAlert :size="15" aria-hidden="true" />
-        Enter an API key, or choose another connection.
-      </p>
+    <div v-else-if="form.authMethod === 'api_key'" class="configure-fields">
+      <div class="form-field">
+        <label :for="`${formId}-api-key`">{{ chosenMethod?.label ?? 'API key' }}</label>
+        <input
+          :id="`${formId}-api-key`"
+          v-model="form.apiKey"
+          class="input"
+          type="password"
+          autocomplete="new-password"
+          spellcheck="false"
+          :aria-invalid="showKeyError"
+          :aria-describedby="describedBy(`${formId}-api-key-hint`, showKeyError && `${formId}-api-key-error`)"
+        />
+        <p :id="`${formId}-api-key-hint`" class="hint num">
+          {{
+            keyStored
+              ? `${storedKeyText} Leave blank to keep it.`
+              : 'Write-only. The key stays in server memory and is never shown again.'
+          }}
+        </p>
+        <p v-if="showKeyError" :id="`${formId}-api-key-error`" class="field-error" role="alert">
+          <TriangleAlert :size="15" aria-hidden="true" />
+          Enter an API key, or choose another connection.
+        </p>
+      </div>
     </div>
 
     <div v-else-if="form.authMethod === 'bedrock'" class="configure-fields">
@@ -338,7 +340,7 @@ async function resetToDefaults(): Promise<void> {
         </label>
       </fieldset>
 
-      <div v-if="form.bedrockCredentials === 'profile'" class="form-field configure-wide">
+      <div v-if="form.bedrockCredentials === 'profile'" class="form-field">
         <label :for="`${formId}-profile`">AWS profile name</label>
         <input
           :id="`${formId}-profile`"
@@ -393,7 +395,7 @@ async function resetToDefaults(): Promise<void> {
           Access key ID and secret are required.
         </p>
 
-        <div class="form-field configure-wide">
+        <div class="form-field">
           <label :for="`${formId}-token`">AWS session token (optional)</label>
           <input
             :id="`${formId}-token`"
@@ -573,10 +575,6 @@ async function resetToDefaults(): Promise<void> {
 
 .configure-wide {
   grid-column: 1 / -1;
-}
-
-.configure-secret {
-  max-width: 32rem;
 }
 
 .configure-actions {

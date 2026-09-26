@@ -118,7 +118,7 @@ CLAUDE_MODELS: list[ModelOption] = [
     _claude_model(
         "claude-haiku-4-5-20251001",
         "Claude Haiku 4.5",
-        "The fastest model. It takes no effort setting.",
+        "The fastest model, with near-frontier intelligence.",
         bedrock_id="us.anthropic.claude-haiku-4-5-20251001-v1:0",
         default_effort=None,
     ),

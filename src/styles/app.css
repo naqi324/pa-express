@@ -518,6 +518,10 @@ fieldset {
   min-width: 0;
 }
 
+legend {
+  padding: 0;
+}
+
 /* Ruled tables */
 
 .ruled {
