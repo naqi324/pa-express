@@ -3,20 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Prior Auth Express — prior authorization app",
+  "description": "Prior Auth Express — prior authorization automation demo app",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+    "dev:backend": "uv run uvicorn backend.app.main:app --host 127.0.0.1 --port 8004 --reload",
+    "dev:frontend": "vite --host 127.0.0.1 --port 5175",
+    "version:check": "python3 scripts/check_version.py",
+    "lint": "oxlint .",
+    "typecheck": "vue-tsc --noEmit",
+    "check": "pnpm lint && pnpm typecheck",
     "build": "pnpm typecheck && vite build",
     "preview": "vite preview",
-    "lint": "oxlint .",
-    "typecheck": "tsc --noEmit",
-    "check": "pnpm lint && pnpm typecheck"
+    "test:e2e": "playwright test",
+    "brand:check": "python3 scripts/check_brand.py",
+    "verify": "pnpm version:check && pnpm brand:check && pnpm lint && uv run pytest && pnpm build && pnpm test:e2e"
   },
   "devDependencies": {
     "@oxlint/plugins": "1.85.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.3",
+    "@vitejs/plugin-vue": "6.0.9",
+    "concurrently": "10.0.5",
     "oxlint": "1.85.0",
-    "typescript": "7.0.2",
-    "vite": "8.3.1"
+    "typescript": "6.0.3",
+    "vite": "8.3.1",
+    "vue-tsc": "3.3.11"
   },
-  "packageManager": "pnpm@10.33.2"
+  "packageManager": "pnpm@10.33.2",
+  "dependencies": {
+    "@fontsource-variable/atkinson-hyperlegible-next": "5.3.0",
+    "@lucide/vue": "1.48.0",
+    "vue": "3.5.43"
+  }
 }

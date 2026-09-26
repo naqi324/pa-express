@@ -1,14 +1,6 @@
-import "./style.css";
+import { createApp } from 'vue';
+import '@fontsource-variable/atkinson-hyperlegible-next';
+import './styles/app.css';
+import App from './App.vue';
 
-const root = document.querySelector<HTMLDivElement>("#app");
-
-if (root === null) {
-  throw new Error("Missing #app root element");
-}
-
-root.innerHTML = `
-  <main>
-    <h1>Prior Auth Express</h1>
-    <p>Prior authorization, start to decision.</p>
-  </main>
-`;
+createApp(App).mount('#app');
