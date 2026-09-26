@@ -172,7 +172,7 @@ onMounted(() => {
 
 .engine-link {
   padding: 0.125rem 0.5rem;
-  border: 1px solid #4a5a69;
+  border: 1px solid var(--binder-rule);
   border-radius: var(--radius);
   background: transparent;
   color: var(--surface);
@@ -192,7 +192,7 @@ onMounted(() => {
 .engine-link:focus-visible,
 .app-tabs .divider-tab:focus-visible,
 .toast-close:focus-visible {
-  outline-color: #8fc0e6;
+  outline-color: var(--binder-focus);
 }
 
 .backend-down {
@@ -224,7 +224,7 @@ onMounted(() => {
 }
 
 .app-tabs .divider-tab:hover {
-  background: #33424f;
+  background: var(--binder-hover);
   color: var(--surface);
 }
 
@@ -295,7 +295,7 @@ onMounted(() => {
 
 .toast > svg {
   margin-top: 0.125rem;
-  color: #8fc0e6;
+  color: var(--binder-focus);
 }
 
 .toast-error {

@@ -21,6 +21,9 @@
   --binder: #1a2530;
   --binder-tab: #26333f;
   --binder-text: #aab6c2;
+  --binder-rule: #4a5a69;
+  --binder-hover: #33424f;
+  --binder-focus: #8fc0e6;
 
   --font-sans: 'Atkinson Hyperlegible Next Variable', 'Atkinson Hyperlegible Next', system-ui, sans-serif;
   --font-code: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
