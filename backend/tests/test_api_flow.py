@@ -1,7 +1,8 @@
 """Full API flow tests over httpx AsyncClient + ASGITransport."""
 
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 import pytest
 from httpx import ASGITransport, AsyncClient
@@ -229,6 +230,22 @@ async def test_action_blocked_while_analyzing(
     assert letter_early.status_code == 404
     assert letter_early.json()["error"]["code"] == "LETTER_NOT_READY"
     assert letter_early.json()["error"]["correlation_id"]
+
+
+async def test_letter_is_dated_in_the_reviewer_time_zone(client: AsyncClient) -> None:
+    # UTC+14 is a day ahead of UTC for most of the day; an unknown zone falls back to UTC.
+    for tz, zone in (("Pacific/Kiritimati", ZoneInfo("Pacific/Kiritimati")), ("Not/AZone", timezone.utc)):
+        request_after = await create_and_complete(client)
+        request_id = request_after["id"]
+        acted = await client.post(f"/api/requests/{request_id}/actions", json={"action": "approve"})
+        assert acted.status_code == 200
+
+        before = datetime.now(zone).strftime("%m/%d/%Y")
+        letter = await client.get(f"/api/requests/{request_id}/letter", params={"tz": tz})
+        after = datetime.now(zone).strftime("%m/%d/%Y")
+        assert letter.status_code == 200, tz
+        body = letter.json()["body"]
+        assert f"Date: {before}" in body or f"Date: {after}" in body, tz
 
 
 async def test_approve_flow_letter_save_and_send(client: AsyncClient) -> None:

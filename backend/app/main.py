@@ -2,7 +2,9 @@
 
 import asyncio
 import copy
+from datetime import timezone, tzinfo
 from pathlib import Path
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -335,8 +337,17 @@ async def apply_action(
     return await session.cases.apply_action(request_id, body)
 
 
+def _reviewer_zone(tz: str | None) -> tzinfo:
+    if not tz:
+        return timezone.utc
+    try:
+        return ZoneInfo(tz)
+    except (ZoneInfoNotFoundError, ValueError):
+        return timezone.utc
+
+
 @app.get("/api/requests/{request_id}/letter", response_model=Letter)
-async def get_letter(request: Request, request_id: str) -> Letter:
+async def get_letter(request: Request, request_id: str, tz: str | None = None) -> Letter:
     store = _current_session(request).cases
     pa_request = store.get(request_id)
     existing = store.get_letter(request_id)
@@ -351,7 +362,9 @@ async def get_letter(request: Request, request_id: str) -> Letter:
             "human disposition is recorded.",
             "Run an evaluation and apply a reviewer action first.",
         )
-    letter = compose_letter(pa_request, determination, pa_request.determination_status)
+    letter = compose_letter(
+        pa_request, determination, pa_request.determination_status, _reviewer_zone(tz)
+    )
     store.set_letter(request_id, letter)
     return letter
 

@@ -1,6 +1,6 @@
 """Provider notification letter composition, modeled on the vendored letter templates."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, tzinfo
 
 from ..errors import AppError
 from ..schemas import Determination, Letter, PARequest
@@ -23,6 +23,7 @@ def compose_letter(
     request: PARequest,
     determination: Determination,
     determination_status: str,
+    zone: tzinfo = timezone.utc,
 ) -> Letter:
     if determination_status == "in_review":
         raise AppError(
@@ -41,7 +42,8 @@ def compose_letter(
         )
 
     letter_type = "approval" if determination_status == "approved" else "pend"
-    now = datetime.now(timezone.utc)
+    # Date the letter in the reviewer's zone so it matches the day they signed.
+    now = datetime.now(zone)
     status_label = _STATUS_LABELS.get(determination_status, determination_status)
 
     subject = (
