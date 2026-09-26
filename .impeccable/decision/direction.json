@@ -1,0 +1,172 @@
+{
+  "title": "Choose the visual world for Prior Auth Express",
+  "question": "The roll assigned the Coverage Register. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Coverage Register",
+      "kicker": "THE ROLL",
+      "lineage": "eCFR, the Federal Register, and the CMS coverage documents nurses read every day",
+      "thesis": "A determination is a citable instrument: each criterion is a numbered policy clause, and each fact is a pinpoint citation into the record.",
+      "palette": ["#f5f7f5", "#16191d", "#5b626b", "#f0dc4e", "#1f6b45", "#9a5a12"],
+      "materials": [
+        "ruled columns and hanging-indent clauses",
+        "pinpoint citations (Rec. 2 ¶ 3)",
+        "highlighter on the source record"
+      ],
+      "viewport": "A case opens as a preamble (MEMBER, SERVICE, POLICY, ACTION), then the policy clauses beside the record, with each quote highlighted where it lives.",
+      "risk": "Legal grammar can feel bureaucratic when it is overdone. The Federal Register serif would pull it toward the editorial cliché, so the whole world stays in one government sans.",
+      "raised": [
+        { "from": "challenger-jcard", "raise": "Running time: every docket row and case header ends in its remaining SLA time, set tight to the right margin, so the queue reads as a budget." },
+        { "from": "challenger-transit", "raise": "Fixed stations: the case lifecycle is a fixed rail (queued, analyzing, recommended, decided, letter ready). State lights a station; nothing moves or reflows." },
+        { "from": "challenger-segment", "raise": "Designed absence: a criterion with no supporting quote gets a ruled, empty citation slot that reads 'No supporting text in the record', drawn as carefully as a found quote." },
+        { "from": "challenger-hypercard", "raise": "Read and write in one place: the letter is edited where it is read. Marking it ready removes edit mode, and the lock shows on the page itself." },
+        { "from": "challenger-cloud", "raise": "Achromatic text: all reading text stays in ink. Color lives only in small state marks and the evidence highlight, never in tinted panels." },
+        { "from": "challenger-miura", "raise": "Linked selection: one click on a criterion lights its quote in the record and its line in the draft letter at the same time." }
+      ],
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "running head", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "preamble + lifecycle rail", "x": 0, "y": 1, "w": 12, "h": 2 },
+          { "label": "policy clauses + cited quotes", "x": 0, "y": 3, "w": 7, "h": 6, "accent": true },
+          { "label": "source record, highlighted", "x": 7, "y": 3, "w": 5, "h": 7 },
+          { "label": "action: approve / request info / refer", "x": 0, "y": 9, "w": 7, "h": 1 }
+        ]
+      }
+    },
+    {
+      "id": "model-pick",
+      "label": "Clinical Flowsheet",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "nursing flowsheets, MAR grids, and the hand-ruled shift report sheet",
+      "thesis": "The case is a flowsheet: criteria run down the rows, record documents run across the columns, and each cell holds the charted evidence.",
+      "palette": ["#fbfcfd", "#1a2530", "#d5dbe1", "#2f6f9f", "#c2410c"],
+      "materials": [
+        "gridded flowsheet cells",
+        "charting-ink entries",
+        "abnormal-flag marks"
+      ],
+      "viewport": "The patient banner across the top, then a dense criteria-by-document grid where found evidence fills cells and gaps stay flagged.",
+      "risk": "It is familiar: this is how most clinical software already looks, so it can read as one more EHR screen.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "app bar", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "patient banner", "x": 0, "y": 1, "w": 12, "h": 1 },
+          { "label": "criteria x documents grid", "x": 0, "y": 2, "w": 9, "h": 7, "accent": true },
+          { "label": "decision column", "x": 9, "y": 2, "w": 3, "h": 7 },
+          { "label": "sign-off strip", "x": 0, "y": 9, "w": 12, "h": 1 }
+        ]
+      }
+    },
+    {
+      "id": "challenger-jcard",
+      "label": "Cassette J-Card",
+      "verdict": "declined",
+      "lineage": "hand-lettered mixtape inlay cards",
+      "thesis": "The queue as side A and side B, each case timed to fit the tape.",
+      "palette": ["#f7f7f2", "#1f3a93", "#9aa0a6", "#c8102e"],
+      "materials": ["ballpoint on lined inlay", "folded card stock"],
+      "viewport": "A folded inlay with cases listed as tracks and running times at the margin.",
+      "case": "Fuses poorly: nurses do not see their work in a mixtape, and handwriting erodes trust in a signed decision.",
+      "kept": "The time budget is the composition: remaining SLA time sits right-aligned on every row.",
+      "risk": "Nostalgic and informal for a regulated decision.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-cassette-j-card-hero.webp"
+    },
+    {
+      "id": "challenger-transit",
+      "label": "Midnight Transit Diagram",
+      "verdict": "declined",
+      "lineage": "enamel metro line maps",
+      "thesis": "Each case travels a line from intake to letter, with the nurse and the engine as interchanging routes.",
+      "palette": ["#0f1d3a", "#f4f1ea", "#d62b2b", "#2458c6", "#f2a900", "#1f9d55"],
+      "materials": ["midnight enamel", "porcelain station ticks"],
+      "viewport": "A lifecycle line map, with each case as a station on its route.",
+      "case": "Fuses poorly: it clarifies the lifecycle but not the criterion-by-evidence work, and a dark ground fights a bright office.",
+      "kept": "Fixed stations: lifecycle positions never move; only their state changes.",
+      "risk": "Decorative when there is only one route per case.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-midnight-transit-diagram-hero.webp"
+    },
+    {
+      "id": "challenger-segment",
+      "label": "Seven-Segment Display",
+      "verdict": "declined",
+      "lineage": "LED clocks, price totems, scoreboards",
+      "thesis": "The SLA clock as lit segments, with unlit cells designed too.",
+      "palette": ["#0d0d0d", "#ff2a1a", "#ffb000", "#2a2a2a"],
+      "materials": ["LED segments", "ghost cells"],
+      "viewport": "Countdown digits dominate each case over a black ground.",
+      "case": "Fuses poorly: it serves one element, and a red-on-black world reads as alarm in a queue that must stay calm.",
+      "kept": "Designed absence: a missing quote is drawn as a deliberate empty slot.",
+      "risk": "Constant urgency; tiring over a shift.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-seven-segment-alarm-clock-hero.webp"
+    },
+    {
+      "id": "challenger-hypercard",
+      "label": "HyperCard Stack",
+      "verdict": "declined",
+      "lineage": "one-bit HyperCard stacks",
+      "thesis": "Each case is a card; reading and editing are two modes of one object.",
+      "palette": ["#ffffff", "#000000", "#9a9a9a"],
+      "materials": ["one-bit dither", "painted buttons"],
+      "viewport": "A single black-and-white case card with painted buttons.",
+      "case": "Fuses poorly: nurses have no tie to HyperCard, and one-bit grays cannot carry clinical state.",
+      "kept": "Read and write in one place: the letter is edited where it is read.",
+      "risk": "Novelty over trust.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-hypercard-stack-shoebox-hero.webp"
+    },
+    {
+      "id": "challenger-cloud",
+      "label": "Iridescent Cloud Edge",
+      "verdict": "declined",
+      "lineage": "cloud iridescence observation",
+      "thesis": "An achromatic field where color appears only at the edge of meaning.",
+      "palette": ["#fbfbfc", "#4a5563", "#a7f3d0", "#fbcfe8", "#c4b5fd"],
+      "materials": ["cloud white", "spectral hairlines"],
+      "viewport": "Quiet white panels, with pastel bands marking evidence confidence.",
+      "case": "Fuses poorly: pastels read as soft uncertainty where the decision needs firm states.",
+      "kept": "Achromatic text: color never tints reading surfaces.",
+      "risk": "Too faint for accountable decisions.",
+      "hero": "https://impeccable.style/worlds/cards/clouds-storms-auroras-iridescent-cloud-edge-hero.webp"
+    },
+    {
+      "id": "challenger-miura",
+      "label": "Miura-Fold Sheet",
+      "verdict": "declined",
+      "lineage": "deployable aerospace fold patterns",
+      "thesis": "A compact case packet unfolds into the full review sheet in one pull.",
+      "palette": ["#f8f7f4", "#c9a227", "#8a8279", "#9cc3e0", "#161616"],
+      "materials": ["crease-scored sheet", "gold foil packet"],
+      "viewport": "Worklist rows as folded packets that deploy into the case.",
+      "case": "Fuses poorly: folding metaphors add motion but no clinical meaning.",
+      "kept": "Linked selection: one action propagates across criterion, record, and letter.",
+      "risk": "Motion-heavy for a daily tool.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-miura-orbit-sheet-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "Modern clinical SaaS, executed impeccably: sidebar, cards, pills, and a blue primary.",
+    "palette": ["#ffffff", "#0f172a", "#2563eb", "#f1f5f9"],
+    "materials": ["rounded cards", "status pills", "KPI tiles"],
+    "viewport": "A left sidebar, KPI tiles over the worklist, and case details in tabbed cards.",
+    "risk": "Indistinguishable from every utilization management vendor, by design.",
+    "wireframe": {
+      "cols": 12,
+      "rows": 10,
+      "regions": [
+        { "label": "sidebar nav", "x": 0, "y": 0, "w": 2, "h": 10 },
+        { "label": "top bar", "x": 2, "y": 0, "w": 10, "h": 1 },
+        { "label": "KPI tiles", "x": 2, "y": 1, "w": 10, "h": 2 },
+        { "label": "worklist cards", "x": 2, "y": 3, "w": 10, "h": 7, "accent": true }
+      ]
+    }
+  },
+  "steer": true
+}
