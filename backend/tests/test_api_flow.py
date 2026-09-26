@@ -742,6 +742,13 @@ async def test_policy_lookup_returns_local_ncd_document(client: AsyncClient) -> 
     assert aliased.json()["policy_id"] == "150.3"
 
 
+async def test_policy_section_titles_keep_acronyms(client: AsyncClient) -> None:
+    found = await client.get("/api/policies/L34220")
+    assert found.status_code == 200
+    titles = [section["title"] for section in found.json()["sections"]]
+    assert "CMS National Coverage Policy" in titles
+
+
 async def test_policy_lookup_unknown_ids_return_404(client: AsyncClient) -> None:
     for missing_id in ("L99999", "999.9", "nope"):
         missing = await client.get(f"/api/policies/{missing_id}")

@@ -146,7 +146,7 @@ def _criteria_from_file(raw: dict[str, Any]) -> list[PolicyCriterion]:
 
 def _section_title(key: str) -> str:
     words = key.replace("_", " ").split()
-    acronyms = {"ncd", "lcd", "ecfr", "cfr"}
+    acronyms = {"cms", "ncd", "lcd", "ecfr", "cfr"}
     return " ".join(word.upper() if word in acronyms else word.capitalize() for word in words)
 
 
