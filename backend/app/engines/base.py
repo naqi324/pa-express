@@ -35,28 +35,50 @@ class RubricEngineBase(Engine):
     )
 
 
-def _bedrock_availability(settings: Settings) -> tuple[bool, str]:
-    if not settings.bedrock_enabled:
-        return False, "Anthropic Claude is disabled for this deployment."
+def claude_method_readiness(settings: Settings, method: str) -> tuple[bool, str]:
+    """Cheap readiness probe for one Claude auth method. Never calls the provider."""
+    if method == "cli":
+        if shutil.which(settings.claude_command) is None:
+            return False, f"The '{settings.claude_command}' CLI was not found on PATH."
+        return True, f"Runs the local '{settings.claude_command}' CLI with its own sign-in."
+    if method == "api_key":
+        if not settings.anthropic_api_key.get_secret_value():
+            return False, "Enter an Anthropic API key to use this method."
+        return True, "Uses the Anthropic API key held for this session."
     try:
         import boto3  # noqa: F401
     except ImportError:
         return False, "boto3 is not installed in this environment."
-    if settings.bedrock_auth_method == "access_keys":
+    if settings.bedrock_credentials == "access_keys":
         if not (settings.aws_access_key_id and settings.aws_secret_access_key):
             return False, "AWS access keys are selected but not yet entered for this session."
-        return True, f"Uses session AWS access keys in {settings.bedrock_region}"
+        return True, f"Uses session AWS access keys in {settings.bedrock_region}."
     if settings.aws_profile:
-        return True, f"Uses AWS profile {settings.aws_profile} in {settings.bedrock_region}"
-    return True, f"Uses the default AWS credential chain in {settings.bedrock_region}"
+        return True, f"Uses AWS profile {settings.aws_profile} in {settings.bedrock_region}."
+    return True, f"Uses the default AWS credential chain in {settings.bedrock_region}."
 
 
-def _codex_availability(settings: Settings) -> tuple[bool, str]:
-    if not settings.codex_enabled:
-        return False, "OpenAI GPT is disabled for this deployment."
+def openai_gpt_method_readiness(settings: Settings, method: str) -> tuple[bool, str]:
+    """Cheap readiness probe for one OpenAI GPT auth method. Never calls the provider."""
+    if method == "api_key":
+        if not settings.openai_api_key.get_secret_value():
+            return False, "Enter an OpenAI API key to use this method."
+        return True, "Uses the OpenAI API key held for this session."
     if shutil.which(settings.codex_command) is None:
         return False, f"The '{settings.codex_command}' CLI was not found on PATH."
-    return True, f"Runs OpenAI GPT through the local '{settings.codex_command}' CLI."
+    return True, f"Runs the local '{settings.codex_command}' CLI with its own sign-in."
+
+
+def _claude_availability(settings: Settings) -> tuple[bool, str]:
+    if not settings.claude_enabled:
+        return False, "Anthropic Claude is disabled for this deployment."
+    return claude_method_readiness(settings, settings.claude_auth_method)
+
+
+def _openai_gpt_availability(settings: Settings) -> tuple[bool, str]:
+    if not settings.openai_gpt_enabled:
+        return False, "OpenAI GPT is disabled for this deployment."
+    return openai_gpt_method_readiness(settings, settings.openai_gpt_auth_method)
 
 
 class EngineRegistry:
@@ -82,30 +104,32 @@ class EngineRegistry:
 
     def is_available(self, engine: Engine, settings: Settings) -> tuple[bool, str]:
         if engine.id == "anthropic_claude":
-            return _bedrock_availability(settings)
+            return _claude_availability(settings)
         if engine.id == "openai_gpt":
-            return _codex_availability(settings)
+            return _openai_gpt_availability(settings)
         return engine.availability(settings)
 
     def list_engines(self, settings: Settings) -> list[EngineInfo]:
         infos: list[EngineInfo] = []
         for engine in self._engines.values():
             available, note = self.is_available(engine, settings)
-            model_id = engine.model_id
-            if engine.id == "anthropic_claude":
-                model_id = settings.bedrock_model_id
-            elif engine.id == "openai_gpt":
-                model_id = settings.codex_model_id or None
-            infos.append(
-                EngineInfo(
-                    id=engine.id,
-                    label=engine.label,
-                    description=engine.description,
-                    available=available,
-                    availability_note=note,
-                    model_id=model_id,
-                )
+            info = EngineInfo(
+                id=engine.id,
+                label=engine.label,
+                description=engine.description,
+                available=available,
+                availability_note=note,
+                model_id=engine.model_id,
             )
+            if engine.id == "anthropic_claude":
+                info.auth_method = settings.claude_auth_method
+                info.model_id = settings.claude_model_id
+                info.effort = settings.claude_effort
+            elif engine.id == "openai_gpt":
+                info.auth_method = settings.openai_gpt_auth_method
+                info.model_id = settings.openai_gpt_model_id
+                info.effort = settings.openai_gpt_effort
+            infos.append(info)
         return infos
 
     async def run(

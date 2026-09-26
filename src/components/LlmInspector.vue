@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { Braces, CircleCheck, LoaderCircle, TriangleAlert } from '@lucide/vue';
+import { effortLabel } from '../enginePresentation';
 import { formatDateTime } from '../format';
 import { useAppStore } from '../store';
 import type { JsonValue, LlmTrace } from '../types';
@@ -50,7 +51,13 @@ async function load(): Promise<void> {
 }
 
 function providerLabel(trace: LlmTrace): string {
-  return trace.provider === 'bedrock' ? 'Anthropic Claude via Bedrock' : 'OpenAI GPT via Codex CLI';
+  if (trace.provider === 'bedrock') return 'Anthropic Claude via AWS Bedrock';
+
+  if (trace.provider === 'openai') {
+    return trace.auth_method === 'api_key' ? 'OpenAI GPT via the OpenAI API' : 'OpenAI GPT via the Codex CLI';
+  }
+
+  return trace.auth_method === 'api_key' ? 'Anthropic Claude via the Anthropic API' : 'Anthropic Claude via the Claude Code CLI';
 }
 
 function modelLabel(trace: LlmTrace): string {
@@ -103,6 +110,8 @@ function prettyJson(value: { [key: string]: JsonValue } | null): string {
       <dl class="facts trace-facts">
         <dt>Model</dt>
         <dd class="num">{{ modelLabel(trace) }}</dd>
+        <dt>Reasoning</dt>
+        <dd>{{ effortLabel(trace.effort) }}</dd>
         <dt>Captured</dt>
         <dd class="num">{{ formatDateTime(trace.created_at) }}</dd>
         <dt>Evaluation</dt>

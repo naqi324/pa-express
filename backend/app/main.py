@@ -13,15 +13,17 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from .config import get_settings
+from .config import Settings, get_settings
 from .data.scenarios import get_scenario, get_scenarios
-from .engines.anthropic_skill import AnthropicClaudeEngine
-from .engines.base import EngineRegistry
-from .engines.codex import CodexEngine
+from .engines.anthropic_claude import AnthropicClaudeEngine
+from .engines.base import EngineRegistry, claude_method_readiness, openai_gpt_method_readiness
+from .engines.catalog import auth_method_option, auth_methods_for, models_for, resolve_effort
+from .engines.openai_gpt import OpenAiGptEngine
 from .engines.rubric import RubricEngine
 from .engines.trace import begin_llm_trace_capture, end_llm_trace_capture
 from .errors import AppError, app_error_handler
 from .schemas import (
+    AuthMethodOption,
     ClaudeConfigInput,
     CoverageCheck,
     Determination,
@@ -53,7 +55,7 @@ registry = EngineRegistry(
     {
         "offline": RubricEngine(),
         "anthropic_claude": AnthropicClaudeEngine(),
-        "openai_gpt": CodexEngine(),
+        "openai_gpt": OpenAiGptEngine(),
     }
 )
 
@@ -388,21 +390,32 @@ async def get_coverage(policy_id: str) -> CoverageCheck:
     return load_coverage_check(policy_id)
 
 
-# --- Per-engine provider configuration (auth method, region, model) ----------
-# Each engine declares its own auth style so the UI renders the right form.
+# --- Per-engine provider configuration (auth method, model, effort) ----------
+# The form renders from the catalog and readiness notes; the routes validate
+# every saved choice against the same catalog.
 
-_ENGINE_AUTH_STYLE = {
-    "offline": "none",
-    "anthropic_claude": "aws_bedrock",
-    "openai_gpt": "codex_cli",
-}
+
+def _auth_method_options(engine_id: EngineId, effective: Settings) -> list[AuthMethodOption]:
+    readiness = (
+        claude_method_readiness if engine_id == "anthropic_claude" else openai_gpt_method_readiness
+    )
+    options: list[AuthMethodOption] = []
+    for method in auth_methods_for(engine_id):
+        ready, note = readiness(effective, method)
+        options.append(auth_method_option(engine_id, method, ready=ready, note=note))
+    return options
 
 
 def _engine_config(session: SessionState, engine_id: EngineId) -> EngineConfig:
-    config = EngineConfig(engine=engine_id, auth_style=_ENGINE_AUTH_STYLE[engine_id])
+    config = EngineConfig(engine=engine_id)
+    if engine_id == "offline":
+        return config
+    effective = session.engine_config.effective_settings(settings)
+    config.auth_methods = _auth_method_options(engine_id, effective)
+    config.models = models_for(engine_id)
     if engine_id == "anthropic_claude":
         config.anthropic_claude = session.engine_config.claude_view(settings)
-    elif engine_id == "openai_gpt":
+    else:
         config.openai_gpt = session.engine_config.openai_gpt_view(settings)
     return config
 
@@ -418,19 +431,28 @@ async def set_anthropic_claude_config(
     request: Request, body: ClaudeConfigInput
 ) -> EngineConfig:
     session = _current_session(request)
-    already_has_keys = session.engine_config.claude_view(settings).access_keys_configured
+    effort = resolve_effort("anthropic_claude", body.model_id, body.auth_method, body.effort)
+    current = session.engine_config.claude_view(settings)
+    if body.auth_method == "api_key" and not body.api_key and not current.api_key_configured:
+        raise AppError(
+            400,
+            "ANTHROPIC_KEY_REQUIRED",
+            "An Anthropic API key is required for the API key method.",
+            "Enter a key, or choose the Claude Code CLI or AWS Bedrock method.",
+        )
     if (
-        body.auth_method == "access_keys"
+        body.auth_method == "bedrock"
+        and body.bedrock_credentials == "access_keys"
         and not (body.aws_access_key_id and body.aws_secret_access_key)
-        and not already_has_keys
+        and not current.access_keys_configured
     ):
         raise AppError(
             400,
             "BEDROCK_KEYS_REQUIRED",
-            "Access key ID and secret access key are required for the access-keys auth method.",
-            "Enter both keys, or choose the AWS profile method to use the default credential chain.",
+            "Access key ID and secret access key are required for the access-keys credentials.",
+            "Enter both keys, or choose the AWS profile to use the default credential chain.",
         )
-    await session.engine_config.set_claude(body)
+    await session.engine_config.set_claude(body.model_copy(update={"effort": effort}))
     return _engine_config(session, "anthropic_claude")
 
 
@@ -446,7 +468,16 @@ async def set_openai_gpt_config(
     request: Request, body: OpenAiGptConfigInput
 ) -> EngineConfig:
     session = _current_session(request)
-    await session.engine_config.set_openai_gpt(body)
+    effort = resolve_effort("openai_gpt", body.model_id, body.auth_method, body.effort)
+    current = session.engine_config.openai_gpt_view(settings)
+    if body.auth_method == "api_key" and not body.api_key and not current.api_key_configured:
+        raise AppError(
+            400,
+            "OPENAI_KEY_REQUIRED",
+            "An OpenAI API key is required for the API key method.",
+            "Enter a key, or choose the Codex CLI method.",
+        )
+    await session.engine_config.set_openai_gpt(body.model_copy(update={"effort": effort}))
     return _engine_config(session, "openai_gpt")
 
 

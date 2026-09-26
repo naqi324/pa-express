@@ -470,14 +470,16 @@ async def test_registry_fallback_populates_error_notice(
                     provider="openai",
                     engine="openai_gpt",
                     engine_label=self.label,
-                    model_id=settings.codex_model_id,
+                    auth_method="cli",
+                    model_id=settings.openai_gpt_model_id,
+                    effort=settings.openai_gpt_effort,
                     created_at="2026-07-07T00:00:00+00:00",
                     status="failed",
                     prompt="stub prompt",
                     request_payload={
                         "runner": "codex_cli",
-                        "model": settings.codex_model_id,
-                        "reasoning_effort": settings.codex_effort,
+                        "model": settings.openai_gpt_model_id,
+                        "reasoning_effort": settings.openai_gpt_effort,
                     },
                     raw_response="",
                     response_text="",
@@ -518,8 +520,10 @@ async def test_registry_fallback_populates_error_notice(
     assert inspection_body["final_engine"] == "offline"
     assert inspection_body["traces"][0]["engine"] == "openai_gpt"
     assert inspection_body["traces"][0]["status"] == "failed"
-    assert inspection_body["traces"][0]["request_payload"]["model"] == "gpt-5.5"
-    assert inspection_body["traces"][0]["request_payload"]["reasoning_effort"] == "xhigh"
+    assert inspection_body["traces"][0]["request_payload"]["model"] == "gpt-6-astra"
+    assert inspection_body["traces"][0]["request_payload"]["reasoning_effort"] == "high"
+    assert inspection_body["traces"][0]["auth_method"] == "cli"
+    assert inspection_body["traces"][0]["effort"] == "high"
 
 
 async def test_rerun_resets_disposition_and_letter(client: AsyncClient) -> None:
@@ -547,150 +551,318 @@ async def test_rerun_resets_disposition_and_letter(client: AsyncClient) -> None:
     assert letter.status_code == 404
 
 
-async def test_engine_config_defaults_expose_auth_styles(client: AsyncClient) -> None:
+@pytest.fixture
+def cli_on_path(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Make the CLI readiness probe independent of what this machine has installed."""
+    monkeypatch.setattr(
+        "backend.app.engines.base.shutil.which", lambda command: f"/usr/local/bin/{command}"
+    )
+
+
+async def test_engine_config_defaults_list_auth_methods_and_models(
+    client: AsyncClient, cli_on_path: None
+) -> None:
     response = await client.get("/api/engine-config")
     assert response.status_code == 200
     by_engine = {entry["engine"]: entry for entry in response.json()}
     assert set(by_engine) == {"offline", "anthropic_claude", "openai_gpt"}
-    assert by_engine["offline"]["auth_style"] == "none"
-    assert by_engine["anthropic_claude"]["auth_style"] == "aws_bedrock"
-    claude = by_engine["anthropic_claude"]["anthropic_claude"]
+    assert by_engine["offline"]["auth_methods"] == []
+    assert by_engine["offline"]["models"] == []
+
+    claude_entry = by_engine["anthropic_claude"]
+    methods = {option["id"]: option for option in claude_entry["auth_methods"]}
+    assert list(methods) == ["cli", "api_key", "bedrock"]
+    assert methods["cli"]["label"] == "Claude Code CLI"
+    assert methods["cli"]["ready"] is True
+    assert methods["api_key"]["ready"] is False
+    assert "Enter an Anthropic API key" in methods["api_key"]["note"]
+    assert "default AWS credential chain" in methods["bedrock"]["note"]
+    model_ids = [model["id"] for model in claude_entry["models"]]
+    assert model_ids == [
+        "claude-opus-5-5",
+        "claude-fable-5-1",
+        "claude-sonnet-5",
+        "claude-haiku-4-5-20251001",
+    ]
+    haiku = claude_entry["models"][3]
+    assert all(support["efforts"] == [] for support in haiku["methods"])
+    opus_bedrock = next(
+        support for support in claude_entry["models"][0]["methods"] if support["auth_method"] == "bedrock"
+    )
+    assert opus_bedrock["provider_model_id"] == "us.anthropic.claude-opus-5-5"
+    assert opus_bedrock["efforts"] == ["low", "medium", "high", "xhigh", "max"]
+
+    claude = claude_entry["anthropic_claude"]
+    # Defaults are not session overrides yet.
     assert claude["is_override"] is False
-    assert claude["auth_method"] == "profile"
+    assert claude["auth_method"] == "cli"
+    assert claude["model_id"] == "claude-opus-5-5"
+    assert claude["effort"] == "high"
+    assert claude["api_key_configured"] is False
+    assert claude["api_key_hint"] is None
+    assert claude["bedrock_region"] == "us-west-2"
+    assert claude["bedrock_credentials"] == "profile"
     # An empty profile means the standard AWS credential chain.
     assert claude["aws_profile"] == ""
-    assert claude["region"] == "us-west-2"
-    assert claude["model_id"] == "us.anthropic.claude-sonnet-5"
-    assert claude["effort"] == "high"
-    assert by_engine["openai_gpt"]["auth_style"] == "codex_cli"
-    # Defaults are not session overrides yet.
-    gpt = by_engine["openai_gpt"]["openai_gpt"]
+
+    gpt_entry = by_engine["openai_gpt"]
+    assert [option["id"] for option in gpt_entry["auth_methods"]] == ["cli", "api_key"]
+    assert [model["id"] for model in gpt_entry["models"]] == ["gpt-6-astra", "gpt-6-sol", "gpt-6-luna"]
+    astra = {support["auth_method"]: support for support in gpt_entry["models"][0]["methods"]}
+    assert astra["cli"]["efforts"][-1] == "ultra"
+    assert "ultra" not in astra["api_key"]["efforts"]
+    gpt = gpt_entry["openai_gpt"]
     assert gpt["is_override"] is False
+    assert gpt["auth_method"] == "cli"
     assert gpt["command"] == "codex"
-    assert gpt["model_id"] == "gpt-5.5"
-    assert gpt["effort"] == "xhigh"
+    assert gpt["model_id"] == "gpt-6-astra"
+    assert gpt["effort"] == "high"
 
     engines = {entry["id"]: entry for entry in (await client.get("/api/engines")).json()}
-    assert engines["anthropic_claude"]["model_id"] == "us.anthropic.claude-sonnet-5"
-    assert engines["openai_gpt"]["model_id"] == "gpt-5.5"
-    assert "default AWS credential chain" in engines["anthropic_claude"]["availability_note"]
-    assert "codex" in engines["openai_gpt"]["availability_note"]
+    assert engines["anthropic_claude"]["model_id"] == "claude-opus-5-5"
+    assert engines["anthropic_claude"]["auth_method"] == "cli"
+    assert engines["anthropic_claude"]["effort"] == "high"
+    assert engines["openai_gpt"]["model_id"] == "gpt-6-astra"
+    assert engines["openai_gpt"]["auth_method"] == "cli"
+    assert "'claude' CLI" in engines["anthropic_claude"]["availability_note"]
+    assert "'codex' CLI" in engines["openai_gpt"]["availability_note"]
 
 
-async def test_anthropic_claude_config_override_masks_secret_and_reflects_in_engines(
-    client: AsyncClient,
+async def test_missing_cli_marks_the_cli_method_not_ready(
+    client: AsyncClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
+    monkeypatch.setattr("backend.app.engines.base.shutil.which", lambda command: None)
+    engines = {entry["id"]: entry for entry in (await client.get("/api/engines")).json()}
+    assert engines["anthropic_claude"]["available"] is False
+    assert "was not found on PATH" in engines["anthropic_claude"]["availability_note"]
+    assert engines["openai_gpt"]["available"] is False
+
+
+async def test_anthropic_api_key_is_write_only_and_kept_across_saves(
+    client: AsyncClient, cli_on_path: None
+) -> None:
+    secret = "sk-ant-test-0000000000wxyz"
     saved = await client.put(
         "/api/engine-config/anthropic-claude",
         json={
-            "auth_method": "access_keys",
-            "region": "us-west-2",
-            "model_id": "us.anthropic.claude-sonnet-5",
+            "auth_method": "api_key",
+            "model_id": "claude-sonnet-5",
             "effort": "medium",
+            "api_key": secret,
+        },
+    )
+    assert saved.status_code == 200
+    claude = saved.json()["anthropic_claude"]
+    assert claude["is_override"] is True
+    assert claude["auth_method"] == "api_key"
+    assert claude["model_id"] == "claude-sonnet-5"
+    assert claude["effort"] == "medium"
+    assert claude["api_key_configured"] is True
+    assert claude["api_key_hint"] == "…wxyz"
+    # The raw key is never returned anywhere.
+    assert secret not in saved.text
+    methods = {option["id"]: option for option in saved.json()["auth_methods"]}
+    assert methods["api_key"]["ready"] is True
+
+    engines = await client.get("/api/engines")
+    by_id = {entry["id"]: entry for entry in engines.json()}
+    assert by_id["anthropic_claude"]["available"] is True
+    assert by_id["anthropic_claude"]["auth_method"] == "api_key"
+    assert secret not in engines.text
+
+    # A blank key on a later save keeps the session key.
+    updated = await client.put(
+        "/api/engine-config/anthropic-claude",
+        json={"auth_method": "api_key", "model_id": "claude-haiku-4-5-20251001", "api_key": ""},
+    )
+    assert updated.status_code == 200
+    claude = updated.json()["anthropic_claude"]
+    assert claude["api_key_configured"] is True
+    assert claude["model_id"] == "claude-haiku-4-5-20251001"
+    # Claude Haiku 4.5 takes no effort setting.
+    assert claude["effort"] is None
+
+    # Switching to the CLI keeps the key for a later switch back.
+    cli = await client.put(
+        "/api/engine-config/anthropic-claude",
+        json={"auth_method": "cli", "model_id": "claude-opus-5-5"},
+    )
+    assert cli.json()["anthropic_claude"]["auth_method"] == "cli"
+    # No effort selects the model's documented default.
+    assert cli.json()["anthropic_claude"]["effort"] == "medium"
+    assert cli.json()["anthropic_claude"]["api_key_configured"] is True
+
+    reset = await client.delete("/api/engine-config/anthropic-claude")
+    assert reset.status_code == 200
+    claude = reset.json()["anthropic_claude"]
+    assert claude["is_override"] is False
+    assert claude["auth_method"] == "cli"
+    assert claude["model_id"] == "claude-opus-5-5"
+    assert claude["effort"] == "high"
+    assert claude["api_key_configured"] is False
+
+
+async def test_bedrock_access_keys_are_masked_and_kept(client: AsyncClient) -> None:
+    saved = await client.put(
+        "/api/engine-config/anthropic-claude",
+        json={
+            "auth_method": "bedrock",
+            "model_id": "claude-sonnet-5",
+            "effort": "high",
+            "bedrock_region": "us-east-1",
+            "bedrock_credentials": "access_keys",
             "aws_access_key_id": "AKIAEXAMPLE12345",
             "aws_secret_access_key": "top-secret-value",
         },
     )
     assert saved.status_code == 200
     claude = saved.json()["anthropic_claude"]
-    assert claude["is_override"] is True
-    assert claude["auth_method"] == "access_keys"
-    assert claude["region"] == "us-west-2"
-    assert claude["effort"] == "medium"
+    assert claude["auth_method"] == "bedrock"
+    assert claude["bedrock_region"] == "us-east-1"
+    assert claude["bedrock_credentials"] == "access_keys"
     assert claude["access_keys_configured"] is True
-    # The raw secret is never returned anywhere in the payload.
-    assert "top-secret-value" not in str(saved.json())
-    assert claude["access_key_id_hint"] == "AKI...345"
+    assert claude["access_key_id_hint"] == "…2345"
+    assert "top-secret-value" not in saved.text
 
-    # The override propagates to the engines listing (model + availability note).
     engines = {e["id"]: e for e in (await client.get("/api/engines")).json()}
-    assert engines["anthropic_claude"]["model_id"] == "us.anthropic.claude-sonnet-5"
-    assert "us-west-2" in engines["anthropic_claude"]["availability_note"]
-    assert "top-secret-value" not in str(engines)
+    # The engines listing shows the catalog id; the Bedrock profile id is internal.
+    assert engines["anthropic_claude"]["model_id"] == "claude-sonnet-5"
+    assert "session AWS access keys in us-east-1" in engines["anthropic_claude"]["availability_note"]
 
-    # Saving provider tweaks with blank secret fields preserves the session keys.
+    # Blank key fields on a later save keep the session keys.
     updated = await client.put(
         "/api/engine-config/anthropic-claude",
         json={
-            "auth_method": "access_keys",
-            "region": "us-east-1",
-            "model_id": "us.anthropic.claude-sonnet-5[1m]",
+            "auth_method": "bedrock",
+            "model_id": "claude-sonnet-5",
+            "bedrock_region": "us-west-2",
+            "bedrock_credentials": "access_keys",
         },
     )
     assert updated.status_code == 200
-    assert updated.json()["anthropic_claude"]["model_id"] == "us.anthropic.claude-sonnet-5"
-    assert updated.json()["anthropic_claude"]["effort"] == "high"
     assert updated.json()["anthropic_claude"]["access_keys_configured"] is True
-    engines_after_update = {e["id"]: e for e in (await client.get("/api/engines")).json()}
-    assert engines_after_update["anthropic_claude"]["available"] is True
-
-    # DELETE resets to the process defaults.
-    reset = await client.delete("/api/engine-config/anthropic-claude")
-    assert reset.status_code == 200
-    assert reset.json()["anthropic_claude"]["is_override"] is False
-    assert reset.json()["anthropic_claude"]["auth_method"] == "profile"
-    assert reset.json()["anthropic_claude"]["aws_profile"] == ""
-    assert reset.json()["anthropic_claude"]["region"] == "us-west-2"
-    assert reset.json()["anthropic_claude"]["model_id"] == "us.anthropic.claude-sonnet-5"
-    assert reset.json()["anthropic_claude"]["effort"] == "high"
+    assert updated.json()["anthropic_claude"]["bedrock_region"] == "us-west-2"
 
 
-async def test_anthropic_claude_access_keys_require_both_keys(client: AsyncClient) -> None:
-    response = await client.put(
+async def test_key_methods_require_a_key(client: AsyncClient) -> None:
+    claude = await client.put(
+        "/api/engine-config/anthropic-claude",
+        json={"auth_method": "api_key", "model_id": "claude-opus-5-5"},
+    )
+    assert claude.status_code == 400
+    assert claude.json()["error"]["code"] == "ANTHROPIC_KEY_REQUIRED"
+
+    bedrock = await client.put(
         "/api/engine-config/anthropic-claude",
         json={
-            "auth_method": "access_keys",
-            "region": "us-west-2",
-            "model_id": "us.anthropic.claude-sonnet-5",
+            "auth_method": "bedrock",
+            "model_id": "claude-opus-5-5",
+            "bedrock_credentials": "access_keys",
+            "aws_access_key_id": "AKIAEXAMPLE12345",
         },
     )
-    assert response.status_code == 400
-    assert response.json()["error"]["code"] == "BEDROCK_KEYS_REQUIRED"
+    assert bedrock.status_code == 400
+    assert bedrock.json()["error"]["code"] == "BEDROCK_KEYS_REQUIRED"
+
+    gpt = await client.put(
+        "/api/engine-config/openai-gpt",
+        json={"auth_method": "api_key", "model_id": "gpt-6-sol", "api_key": "   "},
+    )
+    assert gpt.status_code == 400
+    assert gpt.json()["error"]["code"] == "OPENAI_KEY_REQUIRED"
 
 
 async def test_openai_gpt_config_override_and_reset(client: AsyncClient) -> None:
+    secret = "sk-proj-test-00000000abcd"
     saved = await client.put(
         "/api/engine-config/openai-gpt",
-        json={"command": "codex", "model_id": "gpt-5.4-mini", "effort": "medium"},
+        json={"auth_method": "api_key", "model_id": "gpt-6-sol", "effort": "none", "api_key": secret},
     )
     assert saved.status_code == 200
-    assert saved.json()["openai_gpt"]["model_id"] == "gpt-5.4-mini"
-    assert saved.json()["openai_gpt"]["effort"] == "medium"
-    assert saved.json()["openai_gpt"]["is_override"] is True
+    gpt = saved.json()["openai_gpt"]
+    assert gpt["auth_method"] == "api_key"
+    assert gpt["model_id"] == "gpt-6-sol"
+    assert gpt["effort"] == "none"
+    assert gpt["api_key_hint"] == "…abcd"
+    assert gpt["is_override"] is True
+    assert secret not in saved.text
 
     engines = {e["id"]: e for e in (await client.get("/api/engines")).json()}
-    assert engines["openai_gpt"]["model_id"] == "gpt-5.4-mini"
+    assert engines["openai_gpt"]["model_id"] == "gpt-6-sol"
+    assert engines["openai_gpt"]["auth_method"] == "api_key"
+    assert engines["openai_gpt"]["available"] is True
+
+    codex = await client.put(
+        "/api/engine-config/openai-gpt",
+        json={"auth_method": "cli", "model_id": "gpt-6-astra", "effort": "ultra"},
+    )
+    assert codex.status_code == 200
+    assert codex.json()["openai_gpt"]["effort"] == "ultra"
+    assert codex.json()["openai_gpt"]["api_key_configured"] is True
 
     reset = await client.delete("/api/engine-config/openai-gpt")
-    assert reset.json()["openai_gpt"]["is_override"] is False
-    assert reset.json()["openai_gpt"]["command"] == "codex"
-    assert reset.json()["openai_gpt"]["model_id"] == "gpt-5.5"
-    assert reset.json()["openai_gpt"]["effort"] == "xhigh"
+    gpt = reset.json()["openai_gpt"]
+    assert gpt["is_override"] is False
+    assert gpt["auth_method"] == "cli"
+    assert gpt["command"] == "codex"
+    assert gpt["model_id"] == "gpt-6-astra"
+    assert gpt["effort"] == "high"
+    assert gpt["api_key_configured"] is False
 
 
 async def test_model_selectors_reject_unsupported_values(client: AsyncClient) -> None:
-    bad_claude = await client.put(
+    unknown_claude = await client.put(
         "/api/engine-config/anthropic-claude",
-        json={
-            "auth_method": "profile",
-            "region": "us-west-2",
-            "model_id": "not-a-claude-model",
-            "effort": "high",
-        },
+        json={"auth_method": "cli", "model_id": "not-a-claude-model", "effort": "high"},
     )
-    assert bad_claude.status_code == 422
+    assert unknown_claude.status_code == 422
 
-    bad_gpt = await client.put(
+    unknown_gpt = await client.put(
         "/api/engine-config/openai-gpt",
-        json={"command": "codex", "model_id": "codex-auto-review", "effort": "xhigh"},
+        json={"auth_method": "cli", "model_id": "gpt-5.5", "effort": "high"},
     )
-    assert bad_gpt.status_code == 422
+    assert unknown_gpt.status_code == 422
 
-    bad_command = await client.put(
+    # Ultra is a Codex CLI effort; the Responses API does not take it.
+    ultra_on_api = await client.put(
         "/api/engine-config/openai-gpt",
-        json={"command": "yes", "model_id": "gpt-5.5", "effort": "xhigh"},
+        json={"auth_method": "api_key", "model_id": "gpt-6-astra", "effort": "ultra", "api_key": "sk-x"},
     )
-    assert bad_command.status_code == 422
+    assert ultra_on_api.status_code == 422
+    assert ultra_on_api.json()["error"]["code"] == "EFFORT_NOT_SUPPORTED"
+
+    luna_ultra = await client.put(
+        "/api/engine-config/openai-gpt",
+        json={"auth_method": "cli", "model_id": "gpt-6-luna", "effort": "ultra"},
+    )
+    assert luna_ultra.status_code == 422
+    assert luna_ultra.json()["error"]["code"] == "EFFORT_NOT_SUPPORTED"
+
+    claude_none = await client.put(
+        "/api/engine-config/anthropic-claude",
+        json={"auth_method": "cli", "model_id": "claude-fable-5-1", "effort": "none"},
+    )
+    assert claude_none.status_code == 422
+    assert claude_none.json()["error"]["code"] == "EFFORT_NOT_SUPPORTED"
+
+    claude_on_gpt = await client.put(
+        "/api/engine-config/anthropic-claude",
+        json={"auth_method": "cli", "model_id": "gpt-6-astra"},
+    )
+    assert claude_on_gpt.status_code == 422
+
+    gpt_on_bedrock = await client.put(
+        "/api/engine-config/openai-gpt",
+        json={"auth_method": "bedrock", "model_id": "gpt-6-astra"},
+    )
+    assert gpt_on_bedrock.status_code == 422
+
+    # The command is server configuration; the API does not take it.
+    command = await client.put(
+        "/api/engine-config/openai-gpt",
+        json={"auth_method": "cli", "model_id": "gpt-6-astra", "command": "yes"},
+    )
+    assert command.status_code == 422
 
 
 async def test_coverage_route(client: AsyncClient) -> None:

@@ -3,6 +3,8 @@ import secrets
 import time
 from dataclasses import dataclass, field
 
+from pydantic import SecretStr
+
 from .config import Settings
 from .schemas import (
     ClaudeConfig,
@@ -15,21 +17,25 @@ from .services.case_store import CaseStore
 
 
 def mask_secret_hint(value: str) -> str:
-    """Return a short, non-reversible hint for a key id (never the full value)."""
-    if len(value) <= 6:
-        return "***"
-    return f"{value[:3]}...{value[-3:]}"
+    """Return the last four characters of a secret, never enough to reuse it."""
+    if len(value) <= 8:
+        return "set"
+    return f"…{value[-4:]}"
 
 
 def runtime_capabilities(settings: Settings) -> RuntimeCapabilities:
     return RuntimeCapabilities(
-        anthropic_claude_enabled=settings.bedrock_enabled,
-        openai_gpt_enabled=settings.codex_enabled,
+        anthropic_claude_enabled=settings.claude_enabled,
+        openai_gpt_enabled=settings.openai_gpt_enabled,
     )
 
 
 class EngineConfigStore:
-    """Per-session provider overrides for Claude and OpenAI GPT."""
+    """Per-session provider overrides for Claude and OpenAI GPT.
+
+    Secrets are write-only. A blank key in a later save keeps the stored key;
+    clearing the override drops every secret it held.
+    """
 
     def __init__(self) -> None:
         self._claude: ClaudeConfigInput | None = None
@@ -38,18 +44,17 @@ class EngineConfigStore:
 
     async def set_claude(self, config: ClaudeConfigInput) -> None:
         async with self._lock:
-            if (
-                self._claude is not None
-                and config.auth_method == "access_keys"
-                and not (config.aws_access_key_id and config.aws_secret_access_key)
-            ):
-                config = config.model_copy(
-                    update={
-                        "aws_access_key_id": self._claude.aws_access_key_id,
-                        "aws_secret_access_key": self._claude.aws_secret_access_key,
-                        "aws_session_token": self._claude.aws_session_token,
-                    }
-                )
+            previous = self._claude
+            if previous is not None:
+                updates: dict[str, str | None] = {}
+                if config.api_key is None:
+                    updates["api_key"] = previous.api_key
+                if not (config.aws_access_key_id and config.aws_secret_access_key):
+                    # A new key pair replaces the whole triple; otherwise keep the stored one.
+                    updates["aws_access_key_id"] = previous.aws_access_key_id
+                    updates["aws_secret_access_key"] = previous.aws_secret_access_key
+                    updates["aws_session_token"] = previous.aws_session_token
+                config = config.model_copy(update=updates)
             self._claude = config
 
     async def clear_claude(self) -> None:
@@ -58,6 +63,9 @@ class EngineConfigStore:
 
     async def set_openai_gpt(self, config: OpenAiGptConfigInput) -> None:
         async with self._lock:
+            previous = self._openai_gpt
+            if previous is not None and config.api_key is None:
+                config = config.model_copy(update={"api_key": previous.api_key})
             self._openai_gpt = config
 
     async def clear_openai_gpt(self) -> None:
@@ -65,69 +73,60 @@ class EngineConfigStore:
             self._openai_gpt = None
 
     def claude_view(self, settings: Settings) -> ClaudeConfig:
-        override = self._claude
-        if override is None:
-            return ClaudeConfig(
-                auth_method=settings.bedrock_auth_method,
-                region=settings.bedrock_region,
-                model_id=settings.bedrock_model_id,
-                effort=settings.bedrock_effort,
-                aws_profile=settings.aws_profile,
-                access_key_id_hint=(
-                    mask_secret_hint(settings.aws_access_key_id)
-                    if settings.aws_access_key_id
-                    else None
-                ),
-                access_keys_configured=bool(
-                    settings.aws_access_key_id and settings.aws_secret_access_key
-                ),
-                is_override=False,
-            )
+        effective = self.effective_settings(settings)
+        api_key = effective.anthropic_api_key.get_secret_value()
         return ClaudeConfig(
-            auth_method=override.auth_method,
-            region=override.region,
-            model_id=override.model_id,
-            effort=override.effort,
-            aws_profile=override.aws_profile or settings.aws_profile,
+            auth_method=effective.claude_auth_method,
+            model_id=effective.claude_model_id,
+            effort=effective.claude_effort,
+            command=effective.claude_command,
+            api_key_hint=mask_secret_hint(api_key) if api_key else None,
+            api_key_configured=bool(api_key),
+            bedrock_region=effective.bedrock_region,
+            bedrock_credentials=effective.bedrock_credentials,
+            aws_profile=effective.aws_profile,
             access_key_id_hint=(
-                mask_secret_hint(override.aws_access_key_id or settings.aws_access_key_id)
-                if override.aws_access_key_id or settings.aws_access_key_id
+                mask_secret_hint(effective.aws_access_key_id)
+                if effective.aws_access_key_id
                 else None
             ),
             access_keys_configured=bool(
-                (override.aws_access_key_id and override.aws_secret_access_key)
-                or (settings.aws_access_key_id and settings.aws_secret_access_key)
+                effective.aws_access_key_id and effective.aws_secret_access_key
             ),
-            is_override=True,
+            is_override=self._claude is not None,
         )
 
     def openai_gpt_view(self, settings: Settings) -> OpenAiGptConfig:
-        override = self._openai_gpt
-        if override is None:
-            return OpenAiGptConfig(
-                command=settings.codex_command,
-                model_id=settings.codex_model_id,
-                effort=settings.codex_effort,
-                is_override=False,
-            )
+        effective = self.effective_settings(settings)
+        api_key = effective.openai_api_key.get_secret_value()
         return OpenAiGptConfig(
-            command=override.command,
-            model_id=override.model_id,
-            effort=override.effort,
-            is_override=True,
+            auth_method=effective.openai_gpt_auth_method,
+            model_id=effective.openai_gpt_model_id,
+            effort=effective.openai_gpt_effort,
+            command=effective.codex_command,
+            api_key_hint=mask_secret_hint(api_key) if api_key else None,
+            api_key_configured=bool(api_key),
+            is_override=self._openai_gpt is not None,
         )
 
     def effective_settings(self, settings: Settings) -> Settings:
-        """Return Settings with this session's engine overrides applied."""
+        """Return Settings with this session's engine overrides applied.
+
+        The routes validate model and effort against the catalog before they
+        store an override, so the copy skips Settings validation safely.
+        """
         updates: dict[str, object] = {}
         claude = self._claude
         if claude is not None:
             updates.update(
-                bedrock_auth_method=claude.auth_method,
-                bedrock_region=claude.region,
-                bedrock_model_id=claude.model_id,
-                bedrock_effort=claude.effort,
+                claude_auth_method=claude.auth_method,
+                claude_model_id=claude.model_id,
+                claude_effort=claude.effort,
+                bedrock_region=claude.bedrock_region,
+                bedrock_credentials=claude.bedrock_credentials,
             )
+            if claude.api_key:
+                updates["anthropic_api_key"] = SecretStr(claude.api_key)
             if claude.aws_profile:
                 updates["aws_profile"] = claude.aws_profile
             if claude.aws_access_key_id and claude.aws_secret_access_key:
@@ -136,9 +135,13 @@ class EngineConfigStore:
                 updates["aws_session_token"] = claude.aws_session_token or ""
         openai_gpt = self._openai_gpt
         if openai_gpt is not None:
-            updates["codex_command"] = openai_gpt.command
-            updates["codex_model_id"] = openai_gpt.model_id
-            updates["codex_effort"] = openai_gpt.effort
+            updates.update(
+                openai_gpt_auth_method=openai_gpt.auth_method,
+                openai_gpt_model_id=openai_gpt.model_id,
+                openai_gpt_effort=openai_gpt.effort,
+            )
+            if openai_gpt.api_key:
+                updates["openai_api_key"] = SecretStr(openai_gpt.api_key)
         if not updates:
             return settings
         return settings.model_copy(update=updates)

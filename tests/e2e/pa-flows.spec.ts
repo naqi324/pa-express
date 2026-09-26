@@ -183,17 +183,28 @@ test('engine settings explains each engine and shows the current selection', asy
   await expect(page.getByText(/Backend connected — v/)).toBeVisible();
 });
 
-test('OpenAI GPT settings save scalar model and reasoning effort values', async ({ page }) => {
+async function openEngineSettings(page: Page, engineName: string) {
   await page.goto('/');
   await page.getByRole('navigation', { name: 'Primary' }).getByRole('button', { name: 'Engine' }).click();
 
-  const gptRow = page.locator('.engine').filter({ hasText: 'OpenAI GPT' }).first();
-  const toggle = gptRow.getByRole('button', { name: 'Model & reasoning' });
+  const row = page.locator('.engine').filter({ hasText: engineName }).first();
+  const toggle = row.getByRole('button', { name: 'Connection & model' });
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-expanded', 'true');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 
-  await gptRow.getByLabel('Reasoning effort').selectOption('medium');
+  return { row, toggle };
+}
+
+test('OpenAI GPT settings save the catalog model and reasoning effort', async ({ page }) => {
+  const { row: gptRow, toggle } = await openEngineSettings(page, 'OpenAI GPT');
+
+  // The Codex CLI is the default connection, on the newest GPT model.
+  await expect(gptRow.getByRole('radio', { name: /^Codex CLI/ })).toBeChecked();
+  await expect(gptRow.getByLabel('Model', { exact: true })).toHaveValue('gpt-6-astra');
+  await expect(gptRow.getByLabel('Reasoning effort')).toHaveValue('high');
+
+  await gptRow.getByLabel('Reasoning effort').selectOption('ultra');
 
   const saveRequest = page.waitForRequest((request) => {
     if (!request.url().endsWith('/api/engine-config/openai-gpt')) return false;
@@ -202,20 +213,117 @@ test('OpenAI GPT settings save scalar model and reasoning effort values', async 
 
     const body = request.postDataJSON();
 
-    return body.command === 'codex' && body.model_id === 'gpt-5.5' && body.effort === 'medium';
+    return (
+      body.auth_method === 'cli' &&
+      body.model_id === 'gpt-6-astra' &&
+      body.effort === 'ultra' &&
+      body.api_key === null &&
+      !('command' in body)
+    );
   });
 
   await gptRow.getByRole('button', { name: 'Save for this session' }).click();
   await saveRequest;
 
-  await expect(gptRow.locator('dd').filter({ hasText: /^gpt-5\.5$/ })).toBeVisible();
-  await expect(gptRow.locator('dd').filter({ hasText: /^Medium$/ })).toBeVisible();
-  await expect(gptRow.locator('dd').filter({ hasText: /^codex CLI$/ })).toBeVisible();
+  await expect(gptRow.locator('dd').filter({ hasText: /^Codex CLI · codex$/ })).toBeVisible();
+  await expect(gptRow.locator('dd').filter({ hasText: /^GPT-6 Astra$/ })).toBeVisible();
+  await expect(gptRow.locator('dd').filter({ hasText: /^Ultra$/ })).toBeVisible();
   await expect(gptRow.getByText('Session override')).toBeVisible();
 
   // Put the server back on its defaults for the next run.
   await toggle.click();
   await gptRow.getByRole('button', { name: 'Reset to server default' }).click();
   await expect(gptRow.getByText('Session override')).toHaveCount(0);
-  await expect(gptRow.locator('dd').filter({ hasText: /^Extra high$/ })).toBeVisible();
+  await expect(gptRow.locator('dd').filter({ hasText: /^High$/ })).toBeVisible();
+});
+
+test('OpenAI GPT API key connection requires a key and never shows it again', async ({ page }) => {
+  const { row: gptRow, toggle } = await openEngineSettings(page, 'OpenAI GPT');
+
+  await gptRow.getByRole('radio', { name: /^OpenAI API key/ }).check();
+  await expect(gptRow.getByLabel('Reasoning effort')).toHaveValue('high');
+
+  // The API does not take the Codex-only Ultra effort.
+  await expect(gptRow.getByLabel('Reasoning effort').locator('option[value="ultra"]')).toHaveCount(0);
+
+  await gptRow.getByRole('button', { name: 'Save for this session' }).click();
+  await expect(gptRow.getByText('Enter an API key, or choose another connection.')).toBeVisible();
+
+  const keyField = gptRow.getByLabel('OpenAI API key', { exact: true });
+  await expect(keyField).toHaveAttribute('aria-invalid', 'true');
+  await expect(keyField).toHaveAttribute('type', 'password');
+  await keyField.fill('e2e-fake-key-0000-9876');
+
+  const saveRequest = page.waitForRequest((request) => {
+    if (!request.url().endsWith('/api/engine-config/openai-gpt')) return false;
+
+    if (request.method() !== 'PUT') return false;
+
+    const body = request.postDataJSON();
+
+    return body.auth_method === 'api_key' && body.api_key === 'e2e-fake-key-0000-9876';
+  });
+
+  await gptRow.getByRole('button', { name: 'Save for this session' }).click();
+  await saveRequest;
+
+  await expect(gptRow.locator('dd').filter({ hasText: /^OpenAI API key · key …9876$/ })).toBeVisible();
+
+  // The stored key never comes back; a blank field keeps it.
+  await toggle.click();
+  await expect(gptRow.getByLabel('OpenAI API key', { exact: true })).toHaveValue('');
+  await expect(gptRow.getByText('Key …9876 is stored for this session. Leave blank to keep it.')).toBeVisible();
+
+  await gptRow.getByRole('button', { name: 'Reset to server default' }).click();
+  await expect(gptRow.locator('dd').filter({ hasText: /^Codex CLI · codex$/ })).toBeVisible();
+});
+
+test('Anthropic Claude settings follow the catalog for each connection', async ({ page }) => {
+  const { row: claudeRow, toggle } = await openEngineSettings(page, 'Anthropic Claude');
+
+  await expect(claudeRow.getByRole('radio', { name: /^Claude Code CLI/ })).toBeChecked();
+  await expect(claudeRow.getByLabel('Model', { exact: true })).toHaveValue('claude-opus-5-5');
+  await expect(claudeRow.getByLabel('Reasoning effort')).toHaveValue('high');
+
+  // Claude Haiku 4.5 takes no effort setting.
+  await claudeRow.getByLabel('Model', { exact: true }).selectOption('claude-haiku-4-5-20251001');
+  await expect(claudeRow.getByLabel('Reasoning effort')).toBeDisabled();
+  await expect(claudeRow.getByText('This model takes no effort setting.')).toBeVisible();
+
+  // Bedrock adds its region and credentials and sends the regional inference profile.
+  await claudeRow.getByRole('radio', { name: /^AWS Bedrock/ }).check();
+  await expect(claudeRow.getByLabel('Region')).toHaveValue('us-west-2');
+  await expect(claudeRow.getByText('Sent as us.anthropic.claude-haiku-4-5-20251001-v1:0.')).toBeVisible();
+
+  // A model with an effort setting starts on its documented default.
+  await claudeRow.getByLabel('Model', { exact: true }).selectOption('claude-sonnet-5');
+  await expect(claudeRow.getByLabel('Reasoning effort')).toHaveValue('high');
+
+  const saveRequest = page.waitForRequest((request) => {
+    if (!request.url().endsWith('/api/engine-config/anthropic-claude')) return false;
+
+    if (request.method() !== 'PUT') return false;
+
+    const body = request.postDataJSON();
+
+    return (
+      body.auth_method === 'bedrock' &&
+      body.model_id === 'claude-sonnet-5' &&
+      body.effort === 'high' &&
+      body.bedrock_region === 'us-west-2' &&
+      body.bedrock_credentials === 'profile' &&
+      body.api_key === null
+    );
+  });
+
+  await claudeRow.getByRole('button', { name: 'Save for this session' }).click();
+  await saveRequest;
+
+  await expect(claudeRow.locator('dd').filter({ hasText: /^AWS Bedrock · .+ · us-west-2$/ })).toBeVisible();
+  await expect(claudeRow.locator('dd').filter({ hasText: /^Claude Sonnet 5$/ })).toBeVisible();
+
+  await toggle.click();
+  await claudeRow.getByRole('button', { name: 'Reset to server default' }).click();
+  await expect(claudeRow.locator('dd').filter({ hasText: /^Claude Opus 5\.5$/ })).toBeVisible();
+  await expect(claudeRow.locator('dd').filter({ hasText: /^Claude Code CLI · claude$/ })).toBeVisible();
 });

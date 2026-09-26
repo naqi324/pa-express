@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { Check, ChevronDown, ChevronUp, CircleCheck, RefreshCw, SlidersHorizontal, TriangleAlert } from '@lucide/vue';
-import { CLAUDE_EFFORTS, ENGINE_ORDER, ENGINE_PRESENTATION, OPENAI_GPT_EFFORTS, effortLabel } from '../enginePresentation';
+import { ENGINE_ORDER, ENGINE_PRESENTATION, effortLabel } from '../enginePresentation';
 import { useAppStore } from '../store';
-import type { EngineConfig, EngineId, EngineInfo } from '../types';
+import type { AuthMethod, ClaudeConfig, EngineConfig, EngineId, EngineInfo, OpenAiGptConfig } from '../types';
 import ConfigureEngineForm from './ConfigureEngineForm.vue';
 
 const store = useAppStore();
@@ -40,6 +40,42 @@ interface ProviderFact {
   value: string;
 }
 
+function modelLabel(config: EngineConfig, modelId: string): string {
+  return config.models.find((model) => model.id === modelId)?.label ?? modelId;
+}
+
+function methodLabel(config: EngineConfig, method: AuthMethod): string {
+  return config.auth_methods.find((option) => option.id === method)?.label ?? method;
+}
+
+function keyDetail(hint: string | null): string {
+  if (!hint) return 'no key entered';
+
+  return hint === 'set' ? 'key stored' : `key ${hint}`;
+}
+
+function claudeConnection(config: EngineConfig, claude: ClaudeConfig): string {
+  const label = methodLabel(config, claude.auth_method);
+
+  if (claude.auth_method === 'api_key') return `${label} · ${keyDetail(claude.api_key_hint)}`;
+
+  if (claude.auth_method === 'cli') return `${label} · ${claude.command}`;
+
+  const hint = claude.access_key_id_hint ? ` ${claude.access_key_id_hint}` : '';
+
+  const profile = claude.aws_profile ? `profile ${claude.aws_profile}` : 'default credential chain';
+
+  const credentials = claude.bedrock_credentials === 'access_keys' ? `access keys${hint}` : profile;
+
+  return `${label} · ${credentials} · ${claude.bedrock_region}`;
+}
+
+function openAiGptConnection(config: EngineConfig, gpt: OpenAiGptConfig): string {
+  const label = methodLabel(config, gpt.auth_method);
+
+  return gpt.auth_method === 'api_key' ? `${label} · ${keyDetail(gpt.api_key_hint)}` : `${label} · ${gpt.command}`;
+}
+
 function providerFacts(engine: EngineInfo): ProviderFact[] {
   const config = engineConfig(engine);
 
@@ -48,24 +84,20 @@ function providerFacts(engine: EngineInfo): ProviderFact[] {
   if (config.anthropic_claude) {
     const claude = config.anthropic_claude;
 
-    const hint = claude.access_key_id_hint ? ` (${claude.access_key_id_hint})` : '';
-
-    const profile = claude.aws_profile ? `profile ${claude.aws_profile}` : 'standard AWS credential chain';
-
-    const auth = claude.auth_method === 'access_keys' ? `access keys${hint}` : profile;
-
     return [
-      { label: 'Model', value: claude.model_id },
-      { label: 'Reasoning', value: effortLabel(CLAUDE_EFFORTS, claude.effort) },
-      { label: 'Provider', value: `${auth} · ${claude.region}` },
+      { label: 'Connection', value: claudeConnection(config, claude) },
+      { label: 'Model', value: modelLabel(config, claude.model_id) },
+      { label: 'Reasoning', value: effortLabel(claude.effort) },
     ];
   }
 
   if (config.openai_gpt) {
+    const gpt = config.openai_gpt;
+
     return [
-      { label: 'Model', value: config.openai_gpt.model_id },
-      { label: 'Reasoning', value: effortLabel(OPENAI_GPT_EFFORTS, config.openai_gpt.effort) },
-      { label: 'Runtime', value: `${config.openai_gpt.command} CLI` },
+      { label: 'Connection', value: openAiGptConnection(config, gpt) },
+      { label: 'Model', value: modelLabel(config, gpt.model_id) },
+      { label: 'Reasoning', value: effortLabel(gpt.effort) },
     ];
   }
 
@@ -75,9 +107,7 @@ function providerFacts(engine: EngineInfo): ProviderFact[] {
 }
 
 function isConfigurable(engine: EngineInfo): boolean {
-  const style = engineConfig(engine)?.auth_style;
-
-  return style === 'aws_bedrock' || style === 'codex_cli';
+  return (engineConfig(engine)?.auth_methods.length ?? 0) > 0;
 }
 
 function isOverridden(engine: EngineInfo): boolean {
@@ -89,7 +119,7 @@ function isOverridden(engine: EngineInfo): boolean {
 function statusLine(engine: EngineInfo): string {
   if (engine.available) return ENGINE_PRESENTATION[engine.id].readyNote;
 
-  return `Needs server setup — ${engine.availability_note}`;
+  return `Needs setup — ${engine.availability_note}`;
 }
 
 function chooseDefault(engine: EngineInfo): void {
@@ -198,7 +228,7 @@ async function closeConfigure(engine: EngineInfo): Promise<void> {
               @click="toggleConfigure(engine)"
             >
               <SlidersHorizontal :size="14" aria-hidden="true" />
-              Model &amp; reasoning
+              Connection &amp; model
               <ChevronUp v-if="configuring === engine.id" :size="14" aria-hidden="true" />
               <ChevronDown v-else :size="14" aria-hidden="true" />
             </button>

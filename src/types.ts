@@ -20,21 +20,19 @@ export type LetterType = 'approval' | 'pend';
 
 export type PolicySourceType = 'ncd' | 'lcd';
 
-export type ClaudeReasoningEffort = 'low' | 'medium' | 'high' | 'max';
+// Every reasoning effort any provider accepts. The model catalog in
+// EngineConfig.models says which ones each model and auth method supports.
+export type ReasoningEffort = 'none' | 'low' | 'medium' | 'high' | 'xhigh' | 'max' | 'ultra';
 
-export type OpenAiReasoningEffort = 'low' | 'medium' | 'high' | 'xhigh';
+export type AuthMethod = 'cli' | 'api_key' | 'bedrock';
 
-export type ClaudeModelId =
-  | 'us.anthropic.claude-sonnet-5'
-  | 'us.anthropic.claude-opus-4-8'
-  | 'us.anthropic.claude-haiku-4-5-20251001-v1:0'
-  | 'us.anthropic.claude-fable-5';
+export type ClaudeAuthMethod = AuthMethod;
 
-export type OpenAiGptModelId = 'gpt-5.5' | 'gpt-5.4' | 'gpt-5.4-mini';
+export type OpenAiGptAuthMethod = 'cli' | 'api_key';
 
-export type BedrockAuthMethod = 'profile' | 'access_keys';
+export type BedrockCredentials = 'profile' | 'access_keys';
 
-export type EngineAuthStyle = 'none' | 'aws_bedrock' | 'codex_cli';
+export type LlmProvider = 'anthropic' | 'bedrock' | 'openai';
 
 // Engine payloads are free-form JSON; they are only rendered, never read by key.
 export type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
@@ -187,10 +185,12 @@ export interface Determination {
 }
 
 export interface LlmTrace {
-  provider: 'bedrock' | 'openai';
+  provider: LlmProvider;
   engine: EngineId;
   engine_label: string;
+  auth_method: AuthMethod | null;
   model_id: string | null;
+  effort: ReasoningEffort | null;
   created_at: string;
   status: 'succeeded' | 'failed';
   prompt: string;
@@ -225,7 +225,9 @@ export interface EngineInfo {
   description: string;
   available: boolean;
   availability_note: string;
+  auth_method: AuthMethod | null;
   model_id: string | null;
+  effort: ReasoningEffort | null;
 }
 
 export interface Letter {
@@ -251,11 +253,17 @@ export interface LetterUpdateRequest {
   action: 'save' | 'mark_ready';
 }
 
+// Model ids are strings here: the catalog in EngineConfig.models lists them,
+// and the server rejects any id it does not offer. Secrets are write-only:
+// send one to set it, omit it to keep the stored value.
 export interface ClaudeConfigInput {
-  auth_method: BedrockAuthMethod;
-  region: string;
-  model_id: ClaudeModelId;
-  effort: ClaudeReasoningEffort;
+  auth_method: ClaudeAuthMethod;
+  model_id: string;
+  // Null selects the model's default effort.
+  effort: ReasoningEffort | null;
+  api_key?: string | null;
+  bedrock_region: string;
+  bedrock_credentials: BedrockCredentials;
   aws_profile?: string | null;
   aws_access_key_id?: string | null;
   aws_secret_access_key?: string | null;
@@ -263,16 +271,21 @@ export interface ClaudeConfigInput {
 }
 
 export interface OpenAiGptConfigInput {
-  command: string;
-  model_id: OpenAiGptModelId;
-  effort: OpenAiReasoningEffort;
+  auth_method: OpenAiGptAuthMethod;
+  model_id: string;
+  effort: ReasoningEffort | null;
+  api_key?: string | null;
 }
 
 export interface ClaudeConfig {
-  auth_method: BedrockAuthMethod;
-  region: string;
-  model_id: ClaudeModelId;
-  effort: ClaudeReasoningEffort;
+  auth_method: ClaudeAuthMethod;
+  model_id: string;
+  effort: ReasoningEffort | null;
+  command: string;
+  api_key_hint: string | null;
+  api_key_configured: boolean;
+  bedrock_region: string;
+  bedrock_credentials: BedrockCredentials;
   aws_profile: string;
   access_key_id_hint: string | null;
   access_keys_configured: boolean;
@@ -280,15 +293,44 @@ export interface ClaudeConfig {
 }
 
 export interface OpenAiGptConfig {
+  auth_method: OpenAiGptAuthMethod;
+  model_id: string;
+  effort: ReasoningEffort | null;
   command: string;
-  model_id: OpenAiGptModelId;
-  effort: OpenAiReasoningEffort;
+  api_key_hint: string | null;
+  api_key_configured: boolean;
   is_override: boolean;
+}
+
+// How one auth method runs one model.
+export interface ModelMethodSupport {
+  auth_method: AuthMethod;
+  // The id sent to the provider (Bedrock uses a regional inference profile).
+  provider_model_id: string;
+  efforts: ReasoningEffort[];
+  default_effort: ReasoningEffort | null;
+}
+
+export interface ModelOption {
+  id: string;
+  label: string;
+  summary: string;
+  methods: ModelMethodSupport[];
+}
+
+export interface AuthMethodOption {
+  id: AuthMethod;
+  label: string;
+  summary: string;
+  ready: boolean;
+  note: string;
 }
 
 export interface EngineConfig {
   engine: EngineId;
-  auth_style: EngineAuthStyle;
+  // Empty for the rules engine, which needs no provider.
+  auth_methods: AuthMethodOption[];
+  models: ModelOption[];
   anthropic_claude: ClaudeConfig | null;
   openai_gpt: OpenAiGptConfig | null;
 }

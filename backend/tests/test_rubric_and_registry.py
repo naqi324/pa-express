@@ -13,7 +13,7 @@ import pytest
 from backend.app.config import Settings
 from backend.app.engines.base import Engine, EngineRegistry
 from backend.app.engines.bedrock import build_bedrock_converse_request, invoke_bedrock_converse
-from backend.app.engines.codex import CodexEngine
+from backend.app.engines.openai_gpt import OpenAiGptEngine
 from backend.app.engines.llm_common import (
     build_openai_source_skill_prompt,
     build_source_skill_prompt,
@@ -114,16 +114,33 @@ def make_request(scenario: dict, *, clinical_documents: list | None = None) -> P
     )
 
 
-def test_bedrock_converse_payload_uses_sonnet_5_high_effort_defaults() -> None:
-    payload = build_bedrock_converse_request(Settings(), "Review this prior auth case.")
+def test_bedrock_converse_payload_sends_adaptive_thinking_and_effort() -> None:
+    payload = build_bedrock_converse_request(
+        Settings(),
+        "Review this prior auth case.",
+        model_id="us.anthropic.claude-opus-5-5",
+        effort="high",
+    )
 
-    assert payload["modelId"] == "us.anthropic.claude-sonnet-5"
-    assert payload["inferenceConfig"] == {"maxTokens": 8192}
+    assert payload["modelId"] == "us.anthropic.claude-opus-5-5"
+    assert payload["inferenceConfig"] == {"maxTokens": 16000}
     assert payload["additionalModelRequestFields"] == {
         "thinking": {"type": "adaptive"},
         "output_config": {"effort": "high"},
     }
     assert payload["messages"][0]["content"][0]["text"] == "Review this prior auth case."
+
+
+def test_bedrock_converse_payload_omits_thinking_for_haiku() -> None:
+    payload = build_bedrock_converse_request(
+        Settings(),
+        "Review.",
+        model_id="us.anthropic.claude-haiku-4-5-20251001-v1:0",
+        effort=None,
+    )
+
+    assert payload["modelId"] == "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    assert "additionalModelRequestFields" not in payload
 
 
 MET_FACT = {
@@ -472,7 +489,7 @@ def test_source_skill_payload_rejects_met_without_evidence() -> None:
 
 
 async def test_registry_falls_back_when_engine_disabled() -> None:
-    disabled_settings = Settings(bedrock_enabled=False, mock_processing_seconds=0.0)
+    disabled_settings = Settings(claude_enabled=False, mock_processing_seconds=0.0)
     registry = EngineRegistry(
         {"offline": RubricEngine(), "anthropic_claude": ExplodingClaudeEngine()}
     )
@@ -532,7 +549,8 @@ async def test_openai_gpt_uses_source_skill_prompt_and_reasoning_effort(
     class FakeProcess:
         returncode = 0
 
-        async def communicate(self):
+        async def communicate(self, input=None):
+            captured["stdin"] = input
             output_path = captured["output_path"]
             assert isinstance(output_path, Path)
             output_path.write_text(response_json, encoding="utf-8")
@@ -548,11 +566,11 @@ async def test_openai_gpt_uses_source_skill_prompt_and_reasoning_effort(
         return FakeProcess()
 
     monkeypatch.setattr(
-        "backend.app.engines.codex.asyncio.create_subprocess_exec",
+        "backend.app.engines.provider_call.asyncio.create_subprocess_exec",
         fake_create_subprocess_exec,
     )
 
-    determination = await CodexEngine().evaluate(request, scenario, settings)
+    determination = await OpenAiGptEngine().evaluate(request, scenario, settings)
 
     args = captured["args"]
     assert isinstance(args, tuple)
@@ -563,17 +581,20 @@ async def test_openai_gpt_uses_source_skill_prompt_and_reasoning_effort(
     assert "--ask-for-approval" not in args
     assert Path(args[args.index("--output-schema") + 1]).name == "response-schema.json"
     assert Path(args[args.index("--output-last-message") + 1]).name == "final-message.json"
-    assert args[args.index("-m") + 1] == "gpt-5.5"
-    assert args[args.index("-c") + 1] == 'model_reasoning_effort="xhigh"'
+    assert args[args.index("-m") + 1] == "gpt-6-astra"
+    assert args[args.index("-c") + 1] == 'model_reasoning_effort="high"'
     assert captured["schema"] == llm_response_json_schema()
     kwargs = captured["kwargs"]
     assert isinstance(kwargs, dict)
     output_path = captured["output_path"]
     assert isinstance(output_path, Path)
     assert kwargs["cwd"] == str(output_path.parent)
-    assert kwargs["stdin"] == asyncio.subprocess.DEVNULL
-    prompt = args[-1]
-    assert isinstance(prompt, str)
+    assert kwargs["stdin"] == asyncio.subprocess.PIPE
+    # The prompt goes on stdin, so case text never shows in the process list.
+    assert args[-1] == "-"
+    stdin = captured["stdin"]
+    assert isinstance(stdin, bytes)
+    prompt = stdin.decode("utf-8")
     assert prompt.startswith("You are OpenAI GPT")
     assert "source-skill files were written for Claude Code" in prompt
     assert "You are Claude Code running" not in prompt
@@ -608,13 +629,15 @@ def _capture_boto3_sessions(monkeypatch: pytest.MonkeyPatch) -> list[dict]:
 
 def test_bedrock_default_uses_standard_credential_chain(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("PA_EXPRESS_AWS_PROFILE", raising=False)
-    monkeypatch.delenv("PA_EXPRESS_BEDROCK_AUTH_METHOD", raising=False)
+    monkeypatch.delenv("PA_EXPRESS_BEDROCK_CREDENTIALS", raising=False)
     settings = Settings()
     assert settings.aws_profile == ""
-    assert settings.bedrock_auth_method == "profile"
+    assert settings.bedrock_credentials == "profile"
 
     calls = _capture_boto3_sessions(monkeypatch)
-    invocation = invoke_bedrock_converse(settings, "Review this prior auth case.")
+    invocation = invoke_bedrock_converse(
+        settings, "Review this prior auth case.", model_id="us.anthropic.claude-opus-5-5", effort="high"
+    )
 
     assert calls == [{}]
     assert invocation.response_text == "{}"
@@ -622,7 +645,9 @@ def test_bedrock_default_uses_standard_credential_chain(monkeypatch: pytest.Monk
 
 def test_bedrock_named_profile_is_used_when_set(monkeypatch: pytest.MonkeyPatch) -> None:
     calls = _capture_boto3_sessions(monkeypatch)
-    invoke_bedrock_converse(Settings(aws_profile="team-profile"), "Review.")
+    invoke_bedrock_converse(
+        Settings(aws_profile="team-profile"), "Review.", model_id="us.anthropic.claude-opus-5-5", effort="high"
+    )
 
     assert calls == [{"profile_name": "team-profile"}]
 

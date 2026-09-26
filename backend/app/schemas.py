@@ -2,7 +2,7 @@
 
 from typing import Any, Literal, Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 PlanType = Literal["commercial", "medicare_advantage", "medicaid"]
 Urgency = Literal["standard", "expedited"]
@@ -14,15 +14,21 @@ EngineId = Literal["offline", "anthropic_claude", "openai_gpt"]
 HumanAction = Literal["approve", "pend", "refer_md"]
 LetterType = Literal["approval", "pend"]
 PolicySourceType = Literal["ncd", "lcd"]
-ClaudeReasoningEffort = Literal["low", "medium", "high", "max"]
-OpenAiReasoningEffort = Literal["low", "medium", "high", "xhigh"]
+# Every reasoning effort any provider accepts. The model catalog in
+# engines/catalog.py says which ones each model and auth method supports.
+ReasoningEffort = Literal["none", "low", "medium", "high", "xhigh", "max", "ultra"]
+AuthMethod = Literal["cli", "api_key", "bedrock"]
+ClaudeAuthMethod = AuthMethod
+OpenAiGptAuthMethod = Literal["cli", "api_key"]
+BedrockCredentials = Literal["profile", "access_keys"]
 ClaudeModelId = Literal[
-    "us.anthropic.claude-sonnet-5",
-    "us.anthropic.claude-opus-4-8",
-    "us.anthropic.claude-haiku-4-5-20251001-v1:0",
-    "us.anthropic.claude-fable-5",
+    "claude-fable-5-1",
+    "claude-opus-5-5",
+    "claude-sonnet-5",
+    "claude-haiku-4-5-20251001",
 ]
-OpenAiGptModelId = Literal["gpt-5.5", "gpt-5.4", "gpt-5.4-mini"]
+OpenAiGptModelId = Literal["gpt-6-astra", "gpt-6-sol", "gpt-6-luna"]
+LlmProvider = Literal["anthropic", "bedrock", "openai"]
 
 
 class Member(BaseModel):
@@ -183,10 +189,12 @@ class Determination(BaseModel):
 
 
 class LlmTrace(BaseModel):
-    provider: Literal["bedrock", "openai"]
+    provider: LlmProvider
     engine: EngineId
     engine_label: str
+    auth_method: Optional[AuthMethod] = None
     model_id: Optional[str] = None
+    effort: Optional[ReasoningEffort] = None
     created_at: str
     status: Literal["succeeded", "failed"]
     prompt: str
@@ -221,7 +229,9 @@ class EngineInfo(BaseModel):
     description: str
     available: bool
     availability_note: str = ""
+    auth_method: Optional[AuthMethod] = None
     model_id: Optional[str] = None
+    effort: Optional[ReasoningEffort] = None
 
 
 class Letter(BaseModel):
@@ -253,60 +263,75 @@ class EvaluationRequest(BaseModel):
     engine: EngineId = "offline"
 
 
-BedrockAuthMethod = Literal["profile", "access_keys"]
+def _blank_to_none(value: Optional[str]) -> Optional[str]:
+    if value is None:
+        return None
+    stripped = value.strip()
+    return stripped or None
 
 
 class ClaudeConfigInput(BaseModel):
-    """Runtime Claude-on-Bedrock settings for a session (secrets are write-only)."""
+    """Session settings for Anthropic Claude. Secrets are write-only."""
 
-    auth_method: BedrockAuthMethod
-    region: str
+    # Commands and endpoints are server configuration; reject any attempt to set them.
+    model_config = ConfigDict(extra="forbid")
+
+    auth_method: ClaudeAuthMethod
     model_id: ClaudeModelId
-    effort: ClaudeReasoningEffort = "high"
+    # None selects the model's default effort (or no effort for models without one).
+    effort: Optional[ReasoningEffort] = None
+    api_key: Optional[str] = None
+    bedrock_region: str = Field(default="us-west-2", pattern=r"^[a-z]{2}(-[a-z]+)+-\d+$")
+    bedrock_credentials: BedrockCredentials = "profile"
     aws_profile: Optional[str] = None
     aws_access_key_id: Optional[str] = None
     aws_secret_access_key: Optional[str] = None
     aws_session_token: Optional[str] = None
 
-    @field_validator("region")
+    @field_validator("bedrock_region", mode="before")
     @classmethod
-    def strip_required_text(cls, value: str) -> str:
-        return value.strip()
+    def strip_region(cls, value: object) -> object:
+        return value.strip() if isinstance(value, str) else value
 
-    @field_validator("model_id", mode="before")
+    @field_validator(
+        "api_key",
+        "aws_profile",
+        "aws_access_key_id",
+        "aws_secret_access_key",
+        "aws_session_token",
+    )
     @classmethod
-    def normalize_bedrock_model_id(cls, value: object) -> object:
-        if isinstance(value, str):
-            return value.strip().removesuffix("[1m]")
-        return value
+    def blank_secret_is_absent(cls, value: Optional[str]) -> Optional[str]:
+        return _blank_to_none(value)
 
 
 class OpenAiGptConfigInput(BaseModel):
-    command: str
+    """Session settings for OpenAI GPT. The API key is write-only."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    auth_method: OpenAiGptAuthMethod
     model_id: OpenAiGptModelId
-    effort: OpenAiReasoningEffort = "xhigh"
+    effort: Optional[ReasoningEffort] = None
+    api_key: Optional[str] = None
 
-    @field_validator("command")
+    @field_validator("api_key")
     @classmethod
-    def validate_codex_command(cls, value: str) -> str:
-        normalized = value.strip()
-        if normalized != "codex":
-            raise ValueError("OpenAI GPT runs through the fixed local codex CLI command.")
-        return normalized
-
-    @field_validator("model_id")
-    @classmethod
-    def strip_required_text(cls, value: str) -> str:
-        return value.strip()
+    def blank_secret_is_absent(cls, value: Optional[str]) -> Optional[str]:
+        return _blank_to_none(value)
 
 
 class ClaudeConfig(BaseModel):
-    """Claude provider settings echoed back to the UI (never returns secrets)."""
+    """Claude settings echoed back to the UI. Never carries a secret."""
 
-    auth_method: BedrockAuthMethod
-    region: str
+    auth_method: ClaudeAuthMethod
     model_id: ClaudeModelId
-    effort: ClaudeReasoningEffort = "high"
+    effort: Optional[ReasoningEffort] = None
+    command: str = "claude"
+    api_key_hint: Optional[str] = None
+    api_key_configured: bool = False
+    bedrock_region: str = "us-west-2"
+    bedrock_credentials: BedrockCredentials = "profile"
     aws_profile: str = ""
     access_key_id_hint: Optional[str] = None
     access_keys_configured: bool = False
@@ -314,18 +339,52 @@ class ClaudeConfig(BaseModel):
 
 
 class OpenAiGptConfig(BaseModel):
-    command: str
+    """OpenAI GPT settings echoed back to the UI. Never carries a secret."""
+
+    auth_method: OpenAiGptAuthMethod
     model_id: OpenAiGptModelId
-    effort: OpenAiReasoningEffort = "xhigh"
+    effort: Optional[ReasoningEffort] = None
+    command: str = "codex"
+    api_key_hint: Optional[str] = None
+    api_key_configured: bool = False
     is_override: bool = False
 
 
+class ModelMethodSupport(BaseModel):
+    """How one auth method runs one model."""
+
+    auth_method: AuthMethod
+    # The id sent to the provider (Bedrock uses a regional inference profile).
+    provider_model_id: str
+    efforts: list[ReasoningEffort] = Field(default_factory=list)
+    # The provider's documented default; None when the model takes no effort.
+    default_effort: Optional[ReasoningEffort] = None
+
+
+class ModelOption(BaseModel):
+    id: str
+    label: str
+    summary: str
+    methods: list[ModelMethodSupport] = Field(default_factory=list)
+
+
+class AuthMethodOption(BaseModel):
+    """One way to reach an engine's provider, with a cheap readiness probe."""
+
+    id: AuthMethod
+    label: str
+    summary: str
+    ready: bool
+    note: str = ""
+
+
 class EngineConfig(BaseModel):
-    """The provider configuration for one engine, in the shape its UI form needs."""
+    """The provider configuration for one engine, with the options its form offers."""
 
     engine: EngineId
-    # auth_style tells the UI which form to render for this engine.
-    auth_style: Literal["none", "aws_bedrock", "codex_cli"]
+    # Empty for the rules engine, which needs no provider.
+    auth_methods: list[AuthMethodOption] = Field(default_factory=list)
+    models: list[ModelOption] = Field(default_factory=list)
     anthropic_claude: Optional[ClaudeConfig] = None
     openai_gpt: Optional[OpenAiGptConfig] = None
 
