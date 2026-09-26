@@ -20,7 +20,9 @@ Every application error uses one envelope (`ApiErrorBody`):
 
 | Status | Code | Raised by |
 |---|---|---|
+| 400 | `ANTHROPIC_KEY_REQUIRED` | PUT engine-config/anthropic-claude with `api_key` and no stored or supplied key |
 | 400 | `BEDROCK_KEYS_REQUIRED` | PUT engine-config/anthropic-claude with `access_keys` and no stored or supplied key pair |
+| 400 | `OPENAI_KEY_REQUIRED` | PUT engine-config/openai-gpt with `api_key` and no stored or supplied key |
 | 404 | `SCENARIO_NOT_FOUND` | POST /requests with an unknown `scenario_id` |
 | 404 | `REQUEST_NOT_FOUND` | any `/requests/{id}` route with an unknown id |
 | 404 | `EVALUATION_NOT_FOUND` | GET evaluation with an unknown `eval_id` |
@@ -36,10 +38,14 @@ Every application error uses one envelope (`ApiErrorBody`):
 | 409 | `LETTER_ALREADY_FINALIZED` | POST letter after the letter is `ready` |
 | 422 | `PEND_ITEMS_REQUIRED` | pend action with an empty `requested_items` |
 | 422 | `MD_SUMMARY_REQUIRED` | refer_md action with an empty `note` |
+| 422 | `MODEL_NOT_SUPPORTED` | PUT engine-config with a model the chosen auth method does not offer |
+| 422 | `EFFORT_NOT_SUPPORTED` | PUT engine-config with an effort the chosen model and auth method do not take |
 
 Request bodies that fail pydantic validation return FastAPI's standard 422
-`{"detail": [...]}` body. Examples: an engine id outside `EngineId`, an unsupported
-model id, or an OpenAI GPT `command` other than `codex`. Unknown non-API paths
+`{"detail": [...]}` body. Examples: an engine id outside `EngineId`, a model id
+outside the engine's catalog, or a field that the input does not define.
+`ClaudeConfigInput` and `OpenAiGptConfigInput` forbid extra fields, so a
+`command` field is rejected. CLI commands are server configuration. Unknown non-API paths
 fall through to the SPA handler; unknown `/api/*` paths return 404
 `{"detail": "API route not found."}`.
 
@@ -49,7 +55,7 @@ fall through to the SPA handler; unknown `/api/*` paths return 404
 |---|---|---|---|---|
 | GET | `/api/health` | — | `HealthStatus` | `version` comes from `VERSION`; `capabilities` is `RuntimeCapabilities` |
 | GET | `/api/scenarios` | — | `ScenarioSummary[]` | from `backend/app/data/scenarios.py`; `policy_label` is e.g. `Medicare NCD 150.3` |
-| GET | `/api/engines` | — | `EngineInfo[]` | cheap availability probe (flags, boto3 import, `codex` on PATH); never blocks |
+| GET | `/api/engines` | — | `EngineInfo[]` | cheap availability probe (flags, CLI on PATH, stored key, boto3 import); never calls a provider; carries the effective `auth_method`, `model_id`, and `effort` |
 | GET | `/api/requests` | — | `PARequestSummary[]` | expedited first, then nearest `sla_due_at` |
 | POST | `/api/requests` | `{scenario_id, urgency?: Urgency, engine?: EngineId}` | `PARequest` (201) | intake creates the case and starts its evaluation at once; audit `request_created` |
 | POST | `/api/requests/seed` | `{engine?: EngineId}` | `PARequestSummary[]` (201) | loads each scenario once per session (idempotent); `ncd-20-32-tavr` arrives expedited |
@@ -63,10 +69,10 @@ fall through to the SPA handler; unknown `/api/*` paths return 404
 | POST | `/api/requests/{id}/letter` | `LetterUpdateRequest` | `Letter` | `save` keeps a draft; `mark_ready` finalizes and sets `notified_at` |
 | GET | `/api/policies/{policy_id}` | — | `PolicyDocument` | local-only policy lookup (see below) |
 | GET | `/api/coverage/{policy_id}` | — | `CoverageCheck` | local NCD or LCD file summary (see below) |
-| GET | `/api/engine-config` | — | `EngineConfig[]` | one entry per engine; `auth_style` tells the UI which form to render |
-| PUT | `/api/engine-config/anthropic-claude` | `ClaudeConfigInput` | `EngineConfig` | session override of auth method, region, model, effort, profile, and keys; secrets are write-only and echoed back as a masked hint |
+| GET | `/api/engine-config` | — | `EngineConfig[]` | one entry per engine; `auth_methods` and `models` list the connections, models, and efforts the form offers |
+| PUT | `/api/engine-config/anthropic-claude` | `ClaudeConfigInput` | `EngineConfig` | session override of auth method, model, effort, Bedrock region and credentials, and secrets; secrets are write-only and come back only as a masked hint |
 | DELETE | `/api/engine-config/anthropic-claude` | — | `EngineConfig` | reset to process defaults |
-| PUT | `/api/engine-config/openai-gpt` | `OpenAiGptConfigInput` | `EngineConfig` | session override of model and effort; `command` must be `codex` |
+| PUT | `/api/engine-config/openai-gpt` | `OpenAiGptConfigInput` | `EngineConfig` | session override of auth method, model, effort, and API key; the key is write-only |
 | DELETE | `/api/engine-config/openai-gpt` | — | `EngineConfig` | reset to process defaults |
 | GET | `/` and `/{path}` | — | built SPA | serves `dist/`; 404 when no frontend build exists |
 
@@ -75,11 +81,57 @@ fall through to the SPA handler; unknown `/api/*` paths return 404
 Engine ids: `offline | anthropic_claude | openai_gpt`. The default is `offline`, shown to
 reviewers as "Rules engine".
 
-| Engine | `auth_style` | Defaults |
+| Engine | Auth methods | Defaults |
 |---|---|---|
-| `offline` | `none` | deterministic lenient rubric over the scenario's authored facts; sleeps `mock_processing_seconds` to show the analyzing state |
-| `anthropic_claude` | `aws_bedrock` | Bedrock Converse, region `us-west-2`, model `us.anthropic.claude-sonnet-5`, effort `high`, auth method `profile`. `aws_profile` defaults to empty, which uses the standard boto3 credential chain (`boto3.Session()`). A non-empty profile uses `boto3.Session(profile_name=...)`. A trailing `[1m]` on the model id is stripped. |
-| `openai_gpt` | `codex_cli` | local `codex exec` in a read-only sandbox, model `gpt-5.5`, effort `xhigh`; overrides pass `-m <model>` and `-c model_reasoning_effort="<effort>"` |
+| `offline` | none | deterministic lenient rubric over the scenario's authored facts; sleeps `mock_processing_seconds` to show the analyzing state |
+| `anthropic_claude` | `cli` (Claude Code CLI), `api_key` (Anthropic API key), `bedrock` (AWS Bedrock) | `cli`, model `claude-opus-5-5`, effort `high` |
+| `openai_gpt` | `cli` (Codex CLI), `api_key` (OpenAI API key) | `cli`, model `gpt-6-astra`, effort `high` |
+
+`EngineConfig` carries `auth_methods` (`AuthMethodOption[]`: `id`, `label`,
+`summary`, `ready`, `note`) and `models` (`ModelOption[]`: `id`, `label`,
+`summary`, and `methods`). Each `ModelMethodSupport` in `methods` gives the
+`provider_model_id` sent for one auth method, the `efforts` it takes, and the
+provider's `default_effort`. The catalog lives in `backend/app/engines/catalog.py`.
+The routes validate every saved model and effort against it. A missing effort
+selects the model's default.
+
+Models and efforts (checked 2026-09-25 against the provider docs and the local
+`claude` and `codex` CLIs):
+
+| Model | Auth methods | Efforts | Default |
+|---|---|---|---|
+| `claude-opus-5-5` | all three | `low` `medium` `high` `xhigh` `max` | `medium` |
+| `claude-fable-5-1` | all three | `low` `medium` `high` `xhigh` `max` | `high` |
+| `claude-sonnet-5` | all three | `low` `medium` `high` `xhigh` `max` | `high` |
+| `claude-haiku-4-5-20251001` | all three | none (no effort setting) | — |
+| `gpt-6-astra` | `cli` | `low` `medium` `high` `xhigh` `max` `ultra` | `medium` |
+| `gpt-6-astra` | `api_key` | `low` `medium` `high` `xhigh` `max` | `medium` |
+| `gpt-6-sol` | `cli` | `low` `medium` `high` `xhigh` `max` `ultra` | `medium` |
+| `gpt-6-sol` | `api_key` | `none` `low` `medium` `high` `xhigh` `max` | `medium` |
+| `gpt-6-luna` | `cli` | `low` `medium` `high` `xhigh` `max` | `medium` |
+| `gpt-6-luna` | `api_key` | `none` `low` `medium` `high` `xhigh` `max` | `medium` |
+
+Bedrock sends the regional inference profile: `us.anthropic.<model id>`, and
+`us.anthropic.claude-haiku-4-5-20251001-v1:0` for Claude Haiku 4.5.
+
+Provider calls:
+
+- Claude Code CLI: `claude -p --safe-mode --output-format json
+  --no-session-persistence --strict-mcp-config --tools "" --model <id>
+  [--effort <effort>]`. The prompt goes on stdin. The CLI uses its own sign-in
+  and inherits the server's environment.
+- Anthropic API key: `POST https://api.anthropic.com/v1/messages` with
+  `anthropic-version: 2023-06-01`. A model with an effort setting sends
+  `thinking: {type: "adaptive"}` and `output_config.effort`.
+- AWS Bedrock: Converse in `bedrock_region`. The adaptive thinking and effort
+  fields go in `additionalModelRequestFields`. `bedrock_credentials` is
+  `profile` (an empty `aws_profile` uses the standard boto3 credential chain) or
+  `access_keys` (session keys, with an optional session token).
+- Codex CLI: `codex exec --skip-git-repo-check --ephemeral --sandbox read-only
+  --output-schema <file> --output-last-message <file> -m <id>
+  [-c model_reasoning_effort="<effort>"] -`. The prompt goes on stdin.
+- OpenAI API key: `POST https://api.openai.com/v1/responses` with
+  `reasoning.effort`.
 
 Settings use the `PA_EXPRESS_` environment prefix (see `.env.example`).
 
@@ -99,7 +151,9 @@ Settings use the `PA_EXPRESS_` environment prefix (see `.env.example`).
   not verbatim in the named document, recommends against the rubric, or marks a
   criterion `MET` without evidence. A rejection triggers the rules-engine fallback.
 - `criteria_met` is a display string such as `"4/4 required criteria met"`.
-- Traces are in memory and bounded. They never include AWS keys or Codex tokens.
+- Traces are in memory and bounded. They never include API keys, AWS keys, or
+  CLI sign-in tokens. Provider error text is redacted before it is recorded.
+  `LlmTrace` records the `auth_method` and `effort` of each call.
 - Engines never set a disposition. Only a human action moves
   `determination_status` from `in_review`.
 - The server records the reviewer actor for disposition audit events. It does
@@ -161,8 +215,10 @@ The provider letter prints one policy line from the attribution:
 
 ## Changes from the source contract
 
-- Removed the vendor clinical-guideline engine. `EngineId` drops that id, and
-  `EngineConfig.auth_style` drops `oauth_client_credentials`.
+- Removed the vendor clinical-guideline engine. `EngineId` drops that id.
+- `EngineConfig.auth_style` is replaced by `auth_methods` and `models`. Each
+  model engine offers a CLI and an API key connection, and Anthropic Claude also
+  offers AWS Bedrock. `EngineInfo` and `LlmTrace` add `auth_method` and `effort`.
 - Removed `GET/POST/DELETE /api/credentials` and the `CredentialInput`,
   `CredentialStatus`, and `EngineConfig.credential` shapes. No engine uses
   runtime OAuth credentials now.
@@ -184,7 +240,7 @@ The provider letter prints one policy line from the attribution:
   `contractor` are new.
 - `RuntimeCapabilities` drops the vendor-engine and runtime-credential flags.
   Only `anthropic_claude_enabled` and `openai_gpt_enabled` remain.
-- `LlmTrace.provider` is now `"bedrock" | "openai"`.
+- `LlmTrace.provider` is now `"anthropic" | "bedrock" | "openai"`.
 - `PA_EXPRESS_AWS_PROFILE` defaults to empty, which means the standard AWS
   credential chain. The source defaulted to a named profile.
 - Ports: backend 8004, frontend 5175. The FastAPI title is "Prior Auth Express".

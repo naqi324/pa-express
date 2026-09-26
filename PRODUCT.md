@@ -39,8 +39,8 @@ Automation recommends **approve** or **pend** only. It never denies. Every recom
 - Adverse outcomes route to "request information" or "refer to Medical Director". The product has no automated deny path.
 - Pend letters cite the specific unmet or insufficient criteria. A letter can be edited until it is marked ready; after that it is immutable.
 - Every determination records the engine, the model id when applicable, the policy basis, a timestamp, and evidence citations. A full audit trail records each action.
-- Engines: Offline (default, deterministic, the test baseline), Anthropic Claude through AWS Bedrock, and OpenAI GPT through the local `codex` CLI. An unavailable engine falls back to Offline and shows a visible notice.
-- Engine credentials are session-scoped and held in server memory only. The UI shows only a masked hint.
+- Engines: Offline (default, deterministic, the test baseline), Anthropic Claude, and OpenAI GPT. Claude connects through the Claude Code CLI, an Anthropic API key, or AWS Bedrock. GPT connects through the Codex CLI or an OpenAI API key. Each engine runs a model and reasoning effort chosen from a catalog of current models. An unavailable engine falls back to Offline and shows a visible notice.
+- Engine credentials are session-scoped and held in server memory only. Keys are write-only; the UI shows only a masked hint.
 - An engine can recommend approval only when evidence supports every criterion.
 - Terminology: "request", "case", "criterion", "evidence", "recommendation", "determination", "pend", "request information", "refer to Medical Director", "SLA".
 

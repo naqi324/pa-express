@@ -322,6 +322,8 @@ Corners are nearly square: 2px on boxes, buttons, inputs, chips, notices, and to
 ### Boxed fields
 The signature form element. A caption label sits inside the top of a ruled box, with the value below in 600 weight and tabular numerals. Used by the patient banner, the sign-off strip, and form summaries. Boxes can span two columns or the full row.
 
+The engine connection choice uses the same shared rules as a radio group. Each box holds a radio, the connection name, and a one-line summary. The selected box takes the blue wash and a 1px inset blue ring. A readiness note shows only when the connection is not ready.
+
 ### Ruled tables
 Full-width tables on white with 1px row rules. The header row is sunk, sticky, and set in 700 caption text. Group header rows (for example "Standard — 7-day decision 3") use the page fill and a strong rule. The worklist uses this pattern with a segmented filter above it.
 
@@ -338,7 +340,7 @@ Two panes inside one ruled frame. The detail pane shows the criterion, its chip,
 Tabs that look like the dividers in a binder. Unselected tabs are sunk with ink-2 text. The selected tab takes the page fill, joins the panel below, and carries a 3px blue bar across its top. In the app bar the tabs sit on binder-tab and the current page tab takes the page fill. Counts use tabular numerals; in the app bar the count sits in a small blue box. Tab strips that scroll sideways fade the hidden edge over 2rem.
 
 ### Inline disclosures
-Every secondary task opens in place. The approve, request information, and refer actions open the sign-off form below the buttons (180 ms rise). The policy viewer opens under "View policy". Engine settings open under each engine row. Engine-call details use native disclosure rows. Each trigger carries its expanded state.
+Every secondary task opens in place. The approve, request information, and refer actions open the sign-off form below the buttons (180 ms rise). The policy viewer opens under "View policy". Engine settings open under each engine row: the connection boxes, then the fields for that connection, then model and reasoning effort. Fields sit in a two-column grid, and each text field takes one column. Keys are write-only password fields. Engine-call details use native disclosure rows. Each trigger carries its expanded state.
 
 ### Notices and designed absence
 A notice is a 1px ruled box with an icon and text. The flag notice takes an orange border on flag wash. The action notice takes the blue wash. An absence is a dashed box on the page fill that names what is missing and offers the next action.
