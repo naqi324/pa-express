@@ -28,9 +28,16 @@ frontend, FastAPI backend (uv), pnpm, Oxlint, Playwright.
 
 ## Session Context
 
-- 2026-09-25: Port complete and pushed to `origin/main`.
-- State: backend, Vue frontend, e2e flows, brand guard, DESIGN.md all committed.
-- Checks: pytest 107, e2e 9/9, lint/typecheck clean, brand clean, detector 0.
-- Decisions: "Rules engine" label (id `offline`); letter dated in reviewer zone;
-  qualifiers stay under each criterion; bottom underline marks selection.
-- Next: live-test the Claude and GPT engines; optional Impeccable v4.4.0 update.
+- 2026-09-25: Engine connections, model catalog, and settings polish pushed.
+- State: Claude runs through the claude CLI, an Anthropic API key, or Bedrock.
+  GPT runs through the codex CLI or an OpenAI API key. The catalog in
+  `backend/app/engines/catalog.py` holds the models and efforts.
+- Checks: pytest 131, e2e 11/11, lint/typecheck clean, brand clean.
+- Decisions: defaults are CLI, `claude-opus-5-5` and `gpt-6-astra`, effort
+  `high`. A blank effort selects the model's default. Host lists accept CSV or
+  JSON. The form rejects a `command` field; CLI commands are server config.
+- Detector: 6 advisory findings in older `app.css` rules (mask `#000`, small
+  radii). They are out of scope for this change.
+- Next: live-test each connection with real session credentials. The CLI
+  connection inherits the server's shell environment (AWS profile, Bedrock
+  flag). Check the catalog again when providers ship new models.
