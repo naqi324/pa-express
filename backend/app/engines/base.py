@@ -1,4 +1,4 @@
-"""Engine abstraction + registry with cheap availability checks and Offline fallback."""
+"""Engine abstraction + registry with cheap availability checks and rules-engine fallback."""
 
 import shutil
 from abc import ABC, abstractmethod
@@ -29,9 +29,9 @@ class Engine(ABC):
 
 class RubricEngineBase(Engine):
     id: EngineId = "offline"
-    label = "Offline"
+    label = "Rules engine"
     description = (
-        "No-network execution of the vendored prior-auth-review skill's lenient rubric."
+        "Checks the case facts against each policy criterion. No model or network call."
     )
 
 
@@ -115,7 +115,7 @@ class EngineRegistry:
         scenario: dict,
         settings: Settings,
     ) -> tuple[Determination, str | None]:
-        """Run the requested engine; on unavailability or failure fall back to Offline.
+        """Run the requested engine; on unavailability or failure fall back to the rules engine.
 
         Returns (determination, error_notice). The determination's attribution
         always reflects the engine that actually ran.
@@ -129,7 +129,7 @@ class EngineRegistry:
                 determination = await fallback.evaluate(request, scenario, settings)
                 reason = note or "engine is not available"
                 return determination, (
-                    f"{engine.label} unavailable — fell back to Offline: {reason}"
+                    f"{engine.label} unavailable — fell back to the rules engine: {reason}"
                 )
             try:
                 determination = await engine.evaluate(request, scenario, settings)
@@ -138,7 +138,7 @@ class EngineRegistry:
                 reason = getattr(exc, "message", None) or str(exc) or exc.__class__.__name__
                 determination = await fallback.evaluate(request, scenario, settings)
                 return determination, (
-                    f"{engine.label} unavailable — fell back to Offline: {reason}"
+                    f"{engine.label} unavailable — fell back to the rules engine: {reason}"
                 )
 
         determination = await fallback.evaluate(request, scenario, settings)

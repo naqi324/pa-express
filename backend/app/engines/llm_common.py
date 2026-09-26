@@ -327,7 +327,7 @@ def determination_from_payload(
         expected_recommendation = "approve" if total > 0 and met_count == total else "pend"
         if recommendation != expected_recommendation:
             raise ValueError(
-                "Engine response recommendation does not match the lenient rubric: "
+                "Engine response recommendation does not match the approval rule: "
                 f"expected {expected_recommendation!r}, got {recommendation!r}."
             )
     gaps = [

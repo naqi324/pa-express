@@ -1,4 +1,4 @@
-"""Offline engine — deterministic port of the Anthropic prior-auth-review lenient rubric.
+"""Rules engine — deterministic port of the Anthropic prior-auth-review lenient rubric.
 
 Recommendation is only ever "approve" or "pend"; the rubric never denies.
 """
@@ -71,8 +71,8 @@ class RubricEngine(RubricEngineBase):
                 recommendation="pend",
                 rationale=(
                     f"Intake validation against {label} could not be completed because required "
-                    "elements of the request are missing. Per the lenient rubric the case is pended so the "
-                    "submitter can supply the missing information rather than facing an adverse decision."
+                    "elements of the request are missing. The case is pended so the submitter can supply the "
+                    "missing information rather than face an adverse decision."
                 ),
                 criteria_evaluations=[],
                 criteria_met="0/0 required criteria met",
@@ -135,13 +135,13 @@ class RubricEngine(RubricEngineBase):
             rationale = (
                 f"All {total} required criteria under {label} are met with documented clinical "
                 "evidence. The submitted records support medical necessity for the requested service. "
-                "The rubric recommends approval, subject to human reviewer disposition."
+                "The rules engine recommends approval. The reviewer makes the final decision."
             )
             recommendation = "approve"
         else:
             rationale = (
                 f"{met_count} of {total} required criteria under {label} are met. "
-                "The remaining criteria lack sufficient documented evidence, so the lenient rubric "
+                "The remaining criteria lack sufficient documented evidence, so the rules engine "
                 "recommends pending the case to request the specific missing documentation."
             )
             recommendation = "pend"

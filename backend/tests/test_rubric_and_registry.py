@@ -304,7 +304,7 @@ async def test_registry_falls_back_to_offline_when_engine_raises(settings) -> No
 
     assert determination.attribution.engine == "offline"
     assert notice is not None
-    assert "Stub OpenAI GPT unavailable — fell back to Offline" in notice
+    assert "Stub OpenAI GPT unavailable — fell back to the rules engine" in notice
     assert "kaboom" in notice
 
 
@@ -485,7 +485,7 @@ async def test_registry_falls_back_when_engine_disabled() -> None:
 
     assert determination.attribution.engine == "offline"
     assert notice is not None
-    assert "fell back to Offline" in notice
+    assert "fell back to the rules engine" in notice
 
 
 async def test_openai_gpt_uses_source_skill_prompt_and_reasoning_effort(
@@ -659,7 +659,7 @@ def test_normalize_policy_id_rejects_other_values(value: str) -> None:
 def test_letter_policy_line_ncd_form() -> None:
     attribution = Attribution(
         engine="offline",
-        engine_label="Offline",
+        engine_label="Rules engine",
         policy_source_type="ncd",
         policy_code="NCD 150.3",
         policy_title="Bone (Mineral) Density Studies",
@@ -674,7 +674,7 @@ def test_letter_policy_line_ncd_form() -> None:
 def test_letter_policy_line_lcd_form() -> None:
     attribution = Attribution(
         engine="offline",
-        engine_label="Offline",
+        engine_label="Rules engine",
         policy_source_type="lcd",
         policy_code="LCD L12345",
         policy_title="Example Procedure",

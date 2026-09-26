@@ -37,7 +37,7 @@ provider sit in a state that the LCD's contractor serves.
 Adding a scenario: define its quote constants, document texts, and a
 _SCENARIO_* dict in a new section below the existing scenarios, then append
 it to SCENARIOS. Put the matching ncd-*.json or lcd-*.json file in
-data/cms-coverage/ so the policy lookup and the Offline coverage check can
+data/cms-coverage/ so the policy lookup and the rules-engine coverage check can
 read it; no code changes are needed.
 
 All members, providers, NPIs, and identifiers are synthetic.

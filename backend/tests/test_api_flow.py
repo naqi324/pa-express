@@ -267,7 +267,7 @@ async def test_approve_flow_letter_save_and_send(client: AsyncClient) -> None:
     assert letter_body["status"] == "draft"
     assert "Valid From: 2026-07-05" in letter_body["body"]
     assert "Valid Through: 2026-10-03" in letter_body["body"]
-    assert "Offline" in letter_body["body"]
+    assert "Engine: Rules engine" in letter_body["body"]
     assert "Coverage Policy: Medicare NCD 150.3 (Version 2)" in letter_body["body"]
     assert "[PLACEHOLDER]" not in letter_body["body"]
     assert "AI-ASSISTED DRAFT" not in letter_body["body"]
@@ -492,7 +492,7 @@ async def test_registry_fallback_populates_error_notice(
     completed = await poll_evaluation(client, body["id"], body["latest_eval_id"])
     assert completed["status"] == "completed"
     assert completed["determination"]["attribution"]["engine"] == "offline"
-    assert "Stub OpenAI GPT unavailable — fell back to Offline" in completed["error"]
+    assert "Stub OpenAI GPT unavailable — fell back to the rules engine" in completed["error"]
     assert "model exploded" in completed["error"]
 
     inspection = await client.get(f"/api/requests/{body['id']}/llm-inspection")
