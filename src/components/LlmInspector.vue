@@ -90,8 +90,8 @@ function prettyJson(value: { [key: string]: JsonValue } | null): string {
     >
       <header class="trace-head">
         <div>
-          <p class="caption">{{ providerLabel(trace) }}</p>
           <h4 :id="`trace-title-${index}`" class="trace-title">{{ trace.engine_label }}</h4>
+          <p class="caption">{{ providerLabel(trace) }}</p>
         </div>
         <span class="code" :class="{ 'code-flag-soft': trace.status === 'failed' }">
           <CircleCheck v-if="trace.status === 'succeeded'" :size="13" aria-hidden="true" />
