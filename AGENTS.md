@@ -25,3 +25,12 @@ frontend, FastAPI backend (uv), pnpm, Oxlint, Playwright.
 - UI: no modals, dialogs, or side panels. Use inline disclosures. Follow the tokens and shared classes in `src/styles/`. Keep motion between 120 and 200 ms and honor `prefers-reduced-motion`.
 - Never commit real patient data (PHI). Use synthetic data for fixtures and demos.
 - Never commit secrets. Runtime credentials stay in server memory for one session.
+
+## Session Context
+
+- 2026-09-25: Port complete and pushed to `origin/main`.
+- State: backend, Vue frontend, e2e flows, brand guard, DESIGN.md all committed.
+- Checks: pytest 107, e2e 9/9, lint/typecheck clean, brand clean, detector 0.
+- Decisions: "Rules engine" label (id `offline`); letter dated in reviewer zone;
+  qualifiers stay under each criterion; bottom underline marks selection.
+- Next: live-test the Claude and GPT engines; optional Impeccable v4.4.0 update.
